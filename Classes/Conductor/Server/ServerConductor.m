@@ -33,12 +33,20 @@
 	return self;
 }
 
-- (void) dealloc {
+- (void) finish {
 	[session disconnectFromAllPeers];
 	[session setAvailable:NO];
 	[session setDelegate:nil];
-	[session release];	
+	[session release];
+	session = nil;
+}
+
+- (void) dealloc {
+	[self finish];
 	[super dealloc];
+}
+
+- (void) receiveData:(NSData *)data fromPeer:(NSString *)peerID inSession: (GKSession *)session_ context:(void *)context {
 }
 
 @end

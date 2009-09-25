@@ -17,4 +17,6 @@
 	return [NSString stringWithFormat:@"[ClientConductor]"];
 }
 
+- (void) finish { }
+
 @end

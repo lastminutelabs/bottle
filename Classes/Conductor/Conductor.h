@@ -15,8 +15,11 @@ typedef enum {
 	ConductorTypeClient
 } ConductorType;
 
+
 @protocol Conductor <NSObject>
 
 @property (nonatomic, readonly) ConductorType type;
+
+- (void) finish;
 
 @end
