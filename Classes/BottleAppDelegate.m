@@ -14,6 +14,7 @@
 @synthesize window;
 @synthesize startOrJoinViewController;
 @synthesize lobbyViewController;
+@synthesize playViewController;
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {   
 	

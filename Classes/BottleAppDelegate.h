@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "StartOrJoinViewController.h"
 #import "LobbyViewController.h"
+#import "PlayViewController.h"
 
 @interface BottleAppDelegate : NSObject <UIApplicationDelegate, StartOrJoinViewControllerDelegate, ConductorDelegate> {
     UIWindow *window;
@@ -16,6 +17,7 @@
 	
 	StartOrJoinViewController *startOrJoinViewController;
 	LobbyViewController *lobbyViewController;
+	PlayViewController *playViewController;
 	
 	<Conductor> conductor;
 }
@@ -23,5 +25,6 @@
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet StartOrJoinViewController *startOrJoinViewController;
 @property (nonatomic, retain) IBOutlet LobbyViewController *lobbyViewController;
+@property (nonatomic, retain) PlayViewController *playViewController;
 
 @end
