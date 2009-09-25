@@ -11,16 +11,17 @@
 
 @implementation Note
 
-@synthesize pitch, duration;
+@synthesize pitch, duration, timestamp;
 
 - (id) init {
-	return [self initWithPitch:0 andDuration:0];
+	return [self initWithPitch:0 andDuration:0 at:0];
 }
 
-- (id) initWithPitch:(int)pitch_ andDuration:(int)duration_ {
+- (id) initWithPitch:(int)pitch_ andDuration:(int)duration_ at:(NSTimeInterval)timestamp_ {
 	if (self = [super init]) {
 		pitch = pitch_;
 		duration = duration_;
+		timestamp = timestamp_;
 	}
 	return self;
 }

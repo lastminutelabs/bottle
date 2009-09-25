@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "Note.h"
 
 @interface Song : NSObject {
 	NSMutableArray *notes;

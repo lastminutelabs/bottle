@@ -12,11 +12,13 @@
 @interface Note : NSObject {
 	int duration;
 	int pitch;
+	NSTimeInterval timestamp;
 }
 
 @property (nonatomic, readonly) int pitch;
 @property (nonatomic, readonly) int duration;
+@property (nonatomic, readonly) NSTimeInterval timestamp;
 
-- (id) initWithPitch:(int)pitch andDuration:(int)duration;
+- (id) initWithPitch:(int)pitch andDuration:(int)duration at:(NSTimeInterval)timestamp;
 
 @end
