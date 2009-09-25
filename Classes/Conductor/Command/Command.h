@@ -9,15 +9,13 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-	CommandPing,
-	CommandPingResponse
+	CommandTypePing,
+	CommandTypePingResponse
 } CommandType;
 
 @protocol Command <NSObject>
 
 @property (nonatomic, readonly) CommandType type;
-
-- (<Command>) initWithData:(NSData *)data;
 
 - (NSData *) toData;
 

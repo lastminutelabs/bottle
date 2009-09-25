@@ -54,9 +54,14 @@
 	[self debug:@"Server session started"];
 	
 	[delegate conductor:self initializeSuccessful:YES];
+	
+	pingTimer = [[NSTimer scheduledTimerWithTimeInterval:PING_INTERVAL target:self selector:@selector(triggerPing:) userInfo:nil repeats:YES] retain];
 }
 
 - (void) finish {
+	[pingTimer invalidate];
+	[pingTimer release];
+	pingTimer = nil;
 	[session disconnectFromAllPeers];
 	[session setAvailable:NO];
 	[session setDelegate:nil];
@@ -73,6 +78,18 @@
 	[delegate release];
 	[name release];
 	[super dealloc];
+}
+
+- (void) triggerPing:(NSTimer *)timer {
+	// Send a ping to everyone
+	PingCommand *ping = [[PingCommand alloc] init];
+	ping.timestamp = [NSDate date];
+	NSError *error = nil;
+	[session sendData:[ping toData] toPeers:peers withDataMode:GKSendDataReliable error:&error];
+	[ping release];
+	
+	if (nil != error)
+		[self debug:[NSString stringWithFormat:@"Ping failed to send : %@", [error localizedDescription]]];
 }
 
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peerID inSession: (GKSession *)session_ context:(void *)context {
@@ -133,7 +150,7 @@
 - (void) setSong:(Song *)value {
 	[song release];
 	song = [song retain];
-	//[self sendData:[[Command alloc] init] toPeers:peers];
+	NSLog(@"poo");
 }
 
 @end

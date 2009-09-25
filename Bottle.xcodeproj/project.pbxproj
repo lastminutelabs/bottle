@@ -28,6 +28,8 @@
 		B290CEB3106D19A40065649E /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CEB2106D19A40065649E /* Note.m */; };
 		B290D08B106D56CA0065649E /* Jingle Bells.btl in Resources */ = {isa = PBXBuildFile; fileRef = B290D08A106D56CA0065649E /* Jingle Bells.btl */; };
 		B290D1A7106D618B0065649E /* PracticeConductor.m in Sources */ = {isa = PBXBuildFile; fileRef = B290D1A6106D618B0065649E /* PracticeConductor.m */; };
+		B2C42F99106D7DEC00A0DB86 /* PingCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C42F98106D7DEC00A0DB86 /* PingCommand.m */; };
+		B2C42FA3106D7E7C00A0DB86 /* CommandFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C42FA2106D7E7C00A0DB86 /* CommandFactory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +70,10 @@
 		B290D1A5106D618B0065649E /* PracticeConductor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeConductor.h; sourceTree = "<group>"; };
 		B290D1A6106D618B0065649E /* PracticeConductor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeConductor.m; sourceTree = "<group>"; };
 		B2C42ECE106D788100A0DB86 /* Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Command.h; sourceTree = "<group>"; };
+		B2C42F97106D7DEC00A0DB86 /* PingCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingCommand.h; sourceTree = "<group>"; };
+		B2C42F98106D7DEC00A0DB86 /* PingCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingCommand.m; sourceTree = "<group>"; };
+		B2C42FA1106D7E7C00A0DB86 /* CommandFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandFactory.h; sourceTree = "<group>"; };
+		B2C42FA2106D7E7C00A0DB86 /* CommandFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandFactory.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,6 +254,10 @@
 			isa = PBXGroup;
 			children = (
 				B2C42ECE106D788100A0DB86 /* Command.h */,
+				B2C42F97106D7DEC00A0DB86 /* PingCommand.h */,
+				B2C42F98106D7DEC00A0DB86 /* PingCommand.m */,
+				B2C42FA1106D7E7C00A0DB86 /* CommandFactory.h */,
+				B2C42FA2106D7E7C00A0DB86 /* CommandFactory.m */,
 			);
 			path = Command;
 			sourceTree = "<group>";
@@ -319,6 +329,8 @@
 				548E0F7B106CF01900D459F5 /* PlayViewController.m in Sources */,
 				548E0FB8106CFDE800D459F5 /* SCListener.m in Sources */,
 				B290D1A7106D618B0065649E /* PracticeConductor.m in Sources */,
+				B2C42F99106D7DEC00A0DB86 /* PingCommand.m in Sources */,
+				B2C42FA3106D7E7C00A0DB86 /* CommandFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
