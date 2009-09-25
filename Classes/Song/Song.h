@@ -10,7 +10,7 @@
 
 
 @interface Song : NSObject {
-
+	NSMutableArray *notes;
 }
 
 - (id) initWithContentsOfFile:(NSString *)file;

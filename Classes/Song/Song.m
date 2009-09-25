@@ -17,8 +17,14 @@
 
 - (id) initWithContentsOfFile:(NSString *)file {
 	if (self = [super init]) {
+		notes = [[NSMutableArray alloc] initWithCapacity:100];
 	}
 	return self;
+}
+
+- (void) dealloc {
+	[notes release];
+	[super dealloc];
 }
 
 @end
