@@ -19,6 +19,8 @@
 		B290CBAE106CF1DF0065649E /* ClientConductor.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CBAD106CF1DF0065649E /* ClientConductor.m */; };
 		B290CBEF106CF5970065649E /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B290CBEE106CF5970065649E /* GameKit.framework */; };
 		B290CE04106D0D5D0065649E /* LobbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CE03106D0D5D0065649E /* LobbyViewController.m */; };
+		B290CEAC106D18630065649E /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CEAB106D18630065649E /* Song.m */; };
+		B290CEB3106D19A40065649E /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CEB2106D19A40065649E /* Note.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,10 @@
 		B290CBEE106CF5970065649E /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		B290CE02106D0D5D0065649E /* LobbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LobbyViewController.h; sourceTree = "<group>"; };
 		B290CE03106D0D5D0065649E /* LobbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LobbyViewController.m; sourceTree = "<group>"; };
+		B290CEAA106D18630065649E /* Song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
+		B290CEAB106D18630065649E /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
+		B290CEB1106D19A40065649E /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		B290CEB2106D19A40065649E /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +70,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B290CEA9106D18300065649E /* Song */,
 				B290CB00106CEBB90065649E /* Controllers */,
 				B290CAFB106CEB3D0065649E /* Conductor */,
 				1D3623240D0F684500981E51 /* BottleAppDelegate.h */,
@@ -162,6 +169,17 @@
 			path = Client;
 			sourceTree = "<group>";
 		};
+		B290CEA9106D18300065649E /* Song */ = {
+			isa = PBXGroup;
+			children = (
+				B290CEAA106D18630065649E /* Song.h */,
+				B290CEAB106D18630065649E /* Song.m */,
+				B290CEB1106D19A40065649E /* Note.h */,
+				B290CEB2106D19A40065649E /* Note.m */,
+			);
+			path = Song;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -222,6 +240,8 @@
 				B290CBAB106CF1D80065649E /* ServerConductor.m in Sources */,
 				B290CBAE106CF1DF0065649E /* ClientConductor.m in Sources */,
 				B290CE04106D0D5D0065649E /* LobbyViewController.m in Sources */,
+				B290CEAC106D18630065649E /* Song.m in Sources */,
+				B290CEB3106D19A40065649E /* Note.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
