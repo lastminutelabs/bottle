@@ -38,6 +38,12 @@
 	[songsTable reloadData];
 }
 
+- (void) setPlayers:(NSArray *)value {
+	[players release];
+	players = [value retain];
+	[songsTable reloadData];
+}
+
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
