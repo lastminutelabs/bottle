@@ -39,7 +39,7 @@
 }
 
 - (IBAction) practice {
-	[delegate controller:self createdConductor:[ConductorFactory conductorWithType:ConductorTypeDummy]];
+	[delegate controller:self createdConductor:[ConductorFactory conductorWithType:ConductorTypePractice]];
 }
 
 @end

@@ -81,7 +81,7 @@
 
 - (void) conductor:(<Conductor>)conductor_ initializeSuccessful:(bool)success {
 	if (YES == success) {
-		if (conductor_.type == ConductorTypeDummy) {
+		if (conductor_.type == ConductorTypePractice) {
 			[startOrJoinViewController.view removeFromSuperview];
 			[window insertSubview:playViewController.view atIndex:0];
 		} else {

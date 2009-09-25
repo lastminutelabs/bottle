@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Conductor.h"
 
-@interface DummyConductor : NSObject <Conductor> {
+@interface PracticeConductor : NSObject <Conductor> {
 	NSString *name;
 	
 	<ConductorDelegate> delegate;
