@@ -23,10 +23,13 @@
 
 - (void)dealloc {
     [window release];
+	[conductor release];
     [super dealloc];
 }
 
-- (void) controller:(StartOrJoinViewController *)controller createdConductor:(id)conductor {
+- (void) controller:(StartOrJoinViewController *)controller createdConductor:(<Conductor>)conductor_ {
+	[conductor release];
+	conductor = [conductor_ retain];
 	NSLog(@"Conductor created : %@", conductor);
 }
 

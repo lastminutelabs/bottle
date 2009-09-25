@@ -8,11 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "Conductor.h"
+#import <GameKit/Gamekit.h>
 
-@interface ServerConductor : NSObject <Conductor> {
-
+@interface ServerConductor : NSObject <Conductor, GKSessionDelegate> {
+	NSString *name;
+	
+	GKSession *session;
 }
 
 @property (nonatomic, readonly) ConductorType type;
+@property (nonatomic, readonly) NSString *name;
 
 @end

@@ -13,6 +13,8 @@
     UIWindow *window;
 	
 	StartOrJoinViewController *startOrJoinViewController;
+	
+	<Conductor> conductor;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

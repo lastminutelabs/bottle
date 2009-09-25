@@ -11,6 +11,6 @@
 
 @interface ConductorFactory : NSObject
 
-+ (<Conductor>) createConductor:(ConductorType)type;
++ (<Conductor>) conductorWithType:(ConductorType)type;
 
 @end

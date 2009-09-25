@@ -17,6 +17,7 @@
 		B290CB67106CF0300065649E /* ConductorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CB66106CF0300065649E /* ConductorFactory.m */; };
 		B290CBAB106CF1D80065649E /* ServerConductor.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CBAA106CF1D80065649E /* ServerConductor.m */; };
 		B290CBAE106CF1DF0065649E /* ClientConductor.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CBAD106CF1DF0065649E /* ClientConductor.m */; };
+		B290CBEF106CF5970065649E /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B290CBEE106CF5970065649E /* GameKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		B290CBAA106CF1D80065649E /* ServerConductor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerConductor.m; sourceTree = "<group>"; };
 		B290CBAC106CF1DF0065649E /* ClientConductor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientConductor.h; sourceTree = "<group>"; };
 		B290CBAD106CF1DF0065649E /* ClientConductor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientConductor.m; sourceTree = "<group>"; };
+		B290CBEE106CF5970065649E /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +51,7 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
+				B290CBEF106CF5970065649E /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +85,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				B290CBEE106CF5970065649E /* GameKit.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
