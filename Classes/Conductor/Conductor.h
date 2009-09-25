@@ -12,7 +12,8 @@
 
 typedef enum {
 	ConductorTypeServer = 0,
-	ConductorTypeClient
+	ConductorTypeClient,
+	ConductorTypeDummy
 } ConductorType;
 
 @protocol Conductor;

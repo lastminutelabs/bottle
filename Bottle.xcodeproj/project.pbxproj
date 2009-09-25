@@ -27,6 +27,7 @@
 		B290CEAC106D18630065649E /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CEAB106D18630065649E /* Song.m */; };
 		B290CEB3106D19A40065649E /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CEB2106D19A40065649E /* Note.m */; };
 		B290D08B106D56CA0065649E /* Jingle Bells.btl in Resources */ = {isa = PBXBuildFile; fileRef = B290D08A106D56CA0065649E /* Jingle Bells.btl */; };
+		B290D1A7106D618B0065649E /* DummyConductor.m in Sources */ = {isa = PBXBuildFile; fileRef = B290D1A6106D618B0065649E /* DummyConductor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,8 @@
 		B290CEB1106D19A40065649E /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
 		B290CEB2106D19A40065649E /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 		B290D08A106D56CA0065649E /* Jingle Bells.btl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Jingle Bells.btl"; sourceTree = "<group>"; };
+		B290D1A5106D618B0065649E /* DummyConductor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyConductor.h; sourceTree = "<group>"; };
+		B290D1A6106D618B0065649E /* DummyConductor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyConductor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +172,7 @@
 		B290CAFB106CEB3D0065649E /* Conductor */ = {
 			isa = PBXGroup;
 			children = (
+				B290D1A4106D61660065649E /* Dummy */,
 				B290CBA5106CF17C0065649E /* Client */,
 				B290CBA4106CF1780065649E /* Server */,
 				B290CB61106CF0160065649E /* Conductor.h */,
@@ -227,6 +231,15 @@
 			);
 			name = Songs;
 			path = Assets/Songs;
+			sourceTree = "<group>";
+		};
+		B290D1A4106D61660065649E /* Dummy */ = {
+			isa = PBXGroup;
+			children = (
+				B290D1A5106D618B0065649E /* DummyConductor.h */,
+				B290D1A6106D618B0065649E /* DummyConductor.m */,
+			);
+			path = Dummy;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,6 +308,7 @@
 				B290CEB3106D19A40065649E /* Note.m in Sources */,
 				548E0F7B106CF01900D459F5 /* PlayViewController.m in Sources */,
 				548E0FB8106CFDE800D459F5 /* SCListener.m in Sources */,
+				B290D1A7106D618B0065649E /* DummyConductor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
