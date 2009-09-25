@@ -63,12 +63,13 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
 	Song *song = [songs objectAtIndex:indexPath.row];
     cell.textLabel.text = [song name];
-	cell.detailTextLabel.text = players.count >= song.numberOfUniqueNotes ? @"available" : @"needs more players";
+	int diff = song.numberOfUniqueNotes - players.count;
+	cell.detailTextLabel.text = diff < 0 ? @"available" : [NSString stringWithFormat:@"%i more players needed", diff];
 	
     return cell;
 }

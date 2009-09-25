@@ -54,11 +54,11 @@
 		if (nil == filename) {
 			[self addNote:[[Note alloc] initWithPitch:@"1" andDuration:1 at:0]];
 			[self addNote:[[Note alloc] initWithPitch:@"2" andDuration:1 at:1]];
-			[self addNote:[[Note alloc] initWithPitch:@"3" andDuration:1 at:2]];
-			[self addNote:[[Note alloc] initWithPitch:@"4" andDuration:1 at:3]];
-			[self addNote:[[Note alloc] initWithPitch:@"5" andDuration:1 at:4]];
+			[self addNote:[[Note alloc] initWithPitch:@"1" andDuration:1 at:2]];
+			[self addNote:[[Note alloc] initWithPitch:@"2" andDuration:1 at:3]];
+			[self addNote:[[Note alloc] initWithPitch:@"1" andDuration:1 at:4]];
+			[self addNote:[[Note alloc] initWithPitch:@"2" andDuration:1 at:5.5]];
 			[self addNote:[[Note alloc] initWithPitch:@"1" andDuration:1 at:5.5]];
-			[self addNote:[[Note alloc] initWithPitch:@"5" andDuration:1 at:5.5]];
 			name = [[NSString alloc] initWithString:@"Test file"];
 		} else {
 			// Open the file
