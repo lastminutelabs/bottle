@@ -18,6 +18,7 @@
 - (void)applicationDidFinishLaunching:(UIApplication *)application {   
 	
 	Song *testSong = [[Song alloc] init];
+	NSLog(@"%@", testSong);
 	[testSong start];
 
     // Override point for customization after application launch
