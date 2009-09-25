@@ -38,10 +38,6 @@
 	conductor = [conductor_ retain];
 	[conductor setDelegate:self];
 	[conductor start];
-	
-	[startOrJoinViewController.view removeFromSuperview];
-	lobbyViewController.conductor = conductor;
-	[window insertSubview:lobbyViewController.view atIndex:0];
 }
 
 
@@ -52,6 +48,14 @@
 
 - (void) conductor:(<Conductor>)conductor hasDebugMessage:(NSString *)debugMessage {
 	debugView.text = [NSString stringWithFormat:@"%@\n%@", debugView.text, debugMessage];
+}
+
+- (void) conductor:(<Conductor>)conductor_ initializeSuccessful:(bool)success {
+	if (YES == success) {
+		[startOrJoinViewController.view removeFromSuperview];
+		lobbyViewController.conductor = conductor;
+		[window insertSubview:lobbyViewController.view atIndex:0];
+	}
 }
 
 @end

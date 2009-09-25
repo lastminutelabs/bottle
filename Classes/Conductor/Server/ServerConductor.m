@@ -46,6 +46,8 @@
 	[session setAvailable:YES];
 	
 	[self debug:@"Server sesison started"];
+	
+	[delegate conductor:self initializeSuccessful:YES];
 }
 
 - (void) finish {

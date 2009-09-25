@@ -19,6 +19,7 @@ typedef enum {
 
 @protocol ConductorDelegate <NSObject>
 
+- (void) conductor:(<Conductor>)conductor initializeSuccessful:(bool)success;
 - (void) conductor:(<Conductor>)conductor hadError:(NSError *)error;
 
 @optional
