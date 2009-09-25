@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "StartOrJoinViewController.h"
 
 @interface BottleAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
+	
+	StartOrJoinViewController *startOrJoinViewController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
+@property (nonatomic, retain) IBOutlet StartOrJoinViewController *startOrJoinViewController;
 
 @end
-

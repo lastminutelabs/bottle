@@ -13,6 +13,7 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		B290CB08106CEBEB0065649E /* StartOrJoinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CB07106CEBEB0065649E /* StartOrJoinViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Bottle_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bottle_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Bottle-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Bottle-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		B290CB06106CEBEB0065649E /* StartOrJoinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartOrJoinViewController.h; sourceTree = "<group>"; };
+		B290CB07106CEBEB0065649E /* StartOrJoinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartOrJoinViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +48,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B290CB00106CEBB90065649E /* Controllers */,
+				B290CAFB106CEB3D0065649E /* Conductor */,
 				1D3623240D0F684500981E51 /* BottleAppDelegate.h */,
 				1D3623250D0F684500981E51 /* BottleAppDelegate.m */,
 			);
@@ -97,6 +102,22 @@
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B290CAFB106CEB3D0065649E /* Conductor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Conductor;
+			sourceTree = "<group>";
+		};
+		B290CB00106CEBB90065649E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B290CB06106CEBEB0065649E /* StartOrJoinViewController.h */,
+				B290CB07106CEBEB0065649E /* StartOrJoinViewController.m */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,6 +175,7 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* BottleAppDelegate.m in Sources */,
+				B290CB08106CEBEB0065649E /* StartOrJoinViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
