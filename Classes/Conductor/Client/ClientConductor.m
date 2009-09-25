@@ -12,6 +12,7 @@
 
 @synthesize delegate;
 @synthesize name;
+@synthesize allPlayers;
 
 - (void) debug:(NSString *)message {
 	if ([delegate respondsToSelector:@selector(conductor:hasDebugMessage:)])

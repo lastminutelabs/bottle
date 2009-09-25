@@ -13,6 +13,7 @@
 
 @synthesize name;
 @synthesize delegate;
+@synthesize allPlayers;
 
 - (void) debug:(NSString *)message {
 	if ([delegate respondsToSelector:@selector(conductor:hasDebugMessage:)])
@@ -29,7 +30,6 @@
 
 - (id) init {
 	if (self = [super init]) {
-		// Create our name
 		name = [[NSString stringWithFormat:@"%@ server", [[UIDevice currentDevice] name]] retain];
 	}
 	return self;
@@ -45,6 +45,11 @@
 	[session setDataReceiveHandler:self withContext:nil];
 	[session setAvailable:YES];
 	
+	// Create the peers array
+	peers = [[NSMutableArray alloc] initWithCapacity:10];
+	allPlayers = [[NSMutableArray alloc] initWithCapacity:10];
+	[allPlayers addObject:[session displayName]];
+	
 	[self debug:@"Server session started"];
 	
 	[delegate conductor:self initializeSuccessful:YES];
@@ -56,6 +61,10 @@
 	[session setDelegate:nil];
 	[session release];
 	session = nil;
+	[peers release];
+	peers = nil;
+	[allPlayers release];
+	allPlayers = nil;
 }
 
 - (void) dealloc {
@@ -68,7 +77,44 @@
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peerID inSession: (GKSession *)session_ context:(void *)context {
 }
 
-- (void)session:(GKSession *)session_ peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state { }
+- (void)session:(GKSession *)session_ peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state {
+	
+	NSString *displayName = [session_ displayNameForPeer:peerID];
+
+	switch (state) {
+		// If we know about these peers, remove them in these states
+		case GKPeerStateUnavailable:
+		case GKPeerStateDisconnected:
+			if ([peers containsObject:peerID]) {
+				[peers removeObject:peerID];
+				[allPlayers removeObject:displayName];
+				[delegate conductor:self removedPeer:displayName];
+				[self debug:[NSString stringWithFormat:@"peer %@ removed", displayName]];
+			} else {
+				[self debug:[NSString stringWithFormat:@"peer %@ already removed!", displayName]];
+			}
+			break;
+			
+		case GKPeerStateConnected:
+			if (![peers containsObject:peerID]) {
+				[peers addObject:peerID];
+				[allPlayers addObject:displayName];
+				[delegate conductor:self addedPeer:displayName];
+				[self debug:[NSString stringWithFormat:@"peer %@ connected", displayName]];
+			} else {
+				[self debug:[NSString stringWithFormat:@"peer %@ already connected!", displayName]];
+			}
+			break;
+			
+		case GKPeerStateAvailable:
+		case GKPeerStateConnecting:
+			break;
+
+		default:
+			[self debug:[NSString stringWithFormat:@"%@ reported unknown state : %i", displayName, state]];
+		}
+}
+
 - (void)session:(GKSession *)session_ didReceiveConnectionRequestFromPeer:(NSString *)peerID {
 	NSError *error = nil;
 	[session_ acceptConnectionFromPeer:peerID error:&error];

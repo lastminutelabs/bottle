@@ -16,6 +16,9 @@
 	GKSession *session;
 	
 	<ConductorDelegate> delegate;
+	
+	NSMutableArray *peers;
+	NSMutableArray *allPlayers;
 }
 
 @property (nonatomic, readonly) ConductorType type;

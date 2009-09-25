@@ -49,10 +49,11 @@
 	[songsTable reloadData];
 }
 
-- (void) setController:(<Conductor>)value {
+- (void) setConductor:(<Conductor>)value {
 	[conductor release];
 	conductor = [value retain];
-	songsTable.userInteractionEnabled = conductor.type == ConductorTypeServer;
+	songsTable.allowsSelection = conductor.type == ConductorTypeServer;
+	[songsTable reloadData];
 }
 
 #pragma mark Table view methods
@@ -61,13 +62,10 @@
     return 1;
 }
 
-
-// Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return songs.count;
 }
 
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"SongCell";
@@ -80,16 +78,12 @@
 	Song *song = [songs objectAtIndex:indexPath.row];
     cell.textLabel.text = [song name];
 	int diff = song.numberOfUniqueNotes - players.count;
-	cell.detailTextLabel.text = diff < 0 ? @"available" : [NSString stringWithFormat:@"%i more player(s) needed", diff];
+	cell.detailTextLabel.text = diff <= 0 ? @"available" : [NSString stringWithFormat:@"%i more player(s) needed", diff];
 	
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController];
-	// [anotherViewController release];
 }
 
 @end

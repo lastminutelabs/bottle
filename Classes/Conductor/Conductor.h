@@ -23,6 +23,9 @@ typedef enum {
 - (void) conductor:(<Conductor>)conductor initializeSuccessful:(bool)success;
 - (void) conductor:(<Conductor>)conductor hadError:(NSError *)error;
 
+- (void) conductor:(<Conductor>)conductor addedPeer:(NSString *)displayName;
+- (void) conductor:(<Conductor>)conductor removedPeer:(NSString *)displayName;
+
 @optional
 
 - (void) conductor:(<Conductor>)conductor hasDebugMessage:(NSString *)debugMessage;
@@ -37,6 +40,8 @@ typedef enum {
 @property (nonatomic, readonly) NSString *name;
 
 @property (nonatomic, retain) <ConductorDelegate> delegate;
+
+@property (nonatomic, readonly) NSArray *allPlayers;
 
 - (void) start;
 - (void) finish;

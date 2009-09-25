@@ -59,6 +59,7 @@
 - (void)dealloc {
     [window release];
 	[conductor release];
+	[songs release];
     [super dealloc];
 }
 
@@ -88,9 +89,18 @@
 			[startOrJoinViewController.view removeFromSuperview];
 			lobbyViewController.conductor = conductor;
 			lobbyViewController.songs = songs;
+			lobbyViewController.players = conductor_.allPlayers;
 			[window insertSubview:lobbyViewController.view atIndex:0];
 		}
 	}
+}
+
+- (void) conductor:(<Conductor>)conductor_ addedPeer:(NSString *)displayName {
+	lobbyViewController.players = conductor_.allPlayers;
+}
+
+- (void) conductor:(<Conductor>)conductor_ removedPeer:(NSString *)displayName {
+	lobbyViewController.players = conductor_.allPlayers;
 }
 
 @end
