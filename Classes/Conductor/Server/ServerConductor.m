@@ -33,7 +33,7 @@
 	[self finish];
 	
 	// Create the bluetooth server session
-	session = [[GKSession alloc] initWithSessionID:GAME_ID displayName:name sessionMode:GKSessionModeServer];
+	session = [[GKSession alloc] initWithSessionID:GAME_ID displayName:name sessionMode:GKSessionModePeer];
 	[session setDelegate:self];
 	[session setDataReceiveHandler:self withContext:nil];
 	[session setAvailable:YES];
@@ -57,14 +57,17 @@
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peerID inSession: (GKSession *)session_ context:(void *)context {
 }
 
-- (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state { }
-- (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID { }
+- (void)session:(GKSession *)session_ peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state { }
+- (void)session:(GKSession *)session_ didReceiveConnectionRequestFromPeer:(NSString *)peerID {
+	NSError *error = nil;
+	[session_ acceptConnectionFromPeer:peerID error:&error];
+}
 
-- (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error {
+- (void)session:(GKSession *)session_ connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error {
 	[delegate conductor:self hadError:error];
 }
 
-- (void)session:(GKSession *)session didFailWithError:(NSError *)error {
+- (void)session:(GKSession *)session_ didFailWithError:(NSError *)error {
 	[delegate conductor:self hadError:error];
 }
 

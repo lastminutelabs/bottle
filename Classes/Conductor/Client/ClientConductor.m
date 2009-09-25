@@ -55,12 +55,13 @@
 #pragma mark ---- PeerPickerDelegate methods ----
 
 - (GKSession *)peerPickerController:(GKPeerPickerController *)picker sessionForConnectionType:(GKPeerPickerConnectionType)type {
-	return [[GKSession alloc] initWithSessionID:GAME_ID displayName:name sessionMode:GKSessionModeClient];
+	return [[GKSession alloc] initWithSessionID:GAME_ID displayName:name sessionMode:GKSessionModePeer];
 }
 
-- (void)peerPickerController:(GKPeerPickerController *)picker didConnectPeer:(NSString *)peerIDtoSession:(GKSession *)session_ {
-	// Keep the session
+- (void)peerPickerController:(GKPeerPickerController *)picker didConnectPeer:(NSString *)peerID toSession:(GKSession *)session_ {
+	// Keep the session and release the picker
 	session = [session_ retain];
+	[picker dismiss];
 }
 
 @end
