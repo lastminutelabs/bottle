@@ -8,6 +8,8 @@
 
 #import "PlayViewController.h"
 
+#define THRESHOLD 0.6f
+
 @implementation PlayViewController
 
 - (id)init {
@@ -34,6 +36,8 @@
 
     listener = [SCListener sharedListener];
     [listener listen];    
+    
+    playing = NO;
   }
   
   return self;
@@ -48,13 +52,33 @@
 
   powerLabel = [[UILabel alloc] initWithFrame: CGRectMake(0, 100, 320, 100)];
   [self.view addSubview: powerLabel];
+
+  playingLabel = [[UILabel alloc] initWithFrame: CGRectMake(0, 200, 320, 200)];
+  [self.view addSubview: playingLabel];
+}
+
+- (void) startedPlaying {
+  playingLabel.backgroundColor = UIColor.magentaColor;  
+  // send an event to the server
+}
+
+- (void) stoppedPlaying {
+  playingLabel.backgroundColor = UIColor.whiteColor;  
+  // send an event to the server
 }
 
 - (void) tick:(NSTimer *)timer {
   Float32 power = [listener averagePower];
   powerBar.progress = power;
-
   player.volume = power;
+
+  if (power > THRESHOLD && !playing) {
+    playing = YES;
+    [self startedPlaying];
+  } else if (power < THRESHOLD && playing) {
+    playing = NO;
+    [self stoppedPlaying];
+  }
   
   NSString *powerString = [NSString stringWithFormat: @"%.2f", power];
   powerLabel.text = powerString;
@@ -65,6 +89,5 @@
   [ticker release];
   [super dealloc];
 }
-
 
 @end

@@ -13,9 +13,11 @@
 @interface PlayViewController : UIViewController {  
   NSTimer *ticker;
   UILabel *powerLabel;
+  UILabel *playingLabel;
   UIProgressView *powerBar;
   SCListener *listener;
   AVAudioPlayer *player;
+  BOOL playing;
 }
 
 @end
