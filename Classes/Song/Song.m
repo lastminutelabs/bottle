@@ -11,7 +11,7 @@
 @implementation Song
 
 @synthesize numberOfUniqueNotes;
-@synthesize name;
+@synthesize name, tempo;
 
 - (void) playNote:(Note *)note {
 	NSLog(@"%@", note);
@@ -44,14 +44,14 @@
 	return [self initWithContentsOfFile:nil];
 }
 
-- (id) initWithContentsOfFile:(NSString *)file {
+- (id) initWithContentsOfFile:(NSString *)filename {
 	if (self = [super init]) {
 		notes = [[NSMutableArray alloc] initWithCapacity:100];
 		
 		numberOfUniqueNotes = 0;
 		playing = NO;
 		
-		if (nil == file) {
+		if (nil == filename) {
 			[self addNote:[[Note alloc] initWithPitch:1 andDuration:1 at:0]];
 			[self addNote:[[Note alloc] initWithPitch:2 andDuration:1 at:1]];
 			[self addNote:[[Note alloc] initWithPitch:3 andDuration:1 at:2]];
@@ -61,7 +61,15 @@
 			[self addNote:[[Note alloc] initWithPitch:5 andDuration:1 at:5.5]];
 			name = [[NSString alloc] initWithString:@"Test file"];
 		} else {
-			name = [file copy];
+			// Open the file
+			NSString *fileString = [NSString stringWithContentsOfFile:filename];
+			if (nil == fileString)
+				[NSException raise:@"Song failed to import" format:@"File at %@ failed to open", filename];
+			
+			NSArray *lines = [fileString componentsSeparatedByString:@"\n"];
+			
+			name = [lines objectAtIndex:0];
+			tempo = 60 / [[lines objectAtIndex:1] floatValue];
 		}
 	}
 	return self;
@@ -76,7 +84,7 @@
 }
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"[Song '%@' numNotes=%i uniqueNotes=%i]", name, notes.count, numberOfUniqueNotes];
+	return [NSString stringWithFormat:@"[Song '%@' tempo=%2.1f numNotes=%i uniqueNotes=%i]", name, tempo, notes.count, numberOfUniqueNotes];
 }
 
 - (NSArray *) getNextNotesAt:(NSTimeInterval)timestamp {

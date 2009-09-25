@@ -17,6 +17,8 @@
 	NSTimer *nextNoteTimer;
 	NSTimeInterval currentPosition;
 	
+	float tempo;
+	
 	NSString *name;
 	
 	bool playing;
@@ -24,6 +26,7 @@
 
 @property (nonatomic, readonly) int numberOfUniqueNotes;
 @property (nonatomic, readonly) NSString *name;
+@property (nonatomic, readonly) float tempo;
 
 - (id) initWithContentsOfFile:(NSString *)file;
 

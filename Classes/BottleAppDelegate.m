@@ -16,12 +16,31 @@
 @synthesize lobbyViewController;
 @synthesize playViewController;
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application {   
-	
+- (void) importSongs {
+	[songs release];
 	songs = [[NSMutableArray alloc] initWithCapacity:10];
+	
+	// Get all the songs in the path
+	NSString *path = [[NSBundle mainBundle] bundlePath];
+	NSFileManager *manager = [NSFileManager defaultManager];
+	NSDirectoryEnumerator *dirEnum = [manager enumeratorAtPath:path];
+	NSString *file;
+	while (file = [dirEnum nextObject])
+		if ([file hasSuffix:@".btl"]) {
+			Song *song = [[Song alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", path, file]];
+			[songs addObject:song];
+			NSLog(@"Song loaded : %@", song);
+		}
+	
+	// Add a test song
 	Song *testSong = [[Song alloc] init];
 	[songs addObject:testSong];
+}	
 
+- (void)applicationDidFinishLaunching:(UIApplication *)application {   
+	
+	[self importSongs];
+	
     // Override point for customization after application launch
     [window makeKeyAndVisible];
 	
