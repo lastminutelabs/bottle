@@ -21,6 +21,10 @@ typedef enum {
 
 - (void) conductor:(<Conductor>)conductor hadError:(NSError *)error;
 
+@optional
+
+- (void) conductor:(<Conductor>)conductor hasDebugMessage:(NSString *)debugMessage;
+
 @end
 
 

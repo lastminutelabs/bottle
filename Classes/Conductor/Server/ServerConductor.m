@@ -14,6 +14,13 @@
 @synthesize name;
 @synthesize delegate;
 
+- (void) debug:(NSString *)message {
+	if ([delegate respondsToSelector:@selector(conductor:hasDebugMessage:)])
+		[delegate conductor:self hasDebugMessage:message];
+	
+	NSLog(@"%@", message);
+}
+
 - (ConductorType) type { return ConductorTypeServer; }
 
 - (NSString *)description {
@@ -37,6 +44,8 @@
 	[session setDelegate:self];
 	[session setDataReceiveHandler:self withContext:nil];
 	[session setAvailable:YES];
+	
+	[self debug:@"Server sesison started"];
 }
 
 - (void) finish {
@@ -61,6 +70,7 @@
 - (void)session:(GKSession *)session_ didReceiveConnectionRequestFromPeer:(NSString *)peerID {
 	NSError *error = nil;
 	[session_ acceptConnectionFromPeer:peerID error:&error];
+	[self debug:[NSString stringWithFormat:@"Accept connection from %@", [session displayNameForPeer:peerID]]];
 }
 
 - (void)session:(GKSession *)session_ connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error {

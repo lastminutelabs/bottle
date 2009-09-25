@@ -12,6 +12,7 @@
 
 @synthesize window;
 @synthesize startOrJoinViewController;
+@synthesize lobbyViewController;
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
 
@@ -19,6 +20,11 @@
     [window makeKeyAndVisible];
 	
 	[window addSubview:startOrJoinViewController.view];
+	
+	debugView = [[UITextView alloc] initWithFrame:CGRectMake(10, window.frame.size.height-150, window.frame.size.width-20, 150)];
+	debugView.alpha = 0.75;
+	debugView.editable = NO;
+	[window addSubview:debugView];
 }
 
 - (void)dealloc {
@@ -31,15 +37,21 @@
 	[conductor release];
 	conductor = [conductor_ retain];
 	[conductor setDelegate:self];
-	NSLog(@"Conductor created : %@", conductor);
-	
 	[conductor start];
+	
+	[startOrJoinViewController.view removeFromSuperview];
+	lobbyViewController.conductor = conductor;
+	[window insertSubview:lobbyViewController.view atIndex:0];
 }
 
 
 #pragma mark ---- ConductorDelegate methods ----
 
 - (void) conductor:(<Conductor>)conductor hadError:(NSError *)error {
+}
+
+- (void) conductor:(<Conductor>)conductor hasDebugMessage:(NSString *)debugMessage {
+	debugView.text = [NSString stringWithFormat:@"%@\n%@", debugView.text, debugMessage];
 }
 
 @end

@@ -13,6 +13,13 @@
 @synthesize delegate;
 @synthesize name;
 
+- (void) debug:(NSString *)message {
+	if ([delegate respondsToSelector:@selector(conductor:hasDebugMessage:)])
+		[delegate conductor:self hasDebugMessage:message];
+	
+	NSLog(@"%@", message);
+}
+
 - (id) init {
 	if (self = [super init]) {
 		name = [[NSString stringWithFormat:@"%@ client", [[UIDevice currentDevice] name]] retain];

@@ -8,16 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "StartOrJoinViewController.h"
+#import "LobbyViewController.h"
 
 @interface BottleAppDelegate : NSObject <UIApplicationDelegate, StartOrJoinViewControllerDelegate, ConductorDelegate> {
     UIWindow *window;
+	UITextView *debugView;
 	
 	StartOrJoinViewController *startOrJoinViewController;
+	LobbyViewController *lobbyViewController;
 	
 	<Conductor> conductor;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet StartOrJoinViewController *startOrJoinViewController;
+@property (nonatomic, retain) IBOutlet LobbyViewController *lobbyViewController;
 
 @end

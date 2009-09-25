@@ -18,6 +18,7 @@
 		B290CBAB106CF1D80065649E /* ServerConductor.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CBAA106CF1D80065649E /* ServerConductor.m */; };
 		B290CBAE106CF1DF0065649E /* ClientConductor.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CBAD106CF1DF0065649E /* ClientConductor.m */; };
 		B290CBEF106CF5970065649E /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B290CBEE106CF5970065649E /* GameKit.framework */; };
+		B290CE04106D0D5D0065649E /* LobbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CE03106D0D5D0065649E /* LobbyViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,8 @@
 		B290CBAC106CF1DF0065649E /* ClientConductor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientConductor.h; sourceTree = "<group>"; };
 		B290CBAD106CF1DF0065649E /* ClientConductor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientConductor.m; sourceTree = "<group>"; };
 		B290CBEE106CF5970065649E /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		B290CE02106D0D5D0065649E /* LobbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LobbyViewController.h; sourceTree = "<group>"; };
+		B290CE03106D0D5D0065649E /* LobbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LobbyViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +138,8 @@
 			children = (
 				B290CB06106CEBEB0065649E /* StartOrJoinViewController.h */,
 				B290CB07106CEBEB0065649E /* StartOrJoinViewController.m */,
+				B290CE02106D0D5D0065649E /* LobbyViewController.h */,
+				B290CE03106D0D5D0065649E /* LobbyViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -216,6 +221,7 @@
 				B290CB67106CF0300065649E /* ConductorFactory.m in Sources */,
 				B290CBAB106CF1D80065649E /* ServerConductor.m in Sources */,
 				B290CBAE106CF1DF0065649E /* ClientConductor.m in Sources */,
+				B290CE04106D0D5D0065649E /* LobbyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
