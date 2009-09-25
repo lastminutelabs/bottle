@@ -27,9 +27,13 @@
 	NSString *file;
 	while (file = [dirEnum nextObject])
 		if ([file hasSuffix:@".btl"]) {
-			Song *song = [[Song alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", path, file]];
-			[songs addObject:song];
-			NSLog(@"Song loaded : %@", song);
+			@try {
+				Song *song = [[Song alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", path, file]];
+				[songs addObject:song];
+				NSLog(@"Song loaded : %@", song);
+			} @catch (NSException *e) {
+				NSLog(@"Failed to import song : %@", e);
+			}
 		}
 	
 	// Add a test song
