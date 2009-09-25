@@ -7,11 +7,13 @@
 //
 
 #import "LobbyViewController.h"
-
+#import "Song.h"
 
 @implementation LobbyViewController
 
 @synthesize conductor;
+@synthesize players;
+@synthesize songs, songsTable;
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -25,10 +27,52 @@
 	// e.g. self.myOutlet = nil;
 }
 
-
 - (void)dealloc {
 	[conductor release];
     [super dealloc];
 }
+
+- (void) setSongs:(NSArray *)value {
+	[songs release];
+	songs = [value retain];
+	[songsTable reloadData];
+}
+
+#pragma mark Table view methods
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+
+// Customize the number of rows in the table view.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return songs.count;
+}
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *CellIdentifier = @"SongCell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }
+    
+	Song *song = [songs objectAtIndex:indexPath.row];
+    cell.textLabel.text = [song name];
+	cell.detailTextLabel.text = song.numberOfUniqueNotes >= players.count ? @"available" : @"needs more players";
+	
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Navigation logic may go here. Create and push another view controller.
+	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
+	// [self.navigationController pushViewController:anotherViewController];
+	// [anotherViewController release];
+}
+
 
 @end

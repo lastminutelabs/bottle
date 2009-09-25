@@ -18,6 +18,8 @@
 	LobbyViewController *lobbyViewController;
 	
 	<Conductor> conductor;
+	
+	NSMutableArray *songs;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
