@@ -6,10 +6,10 @@
 //  Copyright 2009 lastminute.com. All rights reserved.
 //
 
-#import "DummyConductor.h"
+#import "PracticeConductor.h"
 
 
-@implementation DummyConductor
+@implementation PracticeConductor
 
 @synthesize delegate;
 @synthesize name;
