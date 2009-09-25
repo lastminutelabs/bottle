@@ -69,7 +69,7 @@
 			NSArray *lines = [fileString componentsSeparatedByString:@"\n"];
 			
 			// The first two lines of the file are easy
-			name = [lines objectAtIndex:0];
+			name = [[lines objectAtIndex:0] retain];
 			tempo = 60 / [[lines objectAtIndex:1] floatValue];
 			
 			// After that, each line is a note
