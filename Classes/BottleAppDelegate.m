@@ -12,13 +12,17 @@
 
 @synthesize window;
 @synthesize startOrJoinViewController;
+@synthesize playViewController;
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
 
     // Override point for customization after application launch
     [window makeKeyAndVisible];
-	
-	[window addSubview:startOrJoinViewController.view];
+    
+    [window addSubview:startOrJoinViewController.view];
+
+    //self.playViewController = [[PlayViewController alloc] init];
+    //[window addSubview:playViewController.view];
 }
 
 - (void)dealloc {

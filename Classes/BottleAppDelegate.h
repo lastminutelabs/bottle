@@ -8,14 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "StartOrJoinViewController.h"
+#import "PlayViewController.h"
 
 @interface BottleAppDelegate : NSObject <UIApplicationDelegate> {
-    UIWindow *window;
-	
-	StartOrJoinViewController *startOrJoinViewController;
+  UIWindow *window;
+  
+  StartOrJoinViewController *startOrJoinViewController;
+  PlayViewController *playViewController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet StartOrJoinViewController *startOrJoinViewController;
+@property (nonatomic, retain) PlayViewController *playViewController;
 
 @end

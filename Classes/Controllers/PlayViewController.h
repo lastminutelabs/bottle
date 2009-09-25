@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import "SCListener.h"
 
-@interface PlayViewController : UIViewController {
-
+@interface PlayViewController : UIViewController {  
+  NSTimer *ticker;
+  UILabel *powerLabel;
+  UIProgressView *powerBar;
+  SCListener *listener;
+  AVAudioPlayer *player;
 }
 
 @end
