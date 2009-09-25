@@ -45,7 +45,7 @@
 	[session setDataReceiveHandler:self withContext:nil];
 	[session setAvailable:YES];
 	
-	[self debug:@"Server sesison started"];
+	[self debug:@"Server session started"];
 	
 	[delegate conductor:self initializeSuccessful:YES];
 }

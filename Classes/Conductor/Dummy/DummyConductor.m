@@ -14,9 +14,20 @@
 @synthesize delegate;
 @synthesize name;
 
+- (void) debug:(NSString *)message {
+	if ([delegate respondsToSelector:@selector(conductor:hasDebugMessage:)])
+		[delegate conductor:self hasDebugMessage:message];
+	
+	NSLog(@"%@", message);
+}
+
 - (ConductorType) type { return ConductorTypeDummy; }
 
-- (void) start { }
+- (void) start {
+	[self debug:@"Practice session started"];
+	[delegate conductor:self initializeSuccessful:YES];
+}
+
 - (void) finish { }
 
 @end

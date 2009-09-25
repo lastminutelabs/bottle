@@ -81,10 +81,15 @@
 
 - (void) conductor:(<Conductor>)conductor_ initializeSuccessful:(bool)success {
 	if (YES == success) {
-		[startOrJoinViewController.view removeFromSuperview];
-		lobbyViewController.conductor = conductor;
-		lobbyViewController.songs = songs;
-		[window insertSubview:lobbyViewController.view atIndex:0];
+		if (conductor_.type == ConductorTypeDummy) {
+			[startOrJoinViewController.view removeFromSuperview];
+			[window insertSubview:playViewController.view atIndex:0];
+		} else {
+			[startOrJoinViewController.view removeFromSuperview];
+			lobbyViewController.conductor = conductor;
+			lobbyViewController.songs = songs;
+			[window insertSubview:lobbyViewController.view atIndex:0];
+		}
 	}
 }
 

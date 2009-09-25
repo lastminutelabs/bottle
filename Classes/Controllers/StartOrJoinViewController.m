@@ -38,4 +38,8 @@
 	[delegate controller:self createdConductor:[ConductorFactory conductorWithType:ConductorTypeClient]];	
 }
 
+- (IBAction) practice {
+	[delegate controller:self createdConductor:[ConductorFactory conductorWithType:ConductorTypeDummy]];
+}
+
 @end
