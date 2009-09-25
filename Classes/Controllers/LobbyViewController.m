@@ -12,7 +12,7 @@
 @implementation LobbyViewController
 
 @synthesize conductor;
-@synthesize players;
+@synthesize players, playersView;
 @synthesize songs, songsTable;
 
 - (void)didReceiveMemoryWarning {
@@ -47,6 +47,12 @@
 	[players release];
 	players = [value retain];
 	[songsTable reloadData];
+
+	NSMutableString *text = [[NSMutableString alloc] initWithCapacity:50];
+	for (NSString *string in players) {
+		[text appendFormat:@"%@\n", string];
+	}
+	playersView.text = text;
 }
 
 - (void) setConductor:(<Conductor>)value {

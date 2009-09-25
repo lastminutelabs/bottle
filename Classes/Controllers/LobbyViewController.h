@@ -15,10 +15,12 @@
 	NSArray *songs;
 	
 	UITableView *songsTable;
+	UITextView *playersView;
 }
 
 @property (nonatomic, retain) <Conductor> conductor;
 @property (nonatomic, retain) IBOutlet UITableView *songsTable;
+@property (nonatomic, retain) IBOutlet UITextView *playersView;
 
 @property (nonatomic, retain) NSArray *players;
 @property (nonatomic, retain) NSArray *songs;
