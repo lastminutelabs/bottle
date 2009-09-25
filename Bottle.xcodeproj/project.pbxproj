@@ -14,6 +14,7 @@
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		B290CB08106CEBEB0065649E /* StartOrJoinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CB07106CEBEB0065649E /* StartOrJoinViewController.m */; };
+		B290CB67106CF0300065649E /* ConductorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CB66106CF0300065649E /* ConductorFactory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,9 @@
 		8D1107310486CEB800E47090 /* Bottle-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Bottle-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		B290CB06106CEBEB0065649E /* StartOrJoinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartOrJoinViewController.h; sourceTree = "<group>"; };
 		B290CB07106CEBEB0065649E /* StartOrJoinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartOrJoinViewController.m; sourceTree = "<group>"; };
+		B290CB61106CF0160065649E /* Conductor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conductor.h; sourceTree = "<group>"; };
+		B290CB65106CF0300065649E /* ConductorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConductorFactory.h; sourceTree = "<group>"; };
+		B290CB66106CF0300065649E /* ConductorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConductorFactory.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,9 @@
 		B290CAFB106CEB3D0065649E /* Conductor */ = {
 			isa = PBXGroup;
 			children = (
+				B290CB61106CF0160065649E /* Conductor.h */,
+				B290CB65106CF0300065649E /* ConductorFactory.h */,
+				B290CB66106CF0300065649E /* ConductorFactory.m */,
 			);
 			path = Conductor;
 			sourceTree = "<group>";
@@ -176,6 +183,7 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* BottleAppDelegate.m in Sources */,
 				B290CB08106CEBEB0065649E /* StartOrJoinViewController.m in Sources */,
+				B290CB67106CF0300065649E /* ConductorFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
