@@ -13,4 +13,8 @@
 
 - (ConductorType) type { return ConductorTypeClient; }
 
+- (NSString *)description {
+	return [NSString stringWithFormat:@"[ClientConductor]"];
+}
+
 @end
