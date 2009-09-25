@@ -8,7 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum {
+	ConductorTypeServer = 0,
+	ConductorTypeClient
+} ConductorType;
 
 @protocol Conductor <NSObject>
+
+@property (nonatomic, readonly) ConductorType type;
 
 @end

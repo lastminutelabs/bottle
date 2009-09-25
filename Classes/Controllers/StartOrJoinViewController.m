@@ -7,7 +7,7 @@
 //
 
 #import "StartOrJoinViewController.h"
-
+#import "ConductorFactory.h"
 
 @implementation StartOrJoinViewController
 
@@ -31,11 +31,11 @@
 }
 
 - (IBAction) conductor {
-	[delegate controller:self createdConductor:nil];
+	[delegate controller:self createdConductor:[ConductorFactory createConductor]];
 }
 
 - (IBAction) musician {
-	[delegate controller:self createdConductor:nil];	
+	[delegate controller:self createdConductor:[ConductorFactory createConductor]];	
 }
 
 @end
