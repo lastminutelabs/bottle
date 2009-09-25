@@ -18,6 +18,8 @@
 	NSTimeInterval currentPosition;
 	
 	NSString *name;
+	
+	bool playing;
 }
 
 @property (nonatomic, readonly) int numberOfUniqueNotes;

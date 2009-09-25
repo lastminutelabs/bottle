@@ -15,6 +15,14 @@
 
 - (void) playNote:(Note *)note {
 	NSLog(@"%@", note);
+	[NSTimer scheduledTimerWithTimeInterval:note.duration target:self selector:@selector(endPlayingNoteCallback:) userInfo:note repeats:NO];
+}
+
+- (void) endPlayingNoteCallback:(NSTimer *)timer {
+	if (playing) {
+		Note *note = (Note *)timer.userInfo;
+		NSLog(@"%@ finished", note);
+	}
 }
 
 - (void) addNote:(Note *)newNote {
@@ -41,6 +49,7 @@
 		notes = [[NSMutableArray alloc] initWithCapacity:100];
 		
 		numberOfUniqueNotes = 0;
+		playing = NO;
 		
 		if (nil == file) {
 			[self addNote:[[Note alloc] initWithPitch:1 andDuration:1 at:0]];
@@ -106,17 +115,21 @@
 }
 
 - (void) start {
-	if (notes.count > 0) {
+	if (! playing && notes.count > 0) {
 		currentPosition = 0;
+		playing = YES;
 		Note *firstNote = [notes objectAtIndex:0];
 		nextNoteTimer = [[NSTimer scheduledTimerWithTimeInterval:firstNote.timestamp target:self selector:@selector(playNoteCallback:) userInfo:nil repeats:NO] retain];
 	}
 }
 
 - (void) stop {
-	[nextNoteTimer invalidate];
-	[nextNoteTimer release];
-	nextNoteTimer = nil;
+	if (playing) {
+		[nextNoteTimer invalidate];
+		[nextNoteTimer release];
+		nextNoteTimer = nil;
+		playing = NO;
+	}
 }
 
 - (void) playNoteCallback:(NSTimer *)timer {
