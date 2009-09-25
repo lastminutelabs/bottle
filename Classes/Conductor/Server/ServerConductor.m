@@ -12,11 +12,12 @@
 @implementation ServerConductor
 
 @synthesize name;
+@synthesize delegate;
 
 - (ConductorType) type { return ConductorTypeServer; }
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"[ServerConductor %@]", name];
+	return [NSString stringWithFormat:@"[ServerConductor \"%@\"]", name];
 }
 
 - (id) init {
@@ -43,10 +44,22 @@
 
 - (void) dealloc {
 	[self finish];
+	[delegate release];
 	[super dealloc];
 }
 
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peerID inSession: (GKSession *)session_ context:(void *)context {
+}
+
+- (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state { }
+- (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID { }
+
+- (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error {
+	[delegate conductor:self hadError:error];
+}
+
+- (void)session:(GKSession *)session didFailWithError:(NSError *)error {
+	[delegate conductor:self hadError:error];
 }
 
 @end

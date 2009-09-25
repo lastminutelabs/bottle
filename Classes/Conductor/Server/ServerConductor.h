@@ -14,9 +14,12 @@
 	NSString *name;
 	
 	GKSession *session;
+	
+	<ConductorDelegate> delegate;
 }
 
 @property (nonatomic, readonly) ConductorType type;
 @property (nonatomic, readonly) NSString *name;
+@property (nonatomic, retain) <ConductorDelegate> delegate;
 
 @end

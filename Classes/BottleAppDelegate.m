@@ -30,7 +30,14 @@
 - (void) controller:(StartOrJoinViewController *)controller createdConductor:(<Conductor>)conductor_ {
 	[conductor release];
 	conductor = [conductor_ retain];
+	[conductor setDelegate:self];
 	NSLog(@"Conductor created : %@", conductor);
+}
+
+
+#pragma mark ---- ConductorDelegate methods ----
+
+- (void) conductor:(<Conductor>)conductor hadError:(NSError *)error {
 }
 
 @end

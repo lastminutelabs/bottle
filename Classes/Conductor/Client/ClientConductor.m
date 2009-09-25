@@ -11,6 +11,13 @@
 
 @implementation ClientConductor
 
+@synthesize delegate;
+
+- (void) dealloc {
+	[delegate release];
+	[super dealloc];
+}
+
 - (ConductorType) type { return ConductorTypeClient; }
 
 - (NSString *)description {

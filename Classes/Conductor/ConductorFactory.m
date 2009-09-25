@@ -13,15 +13,20 @@
 @implementation ConductorFactory
 
 + (<Conductor>) conductorWithType:(ConductorType)type {
+	<Conductor> conductor = nil;
+	
 	switch(type) {
 		case ConductorTypeServer:
-			return [[[ServerConductor alloc] init] autorelease];
+			conductor = [[[ServerConductor alloc] init] autorelease];
+			break;
 		case ConductorTypeClient:
-			return [[[ClientConductor alloc] init] autorelease];
+			conductor = [[[ClientConductor alloc] init] autorelease];
+			break;
 		default:
 			[NSException raise:@"Unknown Conductor type" format:@"Requested type was %i", type];
-			return nil;
 	}
+	
+	return conductor;
 }
 
 @end

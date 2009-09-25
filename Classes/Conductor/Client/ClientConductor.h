@@ -10,9 +10,10 @@
 #import "Conductor.h"
 
 @interface ClientConductor : NSObject <Conductor> {
-	
+	<ConductorDelegate> delegate;
 }
 
 @property (nonatomic, readonly) ConductorType type;
+@property (nonatomic, retain) <ConductorDelegate> delegate;
 
 @end

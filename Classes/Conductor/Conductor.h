@@ -15,10 +15,21 @@ typedef enum {
 	ConductorTypeClient
 } ConductorType;
 
+@protocol Conductor;
+
+@protocol ConductorDelegate <NSObject>
+
+- (void) conductor:(<Conductor>)conductor hadError:(NSError *)error;
+
+@end
+
+
 
 @protocol Conductor <NSObject>
 
 @property (nonatomic, readonly) ConductorType type;
+
+@property (nonatomic, retain) <ConductorDelegate> delegate;
 
 - (void) finish;
 
