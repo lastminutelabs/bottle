@@ -172,7 +172,7 @@
 		B290CAFB106CEB3D0065649E /* Conductor */ = {
 			isa = PBXGroup;
 			children = (
-				B290D1A4106D61660065649E /* Dummy */,
+				B290D1A4106D61660065649E /* Practice */,
 				B290CBA5106CF17C0065649E /* Client */,
 				B290CBA4106CF1780065649E /* Server */,
 				B290CB61106CF0160065649E /* Conductor.h */,
@@ -233,13 +233,13 @@
 			path = Assets/Songs;
 			sourceTree = "<group>";
 		};
-		B290D1A4106D61660065649E /* Dummy */ = {
+		B290D1A4106D61660065649E /* Practice */ = {
 			isa = PBXGroup;
 			children = (
 				B290D1A5106D618B0065649E /* PracticeConductor.h */,
 				B290D1A6106D618B0065649E /* PracticeConductor.m */,
 			);
-			path = Dummy;
+			path = Practice;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
