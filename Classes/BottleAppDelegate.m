@@ -18,8 +18,9 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {   
 	
+	songs = [[NSMutableArray alloc] initWithCapacity:10];
 	Song *testSong = [[Song alloc] init];
-	[testSong start];
+	[songs addObject:testSong];
 
     // Override point for customization after application launch
     [window makeKeyAndVisible];
@@ -59,6 +60,7 @@
 	if (YES == success) {
 		[startOrJoinViewController.view removeFromSuperview];
 		lobbyViewController.conductor = conductor;
+		lobbyViewController.songs = songs;
 		[window insertSubview:lobbyViewController.view atIndex:0];
 	}
 }

@@ -16,9 +16,14 @@
 	
 	NSTimer *nextNoteTimer;
 	NSTimeInterval currentPosition;
+	
+	NSString *name;
+	
+	bool playing;
 }
 
 @property (nonatomic, readonly) int numberOfUniqueNotes;
+@property (nonatomic, readonly) NSString *name;
 
 - (id) initWithContentsOfFile:(NSString *)file;
 

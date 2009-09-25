@@ -48,7 +48,6 @@
 	[controller setDelegate:self];
 	[controller setConnectionTypesMask:GKPeerPickerConnectionTypeNearby];
 	[controller show];
-	[controller release];
 	[self debug:@"Client picker started"];
 }
 
@@ -70,6 +69,7 @@
 	// Keep the session and release the picker
 	session = [session_ retain];
 	[picker dismiss];
+	[picker release];
 	[delegate conductor:self initializeSuccessful:YES];
 }
 

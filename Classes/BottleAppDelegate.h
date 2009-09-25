@@ -20,6 +20,8 @@
 	PlayViewController *playViewController;
 	
 	<Conductor> conductor;
+	
+	NSMutableArray *songs;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

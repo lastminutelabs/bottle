@@ -11,6 +11,34 @@
 @implementation Song
 
 @synthesize numberOfUniqueNotes;
+@synthesize name;
+
+- (void) playNote:(Note *)note {
+	NSLog(@"%@", note);
+	[NSTimer scheduledTimerWithTimeInterval:note.duration target:self selector:@selector(endPlayingNoteCallback:) userInfo:note repeats:NO];
+}
+
+- (void) endPlayingNoteCallback:(NSTimer *)timer {
+	if (playing) {
+		Note *note = (Note *)timer.userInfo;
+		NSLog(@"%@ finished", note);
+	}
+}
+
+- (void) addNote:(Note *)newNote {
+	// Is it a new unique note? If so, increment the number of unique notes
+	bool unique = YES;
+	for (Note *note in notes)
+		if (newNote.pitch == note.pitch) {
+			unique = NO;
+			break;
+		}
+	if (unique)
+		numberOfUniqueNotes ++;
+
+	// Remember the note
+	[notes addObject:newNote];		
+}
 
 - (id) init {
 	return [self initWithContentsOfFile:nil];
@@ -20,13 +48,21 @@
 	if (self = [super init]) {
 		notes = [[NSMutableArray alloc] initWithCapacity:100];
 		
-		[notes addObject:[[Note alloc] initWithPitch:1 andDuration:1 at:0]];
-		[notes addObject:[[Note alloc] initWithPitch:2 andDuration:1 at:1]];
-		[notes addObject:[[Note alloc] initWithPitch:3 andDuration:1 at:2]];
-		[notes addObject:[[Note alloc] initWithPitch:4 andDuration:1 at:3]];
-		[notes addObject:[[Note alloc] initWithPitch:5 andDuration:1 at:4]];
-		[notes addObject:[[Note alloc] initWithPitch:1 andDuration:1 at:5.5]];
-		[notes addObject:[[Note alloc] initWithPitch:5 andDuration:1 at:5.5]];
+		numberOfUniqueNotes = 0;
+		playing = NO;
+		
+		if (nil == file) {
+			[self addNote:[[Note alloc] initWithPitch:1 andDuration:1 at:0]];
+			[self addNote:[[Note alloc] initWithPitch:2 andDuration:1 at:1]];
+			[self addNote:[[Note alloc] initWithPitch:3 andDuration:1 at:2]];
+			[self addNote:[[Note alloc] initWithPitch:4 andDuration:1 at:3]];
+			[self addNote:[[Note alloc] initWithPitch:5 andDuration:1 at:4]];
+			[self addNote:[[Note alloc] initWithPitch:1 andDuration:1 at:5.5]];
+			[self addNote:[[Note alloc] initWithPitch:5 andDuration:1 at:5.5]];
+			name = [[NSString alloc] initWithString:@"Test file"];
+		} else {
+			name = [file copy];
+		}
 	}
 	return self;
 }
@@ -35,7 +71,12 @@
 	[nextNoteTimer invalidate];
 	[nextNoteTimer release];
 	[notes release];
+	[name release];
 	[super dealloc];
+}
+
+- (NSString *)description {
+	return [NSString stringWithFormat:@"[Song '%@' numNotes=%i uniqueNotes=%i]", name, notes.count, numberOfUniqueNotes];
 }
 
 - (NSArray *) getNextNotesAt:(NSTimeInterval)timestamp {
@@ -73,22 +114,22 @@
 	return 0;
 }
 
-- (void) playNote:(Note *)note {
-	NSLog(@"%@", note);
-}
-
 - (void) start {
-	if (notes.count > 0) {
+	if (! playing && notes.count > 0) {
 		currentPosition = 0;
+		playing = YES;
 		Note *firstNote = [notes objectAtIndex:0];
 		nextNoteTimer = [[NSTimer scheduledTimerWithTimeInterval:firstNote.timestamp target:self selector:@selector(playNoteCallback:) userInfo:nil repeats:NO] retain];
 	}
 }
 
 - (void) stop {
-	[nextNoteTimer invalidate];
-	[nextNoteTimer release];
-	nextNoteTimer = nil;
+	if (playing) {
+		[nextNoteTimer invalidate];
+		[nextNoteTimer release];
+		nextNoteTimer = nil;
+		playing = NO;
+	}
 }
 
 - (void) playNoteCallback:(NSTimer *)timer {
