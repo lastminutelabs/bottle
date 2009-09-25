@@ -20,13 +20,15 @@
 	if (self = [super init]) {
 		notes = [[NSMutableArray alloc] initWithCapacity:100];
 		
-		[notes addObject:[[Note alloc] initWithPitch:1 andDuration:1 at:0]];
-		[notes addObject:[[Note alloc] initWithPitch:2 andDuration:1 at:1]];
-		[notes addObject:[[Note alloc] initWithPitch:3 andDuration:1 at:2]];
-		[notes addObject:[[Note alloc] initWithPitch:4 andDuration:1 at:3]];
-		[notes addObject:[[Note alloc] initWithPitch:5 andDuration:1 at:4]];
-		[notes addObject:[[Note alloc] initWithPitch:1 andDuration:1 at:5.5]];
-		[notes addObject:[[Note alloc] initWithPitch:5 andDuration:1 at:5.5]];
+		if (nil == file) {
+			[notes addObject:[[Note alloc] initWithPitch:1 andDuration:1 at:0]];
+			[notes addObject:[[Note alloc] initWithPitch:2 andDuration:1 at:1]];
+			[notes addObject:[[Note alloc] initWithPitch:3 andDuration:1 at:2]];
+			[notes addObject:[[Note alloc] initWithPitch:4 andDuration:1 at:3]];
+			[notes addObject:[[Note alloc] initWithPitch:5 andDuration:1 at:4]];
+			[notes addObject:[[Note alloc] initWithPitch:1 andDuration:1 at:5.5]];
+			[notes addObject:[[Note alloc] initWithPitch:5 andDuration:1 at:5.5]];
+		}
 	}
 	return self;
 }
