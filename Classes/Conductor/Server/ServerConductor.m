@@ -23,15 +23,20 @@
 - (id) init {
 	if (self = [super init]) {
 		// Create our name
-		name = [NSString stringWithFormat:@"%@ server", [[UIDevice currentDevice] name]];
-		
-		// Create the bluetooth session
-		session = [[GKSession alloc] initWithSessionID:@"your mom" displayName:name sessionMode:GKSessionModeServer];
-		[session setDelegate:self];
-		[session setDataReceiveHandler:self withContext:nil];
-		[session setAvailable:YES];
+		name = [[NSString stringWithFormat:@"%@ server", [[UIDevice currentDevice] name]] retain];
 	}
 	return self;
+}
+
+- (void) start {
+	// If we're in a session already, finish it
+	[self finish];
+	
+	// Create the bluetooth server session
+	session = [[GKSession alloc] initWithSessionID:@"your mom" displayName:name sessionMode:GKSessionModeServer];
+	[session setDelegate:self];
+	[session setDataReceiveHandler:self withContext:nil];
+	[session setAvailable:YES];
 }
 
 - (void) finish {
@@ -45,6 +50,7 @@
 - (void) dealloc {
 	[self finish];
 	[delegate release];
+	[name release];
 	[super dealloc];
 }
 

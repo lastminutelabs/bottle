@@ -32,6 +32,8 @@
 	conductor = [conductor_ retain];
 	[conductor setDelegate:self];
 	NSLog(@"Conductor created : %@", conductor);
+	
+	[conductor start];
 }
 
 

@@ -28,9 +28,11 @@ typedef enum {
 @protocol Conductor <NSObject>
 
 @property (nonatomic, readonly) ConductorType type;
+@property (nonatomic, readonly) NSString *name;
 
 @property (nonatomic, retain) <ConductorDelegate> delegate;
 
+- (void) start;
 - (void) finish;
 
 @end
