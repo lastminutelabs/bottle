@@ -28,6 +28,7 @@
 		B290CEB3106D19A40065649E /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CEB2106D19A40065649E /* Note.m */; };
 		B290D08B106D56CA0065649E /* Jingle Bells.btl in Resources */ = {isa = PBXBuildFile; fileRef = B290D08A106D56CA0065649E /* Jingle Bells.btl */; };
 		B290D1A7106D618B0065649E /* PracticeConductor.m in Sources */ = {isa = PBXBuildFile; fileRef = B290D1A6106D618B0065649E /* PracticeConductor.m */; };
+		B290D239106D65900065649E /* test.m in Sources */ = {isa = PBXBuildFile; fileRef = B290D238106D65900065649E /* test.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,8 @@
 		B290D08A106D56CA0065649E /* Jingle Bells.btl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Jingle Bells.btl"; sourceTree = "<group>"; };
 		B290D1A5106D618B0065649E /* PracticeConductor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeConductor.h; sourceTree = "<group>"; };
 		B290D1A6106D618B0065649E /* PracticeConductor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeConductor.m; sourceTree = "<group>"; };
+		B290D237106D65900065649E /* test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = test.h; sourceTree = "<group>"; };
+		B290D238106D65900065649E /* test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = test.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +194,8 @@
 				B290CB07106CEBEB0065649E /* StartOrJoinViewController.m */,
 				B290CE02106D0D5D0065649E /* LobbyViewController.h */,
 				B290CE03106D0D5D0065649E /* LobbyViewController.m */,
+				B290D237106D65900065649E /* test.h */,
+				B290D238106D65900065649E /* test.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 				548E0F7B106CF01900D459F5 /* PlayViewController.m in Sources */,
 				548E0FB8106CFDE800D459F5 /* SCListener.m in Sources */,
 				B290D1A7106D618B0065649E /* PracticeConductor.m in Sources */,
+				B290D239106D65900065649E /* test.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

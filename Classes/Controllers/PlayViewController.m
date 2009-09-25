@@ -12,14 +12,13 @@
 
 @implementation PlayViewController
 
-- (id)init {
-  if (self = [super init]) {    
+- (void) viewDidLoad {
     ticker = [[NSTimer scheduledTimerWithTimeInterval:(1.0f/30.0f)
-		       target:self
-		       selector:@selector(tick:)
-		       userInfo:nil
-		       repeats:YES] retain];
-
+											   target:self
+											 selector:@selector(tick:)
+											 userInfo:nil
+											  repeats:YES] retain];
+	
     NSString *soundFilePath = [[NSBundle mainBundle] pathForResource: @"bottle_loop" ofType: @"aif"];
     
     NSLog(@"soundFilePath: %@", soundFilePath);
@@ -33,17 +32,12 @@
     player.currentTime = 0;
     player.volume = 0.0;
     [player play];
-
+	
     listener = [SCListener sharedListener];
     [listener listen];    
     
     playing = NO;
-  }
-  
-  return self;
-}
-
-- (void) viewDidLoad {
+	
   self.view = [[UIView alloc] initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
 
   powerBar = [[UIProgressView alloc] initWithProgressViewStyle: UIProgressViewStyleDefault];

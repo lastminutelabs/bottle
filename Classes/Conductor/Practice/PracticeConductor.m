@@ -21,7 +21,7 @@
 	NSLog(@"%@", message);
 }
 
-- (ConductorType) type { return ConductorTypeDummy; }
+- (ConductorType) type { return ConductorTypePractice; }
 
 - (void) start {
 	[self debug:@"Practice session started"];
