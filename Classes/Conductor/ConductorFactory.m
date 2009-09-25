@@ -7,12 +7,21 @@
 //
 
 #import "ConductorFactory.h"
-
+#import "ServerConductor.h"
+#import "ClientConductor.h"
 
 @implementation ConductorFactory
 
 + (<Conductor>) createConductor:(ConductorType)type {
-	return nil;
+	switch(type) {
+		case ConductorTypeServer:
+			return [[ServerConductor alloc] init];
+		case ConductorTypeClient:
+			return [[ClientConductor alloc] init];
+		default:
+			[NSException raise:@"Unknown Conductor type" format:@"Requested type was %i", type];
+			return nil;
+	}
 }
 
 @end

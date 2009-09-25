@@ -15,6 +15,8 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		B290CB08106CEBEB0065649E /* StartOrJoinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CB07106CEBEB0065649E /* StartOrJoinViewController.m */; };
 		B290CB67106CF0300065649E /* ConductorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CB66106CF0300065649E /* ConductorFactory.m */; };
+		B290CBAB106CF1D80065649E /* ServerConductor.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CBAA106CF1D80065649E /* ServerConductor.m */; };
+		B290CBAE106CF1DF0065649E /* ClientConductor.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CBAD106CF1DF0065649E /* ClientConductor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,10 @@
 		B290CB61106CF0160065649E /* Conductor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conductor.h; sourceTree = "<group>"; };
 		B290CB65106CF0300065649E /* ConductorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConductorFactory.h; sourceTree = "<group>"; };
 		B290CB66106CF0300065649E /* ConductorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConductorFactory.m; sourceTree = "<group>"; };
+		B290CBA9106CF1D80065649E /* ServerConductor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerConductor.h; sourceTree = "<group>"; };
+		B290CBAA106CF1D80065649E /* ServerConductor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerConductor.m; sourceTree = "<group>"; };
+		B290CBAC106CF1DF0065649E /* ClientConductor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientConductor.h; sourceTree = "<group>"; };
+		B290CBAD106CF1DF0065649E /* ClientConductor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientConductor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +117,8 @@
 		B290CAFB106CEB3D0065649E /* Conductor */ = {
 			isa = PBXGroup;
 			children = (
+				B290CBA5106CF17C0065649E /* Client */,
+				B290CBA4106CF1780065649E /* Server */,
 				B290CB61106CF0160065649E /* Conductor.h */,
 				B290CB65106CF0300065649E /* ConductorFactory.h */,
 				B290CB66106CF0300065649E /* ConductorFactory.m */,
@@ -125,6 +133,24 @@
 				B290CB07106CEBEB0065649E /* StartOrJoinViewController.m */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B290CBA4106CF1780065649E /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				B290CBA9106CF1D80065649E /* ServerConductor.h */,
+				B290CBAA106CF1D80065649E /* ServerConductor.m */,
+			);
+			path = Server;
+			sourceTree = "<group>";
+		};
+		B290CBA5106CF17C0065649E /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				B290CBAC106CF1DF0065649E /* ClientConductor.h */,
+				B290CBAD106CF1DF0065649E /* ClientConductor.m */,
+			);
+			path = Client;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,6 +210,8 @@
 				1D3623260D0F684500981E51 /* BottleAppDelegate.m in Sources */,
 				B290CB08106CEBEB0065649E /* StartOrJoinViewController.m in Sources */,
 				B290CB67106CF0300065649E /* ConductorFactory.m in Sources */,
+				B290CBAB106CF1D80065649E /* ServerConductor.m in Sources */,
+				B290CBAE106CF1DF0065649E /* ClientConductor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
