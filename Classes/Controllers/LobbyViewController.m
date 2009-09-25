@@ -27,6 +27,11 @@
 	// e.g. self.myOutlet = nil;
 }
 
+- (void) viewDidLoad {
+	if (conductor)
+		songsTable.userInteractionEnabled = conductor.type == ConductorTypeServer;
+}
+
 - (void)dealloc {
 	[conductor release];
     [super dealloc];
@@ -42,6 +47,12 @@
 	[players release];
 	players = [value retain];
 	[songsTable reloadData];
+}
+
+- (void) setController:(<Conductor>)value {
+	[conductor release];
+	conductor = [value retain];
+	songsTable.userInteractionEnabled = conductor.type == ConductorTypeServer;
 }
 
 #pragma mark Table view methods
