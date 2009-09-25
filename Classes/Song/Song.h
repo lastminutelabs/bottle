@@ -27,6 +27,7 @@
 @property (nonatomic, readonly) int numberOfUniqueNotes;
 @property (nonatomic, readonly) NSString *name;
 @property (nonatomic, readonly) float tempo;
+@property (nonatomic, readonly) NSArray *notes;
 
 - (id) initWithContentsOfFile:(NSString *)file;
 

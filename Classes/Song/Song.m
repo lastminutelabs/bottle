@@ -12,6 +12,7 @@
 
 @synthesize numberOfUniqueNotes;
 @synthesize name, tempo;
+@synthesize notes;
 
 - (void) playNote:(Note *)note {
 	NSLog(@"%@", note);
