@@ -13,6 +13,10 @@
 	NSString *name;
 	
 	<ConductorDelegate> delegate;
+	
+	Song *song;
+	
+	NSArray *allPlayers;
 }
 
 @end

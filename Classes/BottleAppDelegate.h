@@ -11,7 +11,7 @@
 #import "LobbyViewController.h"
 #import "PlayViewController.h"
 
-@interface BottleAppDelegate : NSObject <UIApplicationDelegate, StartOrJoinViewControllerDelegate, ConductorDelegate> {
+@interface BottleAppDelegate : NSObject <UIApplicationDelegate, StartOrJoinViewControllerDelegate, ConductorDelegate, LobbyViewControllerDelegate> {
     UIWindow *window;
 	UITextView *debugView;
 	

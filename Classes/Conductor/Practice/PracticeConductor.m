@@ -13,6 +13,14 @@
 
 @synthesize delegate;
 @synthesize name;
+@synthesize song;
+
+- (id) init {
+	if (self = [super init]) {
+		allPlayers = [[NSArray alloc] initWithObjects:@"Me", nil];
+	}
+	return self;
+}
 
 - (void) debug:(NSString *)message {
 	if ([delegate respondsToSelector:@selector(conductor:hasDebugMessage:)])

@@ -18,6 +18,8 @@
 	GKSession *session;
 	
 	NSArray *allPlayers;
+	
+	Song *song;
 }
 
 @property (nonatomic, readonly) ConductorType type;

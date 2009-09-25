@@ -13,6 +13,7 @@
 @synthesize delegate;
 @synthesize name;
 @synthesize allPlayers;
+@synthesize song;
 
 - (void) debug:(NSString *)message {
 	if ([delegate respondsToSelector:@selector(conductor:hasDebugMessage:)])

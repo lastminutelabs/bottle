@@ -19,6 +19,8 @@
 	
 	NSMutableArray *peers;
 	NSMutableArray *allPlayers;
+	
+	Song *song;
 }
 
 @property (nonatomic, readonly) ConductorType type;

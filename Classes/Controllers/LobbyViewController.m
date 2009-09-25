@@ -7,10 +7,10 @@
 //
 
 #import "LobbyViewController.h"
-#import "Song.h"
 
 @implementation LobbyViewController
 
+@synthesize delegate;
 @synthesize conductor;
 @synthesize players, playersView;
 @synthesize songs, songsTable;
@@ -90,6 +90,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	Song *song = [songs objectAtIndex:indexPath.row];
+	int diff = song.numberOfUniqueNotes - players.count;
+	if (diff > 0)
+		return;
+	
+	
 }
 
 @end

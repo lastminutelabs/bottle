@@ -8,8 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "Conductor.h"
+#import "Song.h"
+
+@class LobbyViewController;
+
+@protocol LobbyViewControllerDelegate <NSObject>
+
+- (void) lobbyViewController:(LobbyViewController *)controller selectedSong:(Song *)song;
+
+@end
+
+
 
 @interface LobbyViewController : UIViewController {
+	<LobbyViewControllerDelegate> delegate;
 	<Conductor> conductor;
 	NSArray *players;
 	NSArray *songs;
@@ -18,6 +30,7 @@
 	UITextView *playersView;
 }
 
+@property (nonatomic, retain) IBOutlet id delegate;
 @property (nonatomic, retain) <Conductor> conductor;
 @property (nonatomic, retain) IBOutlet UITableView *songsTable;
 @property (nonatomic, retain) IBOutlet UITextView *playersView;

@@ -103,4 +103,15 @@
 	lobbyViewController.players = conductor_.allPlayers;
 }
 
+#pragma mark ---- LobbyViewController ----
+
+- (void) lobbyViewController:(LobbyViewController *)controller selectedSong:(Song *)song {
+	// Store the song in the conductor
+	conductor.song = song;
+	
+	// Change to the play view
+	[lobbyViewController removeFromSuperview];
+	[window addSubview:playViewController.view];
+}
+
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Song.h"
 
 #define GAME_ID @"Bottle"
 
@@ -42,6 +43,8 @@ typedef enum {
 @property (nonatomic, retain) <ConductorDelegate> delegate;
 
 @property (nonatomic, readonly) NSArray *allPlayers;
+
+@property (nonatomic, retain) Song *song;
 
 - (void) start;
 - (void) finish;
