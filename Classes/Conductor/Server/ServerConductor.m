@@ -11,4 +11,6 @@
 
 @implementation ServerConductor
 
+- (ConductorType) type { return ConductorTypeServer; }
+
 @end

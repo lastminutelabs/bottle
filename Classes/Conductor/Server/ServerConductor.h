@@ -13,4 +13,6 @@
 
 }
 
+@property (nonatomic, readonly) ConductorType type;
+
 @end

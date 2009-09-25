@@ -11,4 +11,6 @@
 
 @implementation ClientConductor
 
+- (ConductorType) type { return ConductorTypeClient; }
+
 @end

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define GAME_ID @"Bottle"
+
 typedef enum {
 	ConductorTypeServer = 0,
 	ConductorTypeClient
