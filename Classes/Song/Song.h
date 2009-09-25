@@ -11,8 +11,18 @@
 
 @interface Song : NSObject {
 	NSMutableArray *notes;
+	
+	int numberOfUniqueNotes;
+	
+	NSTimer *nextNoteTimer;
+	NSTimeInterval currentPosition;
 }
 
+@property (nonatomic, readonly) int numberOfUniqueNotes;
+
 - (id) initWithContentsOfFile:(NSString *)file;
+
+- (void) start;
+- (void) stop;
 
 @end

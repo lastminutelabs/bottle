@@ -13,7 +13,6 @@
 	<Conductor> conductor;
 }
 
-@property (nonatomic, retain) IBOutlet UITextView *debugView;
 @property (nonatomic, retain) <Conductor> conductor;
 
 @end

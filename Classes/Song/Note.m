@@ -17,13 +17,17 @@
 	return [self initWithPitch:0 andDuration:0 at:0];
 }
 
-- (id) initWithPitch:(int)pitch_ andDuration:(int)duration_ at:(NSTimeInterval)timestamp_ {
+- (id) initWithPitch:(int)pitch_ andDuration:(NSTimeInterval)duration_ at:(NSTimeInterval)timestamp_ {
 	if (self = [super init]) {
 		pitch = pitch_;
 		duration = duration_;
 		timestamp = timestamp_;
 	}
 	return self;
+}
+
+- (NSString *)description {
+	return [NSString stringWithFormat:@"[Note pitch:%i duration:%i at:%i]", pitch, duration, timestamp];
 }
 
 @end

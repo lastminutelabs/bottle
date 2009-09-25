@@ -11,7 +11,6 @@
 
 @implementation LobbyViewController
 
-@synthesize debugView;
 @synthesize conductor;
 
 - (void)didReceiveMemoryWarning {

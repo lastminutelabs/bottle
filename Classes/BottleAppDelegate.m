@@ -7,6 +7,7 @@
 //
 
 #import "BottleAppDelegate.h"
+#import "Song.h"
 
 @implementation BottleAppDelegate
 
@@ -14,7 +15,10 @@
 @synthesize startOrJoinViewController;
 @synthesize lobbyViewController;
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application {    
+- (void)applicationDidFinishLaunching:(UIApplication *)application {   
+	
+	Song *testSong = [[Song alloc] init];
+	[testSong start];
 
     // Override point for customization after application launch
     [window makeKeyAndVisible];
