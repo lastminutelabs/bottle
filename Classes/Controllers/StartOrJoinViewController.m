@@ -31,11 +31,11 @@
 }
 
 - (IBAction) conductor {
-	[delegate controller:self createdConductor:[ConductorFactory createConductor]];
+	[delegate controller:self createdConductor:[ConductorFactory createConductor:ConductorTypeServer]];
 }
 
 - (IBAction) musician {
-	[delegate controller:self createdConductor:[ConductorFactory createConductor]];	
+	[delegate controller:self createdConductor:[ConductorFactory createConductor:ConductorTypeClient]];	
 }
 
 @end

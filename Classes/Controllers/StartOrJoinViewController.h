@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Conductor.h"
 
 @class StartOrJoinViewController;
 
 @protocol StartOrJoinViewControllerDelegate <NSObject>
 
-- (void) controller:(StartOrJoinViewController *)controller createdConductor:(id)conductor;
+- (void) controller:(StartOrJoinViewController *)controller createdConductor:(<Conductor>)conductor;
 
 @end
 

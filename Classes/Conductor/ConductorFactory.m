@@ -11,7 +11,7 @@
 
 @implementation ConductorFactory
 
-+ (<Conductor>) createConductor {
++ (<Conductor>) createConductor:(ConductorType)type {
 	return nil;
 }
 
