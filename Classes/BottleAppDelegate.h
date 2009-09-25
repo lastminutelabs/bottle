@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "StartOrJoinViewController.h"
 
-@interface BottleAppDelegate : NSObject <UIApplicationDelegate> {
+@interface BottleAppDelegate : NSObject <UIApplicationDelegate, StartOrJoinViewControllerDelegate> {
     UIWindow *window;
 	
 	StartOrJoinViewController *startOrJoinViewController;

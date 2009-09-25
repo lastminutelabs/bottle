@@ -26,4 +26,8 @@
     [super dealloc];
 }
 
+- (void) controller:(StartOrJoinViewController *)controller createdConductor:(id)conductor {
+	NSLog(@"Conductor created : %@", conductor);
+}
+
 @end
