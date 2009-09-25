@@ -8,6 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="31"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -46,7 +47,7 @@
 			</object>
 			<object class="IBUIViewController" id="963824909">
 				<object class="IBUIView" key="IBUIView" id="254308471">
-					<reference key="NSNextResponder"/>
+					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">292</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -55,7 +56,6 @@
 							<int key="NSvFlags">292</int>
 							<string key="NSFrame">{{91, 210}, {138, 37}}</string>
 							<reference key="NSSuperview" ref="254308471"/>
-							<reference key="NSWindow"/>
 							<bool key="IBUIOpaque">NO</bool>
 							<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 							<int key="IBUIContentHorizontalAlignment">0</int>
@@ -85,7 +85,6 @@
 							<int key="NSvFlags">292</int>
 							<string key="NSFrame">{{91, 267}, {138, 37}}</string>
 							<reference key="NSSuperview" ref="254308471"/>
-							<reference key="NSWindow"/>
 							<bool key="IBUIOpaque">NO</bool>
 							<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 							<int key="IBUIContentHorizontalAlignment">0</int>
@@ -105,7 +104,6 @@
 							<int key="NSvFlags">292</int>
 							<string key="NSFrame">{{91, 156}, {138, 37}}</string>
 							<reference key="NSSuperview" ref="254308471"/>
-							<reference key="NSWindow"/>
 							<bool key="IBUIOpaque">NO</bool>
 							<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 							<int key="IBUIContentHorizontalAlignment">0</int>
@@ -122,8 +120,6 @@
 						</object>
 					</object>
 					<string key="NSFrameSize">{320, 460}</string>
-					<reference key="NSSuperview"/>
-					<reference key="NSWindow"/>
 					<object class="NSColor" key="IBUIBackgroundColor">
 						<int key="NSColorSpace">3</int>
 						<bytes key="NSWhite">MQA</bytes>
@@ -146,7 +142,6 @@
 							<int key="NSvFlags">274</int>
 							<string key="NSFrame">{{0, 186}, {320, 274}}</string>
 							<reference key="NSSuperview" ref="612519304"/>
-							<reference key="NSWindow"/>
 							<reference key="IBUIBackgroundColor" ref="717195602"/>
 							<bool key="IBUIOpaque">NO</bool>
 							<bool key="IBUIClipsSubviews">YES</bool>
@@ -164,7 +159,6 @@
 							<int key="NSvFlags">292</int>
 							<string key="NSFrame">{{20, 20}, {62, 21}}</string>
 							<reference key="NSSuperview" ref="612519304"/>
-							<reference key="NSWindow"/>
 							<bool key="IBUIOpaque">NO</bool>
 							<bool key="IBUIClipsSubviews">YES</bool>
 							<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -182,7 +176,6 @@
 							<int key="NSvFlags">292</int>
 							<string key="NSFrame">{{20, 157}, {49, 21}}</string>
 							<reference key="NSSuperview" ref="612519304"/>
-							<reference key="NSWindow"/>
 							<bool key="IBUIOpaque">NO</bool>
 							<bool key="IBUIClipsSubviews">YES</bool>
 							<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -197,7 +190,6 @@
 							<int key="NSvFlags">292</int>
 							<string key="NSFrame">{{20, 49}, {280, 100}}</string>
 							<reference key="NSSuperview" ref="612519304"/>
-							<reference key="NSWindow"/>
 							<bool key="IBUIOpaque">NO</bool>
 							<bool key="IBUIClipsSubviews">YES</bool>
 							<bool key="IBUIMultipleTouchEnabled">YES</bool>
@@ -206,7 +198,7 @@
 							<bool key="IBUICanCancelContentTouches">NO</bool>
 							<bool key="IBUIBouncesZoom">NO</bool>
 							<bool key="IBUIEditable">NO</bool>
-							<string key="IBUIText">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+							<string key="IBUIText">(none yet)</string>
 							<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 								<int key="IBUIAutocapitalizationType">2</int>
 							</object>
@@ -214,7 +206,6 @@
 					</object>
 					<string key="NSFrameSize">{320, 460}</string>
 					<reference key="NSSuperview"/>
-					<reference key="NSWindow"/>
 					<object class="NSColor" key="IBUIBackgroundColor">
 						<int key="NSColorSpace">3</int>
 						<bytes key="NSWhite">MQA</bytes>
