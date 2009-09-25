@@ -20,11 +20,13 @@
 	PlayViewController *playViewController;
 	
 	<Conductor> conductor;
+	
+	NSMutableArray *songs;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet StartOrJoinViewController *startOrJoinViewController;
 @property (nonatomic, retain) IBOutlet LobbyViewController *lobbyViewController;
-@property (nonatomic, retain) PlayViewController *playViewController;
+@property (nonatomic, retain) IBOutlet PlayViewController *playViewController;
 
 @end

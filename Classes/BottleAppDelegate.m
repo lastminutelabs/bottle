@@ -16,11 +16,35 @@
 @synthesize lobbyViewController;
 @synthesize playViewController;
 
+- (void) importSongs {
+	[songs release];
+	songs = [[NSMutableArray alloc] initWithCapacity:10];
+	
+	// Get all the songs in the path
+	NSString *path = [[NSBundle mainBundle] bundlePath];
+	NSFileManager *manager = [NSFileManager defaultManager];
+	NSDirectoryEnumerator *dirEnum = [manager enumeratorAtPath:path];
+	NSString *file;
+	while (file = [dirEnum nextObject])
+		if ([file hasSuffix:@".btl"]) {
+			@try {
+				Song *song = [[Song alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", path, file]];
+				[songs addObject:song];
+				NSLog(@"Song loaded : %@", song);
+			} @catch (NSException *e) {
+				NSLog(@"Failed to import song : %@", e);
+			}
+		}
+	
+	// Add a test song
+	Song *testSong = [[Song alloc] init];
+	[songs addObject:testSong];
+}	
+
 - (void)applicationDidFinishLaunching:(UIApplication *)application {   
 	
-	Song *testSong = [[Song alloc] init];
-	[testSong start];
-
+	[self importSongs];
+	
     // Override point for customization after application launch
     [window makeKeyAndVisible];
 	
@@ -57,9 +81,15 @@
 
 - (void) conductor:(<Conductor>)conductor_ initializeSuccessful:(bool)success {
 	if (YES == success) {
-		[startOrJoinViewController.view removeFromSuperview];
-		lobbyViewController.conductor = conductor;
-		[window insertSubview:lobbyViewController.view atIndex:0];
+		if (conductor_.type == ConductorTypeDummy) {
+			[startOrJoinViewController.view removeFromSuperview];
+			[window insertSubview:playViewController.view atIndex:0];
+		} else {
+			[startOrJoinViewController.view removeFromSuperview];
+			lobbyViewController.conductor = conductor;
+			lobbyViewController.songs = songs;
+			[window insertSubview:lobbyViewController.view atIndex:0];
+		}
 	}
 }
 

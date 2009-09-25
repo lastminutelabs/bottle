@@ -17,17 +17,26 @@
 	return [self initWithPitch:0 andDuration:0 at:0];
 }
 
-- (id) initWithPitch:(int)pitch_ andDuration:(NSTimeInterval)duration_ at:(NSTimeInterval)timestamp_ {
+- (id) initWithPitch:(NSString *)pitch_ andDuration:(NSTimeInterval)duration_ at:(NSTimeInterval)timestamp_ {
 	if (self = [super init]) {
-		pitch = pitch_;
+		pitch = [pitch_ copy];
 		duration = duration_;
 		timestamp = timestamp_;
 	}
 	return self;
 }
 
+- (void) dealloc {
+	[pitch release];
+	[super dealloc];
+}
+
 - (NSString *)description {
 	return [NSString stringWithFormat:@"[Note pitch:%i duration:%i at:%i]", pitch, duration, timestamp];
+}
+
+- (BOOL) isEqual:(Note *)note {
+	return [self.pitch isEqual:note.pitch] && self.duration == note.duration && self.timestamp == note.timestamp;
 }
 
 @end

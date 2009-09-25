@@ -11,8 +11,16 @@
 
 @interface LobbyViewController : UIViewController {
 	<Conductor> conductor;
+	NSArray *players;
+	NSArray *songs;
+	
+	UITableView *songsTable;
 }
 
 @property (nonatomic, retain) <Conductor> conductor;
+@property (nonatomic, retain) IBOutlet UITableView *songsTable;
+
+@property (nonatomic, retain) NSArray *players;
+@property (nonatomic, retain) NSArray *songs;
 
 @end

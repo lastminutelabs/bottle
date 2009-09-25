@@ -9,6 +9,7 @@
 #import "ConductorFactory.h"
 #import "ServerConductor.h"
 #import "ClientConductor.h"
+#import "DummyConductor.h"
 
 @implementation ConductorFactory
 
@@ -21,6 +22,9 @@
 			break;
 		case ConductorTypeClient:
 			conductor = [[[ClientConductor alloc] init] autorelease];
+			break;
+		case ConductorTypeDummy:
+			conductor = [[[DummyConductor alloc] init] autorelease];
 			break;
 		default:
 			[NSException raise:@"Unknown Conductor type" format:@"Requested type was %i", type];

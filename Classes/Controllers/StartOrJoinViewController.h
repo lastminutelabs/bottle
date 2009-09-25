@@ -26,5 +26,6 @@
 
 - (IBAction) conductor;
 - (IBAction) musician;
+- (IBAction) practice;
 
 @end
