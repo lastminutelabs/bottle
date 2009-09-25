@@ -30,4 +30,8 @@
 	return [NSString stringWithFormat:@"[Note pitch:%i duration:%i at:%i]", pitch, duration, timestamp];
 }
 
+- (BOOL) isEqual:(Note *)note {
+	return self.pitch == note.pitch && self.duration == note.duration && self.timestamp == note.timestamp;
+}
+
 @end
