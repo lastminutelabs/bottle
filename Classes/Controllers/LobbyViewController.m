@@ -69,7 +69,7 @@
 	Song *song = [songs objectAtIndex:indexPath.row];
     cell.textLabel.text = [song name];
 	int diff = song.numberOfUniqueNotes - players.count;
-	cell.detailTextLabel.text = diff < 0 ? @"available" : [NSString stringWithFormat:@"%i more players needed", diff];
+	cell.detailTextLabel.text = diff < 0 ? @"available" : [NSString stringWithFormat:@"%i more player(s) needed", diff];
 	
     return cell;
 }
@@ -80,6 +80,5 @@
 	// [self.navigationController pushViewController:anotherViewController];
 	// [anotherViewController release];
 }
-
 
 @end
