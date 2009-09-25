@@ -11,11 +11,11 @@
 #import <GameKit/Gamekit.h>
 
 @interface ServerConductor : NSObject <Conductor, GKSessionDelegate> {
+	<ConductorDelegate> delegate;
+	
 	NSString *name;
 	
 	GKSession *session;
-	
-	<ConductorDelegate> delegate;
 	
 	NSMutableArray *peers;
 	NSMutableArray *allPlayers;

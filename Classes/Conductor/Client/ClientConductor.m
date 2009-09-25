@@ -10,10 +10,10 @@
 
 @implementation ClientConductor
 
-@synthesize delegate;
 @synthesize name;
 @synthesize allPlayers;
 @synthesize song;
+@synthesize delegate;
 
 - (void) debug:(NSString *)message {
 	if ([delegate respondsToSelector:@selector(conductor:hasDebugMessage:)])

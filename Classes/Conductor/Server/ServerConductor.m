@@ -12,9 +12,9 @@
 @implementation ServerConductor
 
 @synthesize name;
-@synthesize delegate;
 @synthesize allPlayers;
 @synthesize song;
+@synthesize delegate;
 
 - (void) debug:(NSString *)message {
 	if ([delegate respondsToSelector:@selector(conductor:hasDebugMessage:)])
@@ -128,6 +128,12 @@
 
 - (void)session:(GKSession *)session_ didFailWithError:(NSError *)error {
 	[delegate conductor:self hadError:error];
+}
+
+- (void) setSong:(Song *)value {
+	[song release];
+	song = [song retain];
+	//[self sendData:[[Command alloc] init] toPeers:peers];
 }
 
 @end

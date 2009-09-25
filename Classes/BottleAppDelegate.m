@@ -110,7 +110,7 @@
 	conductor.song = song;
 	
 	// Change to the play view
-	[lobbyViewController removeFromSuperview];
+	[lobbyViewController.view removeFromSuperview];
 	[window addSubview:playViewController.view];
 }
 

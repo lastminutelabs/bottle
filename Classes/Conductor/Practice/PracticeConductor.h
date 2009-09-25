@@ -12,11 +12,11 @@
 @interface PracticeConductor : NSObject <Conductor> {
 	NSString *name;
 	
-	<ConductorDelegate> delegate;
-	
 	Song *song;
 	
 	NSArray *allPlayers;
+	
+	<ConductorDelegate> delegate;
 }
 
 @end
