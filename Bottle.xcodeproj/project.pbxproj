@@ -54,6 +54,7 @@
 		B290CEB3106D19A40065649E /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CEB2106D19A40065649E /* Note.m */; };
 		B290D08B106D56CA0065649E /* Jingle Bells.btl in Resources */ = {isa = PBXBuildFile; fileRef = B290D08A106D56CA0065649E /* Jingle Bells.btl */; };
 		B290D1A7106D618B0065649E /* PracticeConductor.m in Sources */ = {isa = PBXBuildFile; fileRef = B290D1A6106D618B0065649E /* PracticeConductor.m */; };
+		B2BFAC4F106DFC49004CDE5A /* ThreeTone.btl in Resources */ = {isa = PBXBuildFile; fileRef = B2BFAC4E106DFB8E004CDE5A /* ThreeTone.btl */; };
 		B2C42F99106D7DEC00A0DB86 /* PingCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C42F98106D7DEC00A0DB86 /* PingCommand.m */; };
 		B2C42FA3106D7E7C00A0DB86 /* CommandCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C42FA2106D7E7C00A0DB86 /* CommandCoder.m */; };
 		B2C430FC106D92A000A0DB86 /* SetSongCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C430FB106D92A000A0DB86 /* SetSongCommand.m */; };
@@ -127,6 +128,7 @@
 		B290D08A106D56CA0065649E /* Jingle Bells.btl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Jingle Bells.btl"; sourceTree = "<group>"; };
 		B290D1A5106D618B0065649E /* PracticeConductor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeConductor.h; sourceTree = "<group>"; };
 		B290D1A6106D618B0065649E /* PracticeConductor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeConductor.m; sourceTree = "<group>"; };
+		B2BFAC4E106DFB8E004CDE5A /* ThreeTone.btl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ThreeTone.btl; sourceTree = "<group>"; };
 		B2C42ECE106D788100A0DB86 /* Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Command.h; sourceTree = "<group>"; };
 		B2C42F97106D7DEC00A0DB86 /* PingCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingCommand.h; sourceTree = "<group>"; };
 		B2C42F98106D7DEC00A0DB86 /* PingCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingCommand.m; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 			children = (
 				B290D08A106D56CA0065649E /* Jingle Bells.btl */,
 				B2C433F3106DC08000A0DB86 /* TwoTone.btl */,
+				B2BFAC4E106DFB8E004CDE5A /* ThreeTone.btl */,
 			);
 			name = Songs;
 			path = Assets/Songs;
@@ -442,6 +445,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2BFAC4F106DFC49004CDE5A /* ThreeTone.btl in Resources */,
 				B2C433FA106DC0F600A0DB86 /* TwoTone.btl in Resources */,
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				548E1099106D2DE900D459F5 /* bottle_loop.aif in Resources */,
