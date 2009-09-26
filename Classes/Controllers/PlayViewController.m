@@ -126,8 +126,9 @@
 	[self.view bringSubviewToFront: bottleImageView];
 	[self.view bringSubviewToFront: bottleFillingView];
 	
-	// Start at the beginning of the song
+	// Start at the beginning of the song with 0 score.
 	songPosition = - secondsPerScreen;
+	score = 0.0f;
 }
 
 - (void) startPlay {
