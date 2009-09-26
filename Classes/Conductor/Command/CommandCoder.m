@@ -11,6 +11,7 @@
 #import "SetSongCommand.h"
 #import "LobbyUpdateCommand.h"
 #import "GraphicsOverlayCommand.h"
+#import "StartPlayCommand.h"
 
 @implementation CommandCoder
 
@@ -40,6 +41,11 @@
 		case CommandTypeLobbyUpdate: {
 			command = [[LobbyUpdateCommand alloc] init];
 			[(LobbyUpdateCommand *)command setPlayers:[props objectForKey:@"players"]];
+		}
+		break;
+			
+		case CommandTypeStartPlay: {
+			command = [[StartPlayCommand alloc] init];
 		}
 		break;
 			
@@ -90,6 +96,11 @@
 			[props setValue:[NSNumber numberWithDouble:graphics.green] forKey:@"color_green"];
 			[props setValue:[NSNumber numberWithDouble:graphics.blue] forKey:@"color_blue"];
 			[props setValue:[NSNumber numberWithDouble:graphics.duration] forKey:@"duration"];
+		}
+		break;
+			
+		case CommandTypeStartPlay: {
+			//StartPlayCommand *start = (StartPlayCommand *)command;
 		}
 		break;
 			

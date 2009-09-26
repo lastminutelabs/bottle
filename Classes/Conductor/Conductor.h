@@ -35,6 +35,8 @@ typedef enum {
 
 - (void) conductor:(<Conductor>)conductor recievedUnknownCommand:(<Command>)command;
 
+- (void) conductorStartedPlay:(<Conductor>)conductor;
+
 @optional
 
 - (void) conductor:(<Conductor>)conductor hasDebugMessage:(NSString *)debugMessage;
@@ -53,6 +55,8 @@ typedef enum {
 @property (nonatomic, readonly) NSArray *allPlayers;
 
 @property (nonatomic, retain) Song *song;
+
+@property (nonatomic, assign) bool readyToPlay;
 
 - (void) start;
 - (void) finish;

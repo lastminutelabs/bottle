@@ -43,4 +43,7 @@
 
 - (void) finish { }
 
+- (bool) readyToPlay { return YES; }
+- (void) setReadyToPlay:(bool)value { }
+
 @end

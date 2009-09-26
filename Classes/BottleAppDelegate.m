@@ -111,6 +111,12 @@
 	[lobbyViewController.view removeFromSuperview];
 	[playViewController setSong: song andPitch: pitch];
 	[window insertSubview:playViewController.view atIndex:0];
+	
+	conductor.readyToPlay = YES;
+}
+
+- (void) conductorStartedPlay:(<Conductor>)conductor {
+	[playViewController startPlay];
 }
 
 - (Song *) conductor:(<Conductor>)conductor requestsSongWithName:(NSString *)songName {

@@ -23,9 +23,13 @@
 	NSMutableArray *peers;
 	NSMutableArray *allPlayers;
 	
+	NSMutableArray *musiciansReadyToPlay;
+	
 	Song *song;
 	
 	NSTimer *pingTimer;
+	
+	bool readyToPlay;
 }
 
 @property (nonatomic, readonly) ConductorType type;

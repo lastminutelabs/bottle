@@ -54,6 +54,10 @@
 }
 
 - (void) setSong: (Song *) song_ andPitch: (NSString *) pitch_ {
+	[ticker invalidate];
+	[ticker release];
+	ticker = nil;
+	
 	NSLog(@"Setting song: %@ and pitch: %@", song_, pitch_);
 
 	[song release];
@@ -87,15 +91,6 @@
   [self.view bringSubviewToFront: bottleImageView];
 
   [self.view bringSubviewToFront: bottleFillingView];
-	
-	// Start the ticker to update the view
-	[ticker invalidate];
-	[ticker release];
-	ticker = [[NSTimer scheduledTimerWithTimeInterval:(1.0f/30.0f)
-											   target:self
-											 selector:@selector(tick:)
-											 userInfo:nil
-											  repeats:YES] retain];
 }
 
 + (NSArray *) noteViewsForSong: (Song *) song andPitch: (NSString *) pitch {
@@ -124,6 +119,15 @@
   }
   
   return views;
+}
+
+- (void) startPlay {
+	// Start the ticker to update the view
+	ticker = [[NSTimer scheduledTimerWithTimeInterval:(1.0f/30.0f)
+											   target:self
+											 selector:@selector(tick:)
+											 userInfo:nil
+											  repeats:YES] retain];
 }
 
 - (void) tick:(NSTimer *)timer {
