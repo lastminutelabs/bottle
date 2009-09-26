@@ -46,8 +46,11 @@
     // Override point for customization after application launch
     [window makeKeyAndVisible];
 	
+    application.statusBarOrientation = UIInterfaceOrientationPortraitUpsideDown;
+    window.transform = CGAffineTransformMakeRotation(M_PI);
+
 	[window addSubview:startOrJoinViewController.view];
-	
+
 	debugView = [[UITextView alloc] initWithFrame:CGRectMake(10, window.frame.size.height-150, window.frame.size.width-20, 150)];
 	debugView.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1.0];
 	debugView.alpha = 0.75;

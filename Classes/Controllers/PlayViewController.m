@@ -86,7 +86,6 @@
 
   [self.view bringSubviewToFront: bottleImageView];
 
-  // TODO: base this graphic on the pitch
   [self.view bringSubviewToFront: bottleFillingView];
 	
 	// Start the ticker to update the view
@@ -146,6 +145,11 @@
       noteView.center = CGPointMake(noteView.center.x, noteView.center.y - offset);
     }
   }
+}
+
+- (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) interfaceOrientation {
+  return (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown 
+	  || interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (void)dealloc {
