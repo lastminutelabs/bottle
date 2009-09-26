@@ -61,23 +61,31 @@
 	[noteViews release];
 	noteViews = [[NSMutableArray alloc] initWithCapacity:song.notes.count];
 	
+	NSTimeInterval ourLastNoteTime = -1;
 	for (Note *note in song.notes) {
 		int h = (note.duration - GAP * song.secondsPerBeat) / secondsPerScreen * 480;
 		int y = note.timestamp / secondsPerScreen * 480 + 480;
 		
 		UINoteView *view = [[UINoteView alloc] initWithFrame: CGRectMake(0, y, 320, h)];
 		
-		if ([note.pitch isEqualToString: pitch])
+		if ([note.pitch isEqualToString: pitch]) {
 			view.backgroundColor = UIColor.whiteColor;
-		else {		  
-		  view.backgroundColor = UIColor.darkGrayColor;
-		  view.alpha = 0.2f;
+			ourLastNoteTime = note.timestamp;
+		} else {
+			if (note.timestamp != ourLastNoteTime) {
+				view.backgroundColor = UIColor.darkGrayColor;
+				view.alpha = 0.2f;
+			} else {
+				[view release];
+				view = nil;
+			}
 		}
-		
 
-		view.note = note;
-		[noteViews addObject: view];
-		[self.view addSubview:view];
+		if (view) {
+			view.note = note;
+			[noteViews addObject: view];
+			[self.view addSubview:view];
+		}
 	}
 }
 
@@ -198,6 +206,7 @@
 	songPosition += sinceLastTime;
 	for (UINoteView *view in noteViews) {
 		if (songPosition > view.note.timestamp + NoteTolerence && [view.note.pitch isEqualToString:pitch]) {
+			view.backgroundColor = [UIColor redColor];
 			[UIView beginAnimations:nil context:view];
 			[UIView setAnimationDuration:0.35];
 			[UIView setAnimationDidStopSelector:@selector(removeNote:finished:context:)];
