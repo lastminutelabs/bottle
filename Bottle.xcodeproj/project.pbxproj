@@ -61,6 +61,7 @@
 		B2C433FA106DC0F600A0DB86 /* TwoTone.btl in Resources */ = {isa = PBXBuildFile; fileRef = B2C433F3106DC08000A0DB86 /* TwoTone.btl */; };
 		B2C434BF106DCCF600A0DB86 /* GraphicsOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C434BE106DCCF600A0DB86 /* GraphicsOverlayViewController.m */; };
 		B2C434CF106DCDA300A0DB86 /* GraphicsOverlayCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C434CE106DCDA300A0DB86 /* GraphicsOverlayCommand.m */; };
+		B2C43691106DE87D00A0DB86 /* StartPlayCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C43690106DE87D00A0DB86 /* StartPlayCommand.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -140,6 +141,8 @@
 		B2C434BE106DCCF600A0DB86 /* GraphicsOverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphicsOverlayViewController.m; sourceTree = "<group>"; };
 		B2C434CD106DCDA300A0DB86 /* GraphicsOverlayCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphicsOverlayCommand.h; sourceTree = "<group>"; };
 		B2C434CE106DCDA300A0DB86 /* GraphicsOverlayCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphicsOverlayCommand.m; sourceTree = "<group>"; };
+		B2C4368F106DE87D00A0DB86 /* StartPlayCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartPlayCommand.h; sourceTree = "<group>"; };
+		B2C43690106DE87D00A0DB86 /* StartPlayCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartPlayCommand.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -391,6 +394,8 @@
 				B2C43380106DB82400A0DB86 /* LobbyUpdateCommand.m */,
 				B2C434CD106DCDA300A0DB86 /* GraphicsOverlayCommand.h */,
 				B2C434CE106DCDA300A0DB86 /* GraphicsOverlayCommand.m */,
+				B2C4368F106DE87D00A0DB86 /* StartPlayCommand.h */,
+				B2C43690106DE87D00A0DB86 /* StartPlayCommand.m */,
 			);
 			path = Command;
 			sourceTree = "<group>";
@@ -495,6 +500,7 @@
 				B2C43381106DB82400A0DB86 /* LobbyUpdateCommand.m in Sources */,
 				B2C434BF106DCCF600A0DB86 /* GraphicsOverlayViewController.m in Sources */,
 				B2C434CF106DCDA300A0DB86 /* GraphicsOverlayCommand.m in Sources */,
+				B2C43691106DE87D00A0DB86 /* StartPlayCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,6 +12,7 @@ typedef enum {
 	CommandTypePing,
 	CommandTypeSetSong,
 	CommandTypeLobbyUpdate,
+	CommandTypeStartPlay,
 	CommandTypeGraphicsOverlay
 } CommandType;
 
