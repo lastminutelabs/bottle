@@ -10,7 +10,8 @@
 
 typedef enum {
 	CommandTypePing,
-	CommandTypeSetSong
+	CommandTypeSetSong,
+	CommandTypeLobbyUpdate
 } CommandType;
 
 @protocol Command <NSObject>

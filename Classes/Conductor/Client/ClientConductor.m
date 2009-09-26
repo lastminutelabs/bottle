@@ -70,7 +70,14 @@
 	switch (command.type) {
 		case CommandTypeSetSong:
 			[self debug:[command description]];
-			[delegate conductor:self choseSong:song andPitch:[(SetSongCommand *)command pitch]];
+			
+			// Get the song from the delegate
+			Song *newSong = [delegate conductor:self requestsSongWithName:[(SetSongCommand*)command name]];
+			if (newSong) {
+				[song release];
+				song = [newSong retain];
+				[delegate conductor:self choseSong:song andPitch:[(SetSongCommand *)command pitch]];
+			}
 			break;
 		
 		default:

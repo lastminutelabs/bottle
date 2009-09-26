@@ -30,16 +30,16 @@
 			@try {
 				Song *song = [[Song alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", path, file]];
 				[songs addObject:song];
-				NSLog(@"Song loaded : %@", song);
+				NSLog(@"Song loaded (on import) : %@", song);
 			} @catch (NSException *e) {
-				NSLog(@"Failed to import song : %@", e);
+				NSLog(@"Failed to import song (on import) : %@", e);
 			}
 		}
 	
 	// Add a test song
 	Song *testSong = [[Song alloc] init];
 	[songs addObject:testSong];
-}	
+}
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {   
 	
@@ -110,6 +110,15 @@
 	[lobbyViewController.view removeFromSuperview];
 	[playViewController setSong: song andPitch: pitch];
 	[window addSubview:playViewController.view];
+}
+
+- (Song *) conductor:(<Conductor>)conductor requestsSongWithName:(NSString *)songName {
+	for (Song *song in songs) {
+		if ([song.name isEqual:songName])
+			return song;
+	}
+	
+	return nil;
 }
 
 #pragma mark ---- LobbyViewController ----
