@@ -118,17 +118,24 @@
 	[ping release];
 }
 
-- (void) sendStartPlayMessage {
+- (void) sendStartPlayMessage:(NSTimer *)timer {
 	StartPlayCommand *command = [[StartPlayCommand alloc] init];
 	[self sendCommand:command];
 	[command release];
+	[delegate conductorStartedPlay:self];
+}
+
+- (void) tryToPlay {
+	if (musiciansReadyToPlay.count == peers.count && self.readyToPlay && NO==sentPlayMessage) {
+		sentPlayMessage = YES;
+		[NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(sendStartPlayMessage:) userInfo:nil repeats:NO];
+	}
 }
 
 - (void) setReadyToPlay:(bool)value {
 	readyToPlay = value;
 	
-	if (musiciansReadyToPlay.count == peers.count && self.readyToPlay)
-		[self sendStartPlayMessage];
+	[self tryToPlay];
 }
 
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peerID inSession: (GKSession *)session_ context:(void *)context {
@@ -138,10 +145,7 @@
 			if (![musiciansReadyToPlay containsObject:peerID])
 				[musiciansReadyToPlay addObject:peerID];
 			
-			if (musiciansReadyToPlay.count == peers.count && self.readyToPlay) {
-				[self sendStartPlayMessage];
-				[delegate conductorStartedPlay:self];
-			}
+			[self tryToPlay];
 			
 			break;		
 			
