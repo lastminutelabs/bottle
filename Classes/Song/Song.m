@@ -8,6 +8,21 @@
 
 #import "Song.h"
 
+NSInteger sortNotes(id a, id b, void *data) {
+	if ([a isEqual: b]) return NSOrderedSame;
+	
+	// Get the second char of each one
+	NSString *a2 = [a substringFromIndex:1];
+	NSString *b2 = [b substringFromIndex:1];
+	if ([b2 intValue] > [a2 intValue])
+		return NSOrderedAscending;
+	else if ([b2 intValue] < [a2 intValue])
+		return NSOrderedDescending;
+	else
+		return [a compare:b];
+}
+
+
 @implementation Song
 
 @synthesize name, secondsPerBeat;
@@ -75,6 +90,11 @@
 			}
 			[scanner release];
 		}
+		
+		// Make sure the unique notes are in the right order
+		NSArray *temp = [[uniqueNotes sortedArrayUsingFunction:sortNotes context:nil] retain];
+		[uniqueNotes release];
+		uniqueNotes = temp;
 	}
 	return self;
 }
