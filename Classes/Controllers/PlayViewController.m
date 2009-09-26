@@ -55,12 +55,10 @@
 - (void) setSong: (Song *) song_ andPitch: (NSString *) pitch_ {
   NSLog(@"Setting song: %@ and pitch: %@", song_, pitch_);
 
-	[song release];
-	[pitch release];
+  [song release];
+  [pitch release];
   song = [song_ retain];
   pitch = [pitch_ retain];
-
-  NSLog(@"two");
 
   if (noteViews) {
     for (UIView *noteView in noteViews) {
