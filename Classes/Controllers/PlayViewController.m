@@ -16,6 +16,13 @@
 
 @implementation PlayViewController
 
+- (id) init {
+  if (self = [super init]) {
+  }
+
+  return self;
+}
+
 - (NSError *) initializeSound {
 	[player stop];
 	[player release];
@@ -46,6 +53,20 @@
 - (void) viewDidLoad {
   self.view = [[UIView alloc] initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
   self.view.backgroundColor = UIColor.blackColor;
+
+  bottleImages = [[NSMutableArray alloc] initWithCapacity: 11]; // it goes all the way up to 11
+  
+  [bottleImages addObject: [UIImage imageNamed:@"bottle1.png"]];
+  [bottleImages addObject: [UIImage imageNamed:@"bottle1.png"]];
+  [bottleImages addObject: [UIImage imageNamed:@"bottle2.png"]];
+  [bottleImages addObject: [UIImage imageNamed:@"bottle3.png"]];
+  [bottleImages addObject: [UIImage imageNamed:@"bottle4.png"]];
+  [bottleImages addObject: [UIImage imageNamed:@"bottle5.png"]];
+  [bottleImages addObject: [UIImage imageNamed:@"bottle6.png"]];
+  [bottleImages addObject: [UIImage imageNamed:@"bottle7.png"]];
+  [bottleImages addObject: [UIImage imageNamed:@"bottle8.png"]];
+  [bottleImages addObject: [UIImage imageNamed:@"bottle9.png"]];
+  [bottleImages addObject: [UIImage imageNamed:@"bottle10.png"]];
 
   bottleImageView = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"bottle1.png"]];    
   [self.view addSubview: bottleImageView];         
@@ -134,6 +155,8 @@
 - (void) tick:(NSTimer *)timer {
   Float32 power = [listener averagePower];
   player.volume = power;
+  
+  bottleImageView.image = [bottleImages objectAtIndex: floor(power * 10)];
 
   if (noteViews) {
 

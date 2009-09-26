@@ -20,6 +20,7 @@
   AVAudioPlayer *player;
   Song *song;
   NSString *pitch;
+  NSMutableArray *bottleImages;
 }
 
 - (void) setSong: (Song *) song andPitch: (NSString *) pitch;
