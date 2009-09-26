@@ -70,6 +70,9 @@
 	[pingTimer invalidate];
 	[pingTimer release];
 	pingTimer = nil;
+	[songEndTimer invalidate];
+	[songEndTimer release];
+	songEndTimer = nil;
 	[session disconnectFromAllPeers];
 	[session setAvailable:NO];
 	[session setDelegate:nil];
@@ -118,11 +121,29 @@
 	[ping release];
 }
 
+- (void) songIsComplete:(NSTimer *)timer {
+	[NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(flashMadly:) userInfo:nil repeats:YES];
+}
+
+- (void) flashMadly:(NSTimer *)timer {
+	GraphicsOverlayCommand *command = [[GraphicsOverlayCommand alloc] init];
+	command.red = ((float)(arc4random() % 1000) / 2000.0f) + 0.5f;
+	command.green = ((float)(arc4random() % 1000) / 2000.0f) + 0.5f;
+	command.blue = ((float)(arc4random() % 1000) / 2000.0f) + 0.5f;
+	command.duration = 1.0;
+	[self sendCommand:command];
+	[delegate conductor:self recievedUnknownCommand:command];
+	[command release];
+}
+
 - (void) sendStartPlayMessage:(NSTimer *)timer {
 	StartPlayCommand *command = [[StartPlayCommand alloc] init];
 	[self sendCommand:command];
 	[command release];
 	[delegate conductorStartedPlay:self];
+	
+	// Start a timer to end the song at the end!
+	songEndTimer = [[NSTimer scheduledTimerWithTimeInterval:song.duration target:self selector:@selector(songIsComplete:) userInfo:nil repeats:NO] retain];
 }
 
 - (void) tryToPlay {
@@ -221,7 +242,7 @@
 		command.pitch = [song.uniqueNotes objectAtIndex:noteIndex];
 		NSData *data = [CommandCoder encodeCommand:command];
 		NSError *error = nil;
-		[session sendData:data toPeers:peers withDataMode:GKSendDataReliable error:&error];
+		[session sendData:data toPeers:[NSArray arrayWithObject:peerID] withDataMode:GKSendDataReliable error:&error];
 		
 		noteIndex ++;
 		if (noteIndex >= song.uniqueNotes.count-1) // Save yourself the last note
