@@ -113,6 +113,7 @@
       view.backgroundColor = UIColor.lightGrayColor;
     } else {
       view.backgroundColor = UIColor.darkGrayColor;
+      view.alpha = 0.3f;
     }
     
     [views addObject: view];
