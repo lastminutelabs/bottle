@@ -92,9 +92,7 @@ NSInteger sortNotes(id a, id b, void *data) {
 		}
 		
 		// Make sure the unique notes are in the right order
-		NSArray *temp = [[uniqueNotes sortedArrayUsingFunction:sortNotes context:nil] retain];
-		[uniqueNotes release];
-		uniqueNotes = temp;
+		[uniqueNotes sortUsingFunction:sortNotes context:nil];
 	}
 	return self;
 }
