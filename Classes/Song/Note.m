@@ -32,7 +32,7 @@
 }
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"[Note pitch:%i duration:%i at:%i]", pitch, duration, timestamp];
+	return [NSString stringWithFormat:@"[Note pitch:%@ duration:%f at:%f]", pitch, duration, timestamp];
 }
 
 - (BOOL) isEqual:(Note *)note {
