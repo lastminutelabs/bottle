@@ -13,18 +13,6 @@
 @synthesize name, secondsPerBeat;
 @synthesize notes, uniqueNotes;
 
-- (void) playNote:(Note *)note {
-	NSLog(@"%@", note);
-	[NSTimer scheduledTimerWithTimeInterval:note.duration target:self selector:@selector(endPlayingNoteCallback:) userInfo:note repeats:NO];
-}
-
-- (void) endPlayingNoteCallback:(NSTimer *)timer {
-	if (playing) {
-		Note *note = (Note *)timer.userInfo;
-		NSLog(@"%@ finished", note);
-	}
-}
-
 - (void) addNote:(Note *)newNote {
 	// Is it a new unique note? If so, increment the number of unique notes
 	bool unique = YES;
@@ -49,7 +37,6 @@
 		notes = [[NSMutableArray alloc] initWithCapacity:100];
 		
 		uniqueNotes = [[NSMutableArray alloc] initWithCapacity:10];
-		playing = NO;
 		
 		if (nil == filename) 
 			[NSException raise:@"Can't deal with nil as a file name" format:@""];
@@ -93,8 +80,6 @@
 }
 
 - (void) dealloc {
-	[nextNoteTimer invalidate];
-	[nextNoteTimer release];
 	[notes release];
 	[name release];
 	[super dealloc];
@@ -102,79 +87,6 @@
 
 - (NSString *)description {
 	return [NSString stringWithFormat:@"[Song '%@' secondsPerBeat=%2.1f numNotes=%i uniqueNotes=%i]", name, secondsPerBeat, notes.count, uniqueNotes.count];
-}
-
-- (NSArray *) getNextNotesAt:(NSTimeInterval)timestamp {
-	// Go through the notes array and get the next one past the timestamp
-	NSMutableArray *nextNotes = [[NSMutableArray alloc] initWithCapacity:10];
-
-	for (Note *note in notes) {
-		if (note.timestamp < timestamp)
-			continue;
-		else if (note.timestamp == timestamp)
-			[nextNotes addObject:note];
-		else
-			break;
-	}
-	
-	return nextNotes;
-}
-
-- (NSTimeInterval) getNextNoteTime:(Note *)note {
-	int index = [notes indexOfObject:note];
-	if (index != NSNotFound) {
-		// Get the next note with a different timestamp
-		Note *nextNote = note;
-		while (nextNote.timestamp == note.timestamp) {
-			index++;
-			if (index < notes.count)
-				nextNote = [notes objectAtIndex:index];
-			else
-				return 0;
-		}
-		
-		return nextNote.timestamp;
-	}
-	
-	return 0;
-}
-
-- (void) start {
-	if (! playing && notes.count > 0) {
-		currentPosition = 0;
-		playing = YES;
-		Note *firstNote = [notes objectAtIndex:0];
-		nextNoteTimer = [[NSTimer scheduledTimerWithTimeInterval:firstNote.timestamp target:self selector:@selector(playNoteCallback:) userInfo:nil repeats:NO] retain];
-	}
-}
-
-- (void) stop {
-	if (playing) {
-		[nextNoteTimer invalidate];
-		[nextNoteTimer release];
-		nextNoteTimer = nil;
-		playing = NO;
-	}
-}
-
-- (void) playNoteCallback:(NSTimer *)timer {
-	[nextNoteTimer release];
-	nextNoteTimer = nil;
-	
-	NSArray *currentNotes = [self getNextNotesAt:currentPosition];
-	
-	if (0 != currentNotes.count) {
-		for (Note *note in currentNotes)
-			[self playNote:note];
-		
-		// Set the timer for the next note
-		NSTimeInterval nextNoteTime = [self getNextNoteTime:[currentNotes objectAtIndex:0]];
-		if (0 != nextNoteTime) {
-			NSTimeInterval nextNoteInterval = nextNoteTime - currentPosition;
-			currentPosition = nextNoteTime;
-			nextNoteTimer = [[NSTimer scheduledTimerWithTimeInterval:nextNoteInterval target:self selector:@selector(playNoteCallback:) userInfo:nil repeats:NO] retain];
-		}
-	}
 }
 
 @end
