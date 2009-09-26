@@ -156,11 +156,17 @@
 	[song release];
 	song = [value retain];
 	
+	int noteIndex = 0;
+		
 	SetSongCommand *command = [[SetSongCommand alloc] init];
 	command.name = song.name;
-	NSData *data = [CommandCoder encodeCommand:command];
-	NSError *error = nil;
-	[session sendData:data toPeers:peers withDataMode:GKSendDataReliable error:&error];
+	for (NSString *peerID in peers) {
+		command.pitch = [song.uniqueNotes objectAtIndex:noteIndex];
+		noteIndex = (++noteIndex) % song.uniqueNotes.count;
+		NSData *data = [CommandCoder encodeCommand:command];
+		NSError *error = nil;
+		[session sendData:data toPeers:peers withDataMode:GKSendDataReliable error:&error];
+	}
 	[command release];
 }
 
