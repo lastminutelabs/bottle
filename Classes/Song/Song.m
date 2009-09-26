@@ -87,7 +87,9 @@
 				if (result) 
 					result = [scanner scanFloat:&duration];
 				if (result) {
-					Note *note = [[Note alloc] initWithPitch:pitch andDuration:duration at:timestamp];
+					Note *note = [[Note alloc] initWithPitch:pitch 
+								   andDuration:duration * secondsPerBeat
+								   at:timestamp * secondsPerBeat];
 					if (note)
 						[self addNote:note];
 					[note release];
