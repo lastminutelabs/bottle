@@ -105,7 +105,7 @@
 
   for (Note *note in notes) {
     int h = (note.duration - GAP * secondsPerBeat) / secondsPerScreen * 480;
-    int y = note.timestamp / secondsPerScreen * 480;
+    int y = note.timestamp / secondsPerScreen * 480 + 480;
 
     UIView *view = [[UIView alloc] initWithFrame: CGRectMake(0, y, 320, h)];
 
