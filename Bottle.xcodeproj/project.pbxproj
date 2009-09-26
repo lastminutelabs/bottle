@@ -65,6 +65,7 @@
 		B2BFAC4F106DFC49004CDE5A /* ThreeTone.btl in Resources */ = {isa = PBXBuildFile; fileRef = B2BFAC4E106DFB8E004CDE5A /* ThreeTone.btl */; };
 		B2BFACCA106E0774004CDE5A /* UINoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BFACC9106E0774004CDE5A /* UINoteView.m */; };
 		B2BFADA9106E15EF004CDE5A /* Doctor Who.btl in Resources */ = {isa = PBXBuildFile; fileRef = B2BFADA8106E15EF004CDE5A /* Doctor Who.btl */; };
+		B2BFAE53106E2333004CDE5A /* DoReMi.btl in Resources */ = {isa = PBXBuildFile; fileRef = B2BFAE52106E2333004CDE5A /* DoReMi.btl */; };
 		B2C42F99106D7DEC00A0DB86 /* PingCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C42F98106D7DEC00A0DB86 /* PingCommand.m */; };
 		B2C42FA3106D7E7C00A0DB86 /* CommandCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C42FA2106D7E7C00A0DB86 /* CommandCoder.m */; };
 		B2C430FC106D92A000A0DB86 /* SetSongCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C430FB106D92A000A0DB86 /* SetSongCommand.m */; };
@@ -150,6 +151,7 @@
 		B2BFACC8106E0774004CDE5A /* UINoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UINoteView.h; sourceTree = "<group>"; };
 		B2BFACC9106E0774004CDE5A /* UINoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UINoteView.m; sourceTree = "<group>"; };
 		B2BFADA8106E15EF004CDE5A /* Doctor Who.btl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Doctor Who.btl"; sourceTree = "<group>"; };
+		B2BFAE52106E2333004CDE5A /* DoReMi.btl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DoReMi.btl; sourceTree = "<group>"; };
 		B2C42ECE106D788100A0DB86 /* Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Command.h; sourceTree = "<group>"; };
 		B2C42F97106D7DEC00A0DB86 /* PingCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingCommand.h; sourceTree = "<group>"; };
 		B2C42F98106D7DEC00A0DB86 /* PingCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingCommand.m; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 		B290D089106D56B00065649E /* Songs */ = {
 			isa = PBXGroup;
 			children = (
+				B2BFAE52106E2333004CDE5A /* DoReMi.btl */,
 				B2BFADA8106E15EF004CDE5A /* Doctor Who.btl */,
 				B290D08A106D56CA0065649E /* Jingle Bells.btl */,
 				B2C433F3106DC08000A0DB86 /* TwoTone.btl */,
@@ -525,6 +528,7 @@
 				548E12E1106DFC8000D459F5 /* f3.aif in Resources */,
 				548E12E2106DFC8000D459F5 /* g3.aif in Resources */,
 				B2BFADA9106E15EF004CDE5A /* Doctor Who.btl in Resources */,
+				B2BFAE53106E2333004CDE5A /* DoReMi.btl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
