@@ -55,6 +55,7 @@
 	debugView.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1.0];
 	debugView.alpha = 0.75;
 	debugView.editable = NO;
+	debugView.hidden = YES;
 	[window addSubview:debugView];
 	
 	[window addSubview:graphicsOverlayViewController.view];

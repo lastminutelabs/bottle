@@ -28,6 +28,7 @@
 	Song *song;
 	
 	NSTimer *pingTimer;
+	NSTimer *songEndTimer;
 	
 	bool readyToPlay;
 	bool sentPlayMessage;

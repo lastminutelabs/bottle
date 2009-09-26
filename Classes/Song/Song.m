@@ -27,6 +27,7 @@ NSInteger sortNotes(id a, id b, void *data) {
 
 @synthesize name, secondsPerBeat;
 @synthesize notes, uniqueNotes;
+@synthesize duration;
 
 - (void) addNote:(Note *)newNote {
 	// Is it a new unique note? If so, increment the number of unique notes
@@ -63,6 +64,9 @@ NSInteger sortNotes(id a, id b, void *data) {
 		
 		NSArray *lines = [fileString componentsSeparatedByString:@"\n"];
 		
+		// We need to store the duration of the song
+		duration = 0;
+		
 		// The first two lines of the file are easy
 		name = [[lines objectAtIndex:0] retain];
 		secondsPerBeat = 60 / [[lines objectAtIndex:1] floatValue];
@@ -72,20 +76,23 @@ NSInteger sortNotes(id a, id b, void *data) {
 			NSString *line = [lines objectAtIndex:n];
 			NSScanner *scanner = [[NSScanner alloc] initWithString:line];
 			float timestamp = -1;
-			float duration = -1;
+			float noteDuration = -1;
 			NSString *pitch = nil;
 			
 			bool result = [scanner scanFloat:&timestamp];
 			if (result)
 				result = [scanner scanUpToString:@" " intoString:&pitch];
 			if (result) 
-				result = [scanner scanFloat:&duration];
+				result = [scanner scanFloat:&noteDuration];
 			if (result) {
 				Note *note = [[Note alloc] initWithPitch:pitch 
-							   andDuration:duration * secondsPerBeat
+							   andDuration:noteDuration * secondsPerBeat
 							   at:(timestamp - 1) * secondsPerBeat];
-				if (note)
+				if (note) {
 					[self addNote:note];
+					if (note.timestamp + note.duration > duration)
+						duration = note.timestamp + note.duration;
+				}
 				[note release];
 			}
 			[scanner release];
