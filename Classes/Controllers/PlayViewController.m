@@ -19,6 +19,13 @@
 
 @implementation PlayViewController
 
+- (id) init {
+  if (self = [super init]) {
+  }
+
+  return self;
+}
+
 - (NSError *) initializeSound {
 	[player stop];
 	[player release];
@@ -72,6 +79,20 @@
 }
 
 - (void) viewDidLoad {
+  bottleImages = [[NSMutableArray alloc] initWithCapacity: 11]; // it goes all the way up to 11
+  
+  [bottleImages addObject: [UIImage imageNamed:@"bottle1.png"]];
+  [bottleImages addObject: [UIImage imageNamed:@"bottle1.png"]];
+  [bottleImages addObject: [UIImage imageNamed:@"bottle2.png"]];
+  [bottleImages addObject: [UIImage imageNamed:@"bottle3.png"]];
+  [bottleImages addObject: [UIImage imageNamed:@"bottle4.png"]];
+  [bottleImages addObject: [UIImage imageNamed:@"bottle5.png"]];
+  [bottleImages addObject: [UIImage imageNamed:@"bottle6.png"]];
+  [bottleImages addObject: [UIImage imageNamed:@"bottle7.png"]];
+  [bottleImages addObject: [UIImage imageNamed:@"bottle8.png"]];
+  [bottleImages addObject: [UIImage imageNamed:@"bottle9.png"]];
+  [bottleImages addObject: [UIImage imageNamed:@"bottle10.png"]];
+
   bottleImageView = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"bottle1.png"]];    
   [self.view addSubview: bottleImageView];         
 }
@@ -118,15 +139,34 @@
 											  repeats:YES] retain];
 }
 
+- (void) noteHitTest {
+	// If we are within the tolerence of a note, remove it
+	for (UINoteView *view in noteViews) {
+		if (songPosition > view.note.timestamp - NoteTolerence &&
+			songPosition < view.note.timestamp + NoteTolerence &&
+			[view.note.pitch isEqualToString:pitch]) {
+				[UIView beginAnimations:nil context:view];
+				[UIView setAnimationDuration:0.35];
+				[UIView setAnimationDidStopSelector:@selector(removeNote:finished:context:)];
+				view.center = CGPointMake(view.center.x, 500);
+				view.alpha = 0.0f;
+				[UIView commitAnimations];
+		}
+	}
+}
+
 - (void) detectAudio {
 	// Get the amplitude from the mic
 	Float32 power = [listener averagePower];
 	player.volume = power;
+
+	bottleImageView.image = [bottleImages objectAtIndex: floor(power * 10)];
 	
 	// Do we change note playing state?
 	if (NO == currentlyPlaying) {
 		if (power > THRESHOLD) {
 			currentlyPlaying = YES;
+			[self noteHitTest];
 		}
 	} else {
 		if (power < THRESHOLD) {
@@ -150,10 +190,10 @@
 	// Remember where we are in the song and deal with any notes that we have missed
 	songPosition += sinceLastTime;
 	for (UINoteView *view in noteViews) {
-		if (songPosition > view.note.timestamp + NoteTolerence) {
+		if (songPosition > view.note.timestamp + NoteTolerence && [view.note.pitch isEqualToString:pitch]) {
 			[UIView beginAnimations:nil context:view];
 			[UIView setAnimationDuration:0.35];
-			[UIView setAnimationDidStopSelector:@selector(removeMissedNote:finished:context:)];
+			[UIView setAnimationDidStopSelector:@selector(removeNote:finished:context:)];
 			view.center = CGPointMake(-500, view.center.y);
 			view.alpha = 0.0f;
 			[UIView commitAnimations];
@@ -161,7 +201,7 @@
 	}
 }
 
-- (void)removeMissedNote:(NSString*)animationID finished:(NSNumber*)finished context:(void*)context {
+- (void)removeNote:(NSString*)animationID finished:(NSNumber*)finished context:(void*)context {
 	UINoteView *view = (UINoteView *)context;
 	[view removeFromSuperview];
 	[noteViews removeObject:view];

@@ -20,11 +20,11 @@
   AVAudioPlayer *player;
   Song *song;
   NSString *pitch;
-	
-	NSTimeInterval songPosition;
-	float secondsPerScreen;
-	
-	bool currentlyPlaying;
+  NSMutableArray *bottleImages;
+  NSTimeInterval songPosition;
+  float secondsPerScreen;
+  
+  bool currentlyPlaying;  
 }
 
 - (void) setSong: (Song *) song andPitch: (NSString *) pitch;
