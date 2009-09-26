@@ -51,50 +51,42 @@
 		uniqueNotes = [[NSMutableArray alloc] initWithCapacity:10];
 		playing = NO;
 		
-		if (nil == filename) {
-			[self addNote:[[Note alloc] initWithPitch:@"1" andDuration:1 at:0]];
-			[self addNote:[[Note alloc] initWithPitch:@"2" andDuration:1 at:1]];
-			[self addNote:[[Note alloc] initWithPitch:@"1" andDuration:1 at:2]];
-			[self addNote:[[Note alloc] initWithPitch:@"2" andDuration:1 at:3]];
-			[self addNote:[[Note alloc] initWithPitch:@"1" andDuration:1 at:4]];
-			[self addNote:[[Note alloc] initWithPitch:@"2" andDuration:1 at:5.5]];
-			[self addNote:[[Note alloc] initWithPitch:@"1" andDuration:1 at:5.5]];
-			name = [[NSString alloc] initWithString:@"Test file"];
-		} else {
-			// Open the file
-			NSString *fileString = [NSString stringWithContentsOfFile:filename];
-			if (nil == fileString)
-				[NSException raise:@"Song failed to import" format:@"File at %@ failed to open", filename];
+		if (nil == filename) 
+			[NSException raise:@"Can't deal with nil as a file name" format:@""];
 			
-			NSArray *lines = [fileString componentsSeparatedByString:@"\n"];
+		// Open the file
+		NSString *fileString = [NSString stringWithContentsOfFile:filename];
+		if (nil == fileString)
+			[NSException raise:@"Song failed to import" format:@"File at %@ failed to open", filename];
+		
+		NSArray *lines = [fileString componentsSeparatedByString:@"\n"];
+		
+		// The first two lines of the file are easy
+		name = [[lines objectAtIndex:0] retain];
+		secondsPerBeat = 60 / [[lines objectAtIndex:1] floatValue];
+		
+		// After that, each line is a note
+		for (int n = 2; n < lines.count; ++n) {
+			NSString *line = [lines objectAtIndex:n];
+			NSScanner *scanner = [[NSScanner alloc] initWithString:line];
+			float timestamp = -1;
+			float duration = -1;
+			NSString *pitch = nil;
 			
-			// The first two lines of the file are easy
-			name = [[lines objectAtIndex:0] retain];
-			secondsPerBeat = 60 / [[lines objectAtIndex:1] floatValue];
-			
-			// After that, each line is a note
-			for (int n = 2; n < lines.count; ++n) {
-				NSString *line = [lines objectAtIndex:n];
-				NSScanner *scanner = [[NSScanner alloc] initWithString:line];
-				float timestamp = -1;
-				float duration = -1;
-				NSString *pitch = nil;
-				
-				bool result = [scanner scanFloat:&timestamp];
-				if (result)
-					result = [scanner scanUpToString:@" " intoString:&pitch];
-				if (result) 
-					result = [scanner scanFloat:&duration];
-				if (result) {
-					Note *note = [[Note alloc] initWithPitch:pitch 
-								   andDuration:duration * secondsPerBeat
-								   at:(timestamp - 1) * secondsPerBeat];
-					if (note)
-						[self addNote:note];
-					[note release];
-				}
-				[scanner release];
+			bool result = [scanner scanFloat:&timestamp];
+			if (result)
+				result = [scanner scanUpToString:@" " intoString:&pitch];
+			if (result) 
+				result = [scanner scanFloat:&duration];
+			if (result) {
+				Note *note = [[Note alloc] initWithPitch:pitch 
+							   andDuration:duration * secondsPerBeat
+							   at:(timestamp - 1) * secondsPerBeat];
+				if (note)
+					[self addNote:note];
+				[note release];
 			}
+			[scanner release];
 		}
 	}
 	return self;

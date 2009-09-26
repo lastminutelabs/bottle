@@ -25,7 +25,7 @@
 	NSFileManager *manager = [NSFileManager defaultManager];
 	NSDirectoryEnumerator *dirEnum = [manager enumeratorAtPath:path];
 	NSString *file;
-	while (file = [dirEnum nextObject])
+	while (file = [dirEnum nextObject]) {
 		if ([file hasSuffix:@".btl"]) {
 			@try {
 				Song *song = [[Song alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", path, file]];
@@ -35,10 +35,7 @@
 				NSLog(@"Failed to import song (on import) : %@", e);
 			}
 		}
-	
-	// Add a test song
-	Song *testSong = [[Song alloc] init];
-	[songs addObject:testSong];
+	}
 }
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {   

@@ -92,8 +92,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	Song *song = [songs objectAtIndex:indexPath.row];
 	int diff = song.uniqueNotes.count - players.count;
-	if (diff > 0)
+	if (diff > 0) {
+		[tableView deselectRowAtIndexPath:indexPath animated:NO];
 		return;
+	}
 
 	[delegate lobbyViewController:self selectedSong:song];
 }

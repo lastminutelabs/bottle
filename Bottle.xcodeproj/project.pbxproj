@@ -50,6 +50,7 @@
 		B2C42FA3106D7E7C00A0DB86 /* CommandCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C42FA2106D7E7C00A0DB86 /* CommandCoder.m */; };
 		B2C430FC106D92A000A0DB86 /* SetSongCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C430FB106D92A000A0DB86 /* SetSongCommand.m */; };
 		B2C43381106DB82400A0DB86 /* LobbyUpdateCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C43380106DB82400A0DB86 /* LobbyUpdateCommand.m */; };
+		B2C433FA106DC0F600A0DB86 /* TwoTone.btl in Resources */ = {isa = PBXBuildFile; fileRef = B2C433F3106DC08000A0DB86 /* TwoTone.btl */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,6 +117,7 @@
 		B2C430FB106D92A000A0DB86 /* SetSongCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSongCommand.m; sourceTree = "<group>"; };
 		B2C4337F106DB82400A0DB86 /* LobbyUpdateCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LobbyUpdateCommand.h; sourceTree = "<group>"; };
 		B2C43380106DB82400A0DB86 /* LobbyUpdateCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LobbyUpdateCommand.m; sourceTree = "<group>"; };
+		B2C433F3106DC08000A0DB86 /* TwoTone.btl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TwoTone.btl; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -320,6 +322,7 @@
 			isa = PBXGroup;
 			children = (
 				B290D08A106D56CA0065649E /* Jingle Bells.btl */,
+				B2C433F3106DC08000A0DB86 /* TwoTone.btl */,
 			);
 			name = Songs;
 			path = Assets/Songs;
@@ -392,6 +395,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2C433FA106DC0F600A0DB86 /* TwoTone.btl in Resources */,
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				548E1099106D2DE900D459F5 /* bottle_loop.aif in Resources */,
 				B290D08B106D56CA0065649E /* Jingle Bells.btl in Resources */,
