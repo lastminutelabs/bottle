@@ -111,7 +111,7 @@
 }
 
 - (void) triggerPing:(NSTimer *)timer {
-	if (0 == peers.count)
+	//if (0 == peers.count)
 		return;
 	
 	// Send a ping to everyone
