@@ -7,12 +7,15 @@
 //
 
 #import "PlayViewController.h"
+#import "UINoteView.h"
 
 #define THRESHOLD 0.6f
 #define BEATS_PER_SCREEN 8
 #define GAP 0.25f
 
 #define NUM_FILLINGS 8
+
+#define NoteTolerence (0.25)
 
 @implementation PlayViewController
 
@@ -43,14 +46,41 @@
 	return error;
 }
 
+- (void) createNoteViews {
+	
+	// Remove the old notes
+	for (UINoteView *noteView in noteViews)
+		[noteView removeFromSuperview];
+	[noteViews release];
+	noteViews = [[NSMutableArray alloc] initWithCapacity:song.notes.count];
+	
+	float secondsPerBeat = song.secondsPerBeat;
+	float beatsPerSecond = 1.0f / secondsPerBeat;
+	float secondsPerScreen = BEATS_PER_SCREEN / beatsPerSecond;
+	
+	for (Note *note in song.notes) {
+		int h = (note.duration - GAP * secondsPerBeat) / secondsPerScreen * 480;
+		int y = note.timestamp / secondsPerScreen * 480 + 480;
+		
+		UINoteView *view = [[UINoteView alloc] initWithFrame: CGRectMake(0, y, 320, h)];
+		
+		if ([note.pitch isEqualToString: pitch]) {
+			view.backgroundColor = UIColor.lightGrayColor;
+		} else {
+			view.backgroundColor = UIColor.darkGrayColor;
+		}
+		
+		[noteViews addObject: view];
+		[self.view addSubview:view];
+	}
+}
+
 - (void) viewDidLoad {
   self.view = [[UIView alloc] initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
   self.view.backgroundColor = UIColor.blackColor;
 
   bottleImageView = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"bottle1.png"]];    
   [self.view addSubview: bottleImageView];         
-
-  noteViews = nil;
 }
 
 - (void) setSong: (Song *) song_ andPitch: (NSString *) pitch_ {
@@ -65,7 +95,7 @@
 
 	[pitch release];
 	pitch = [pitch_ copy];
-	
+		
 	// Get the correct filling for the song
 	float fillingsPerNote = NUM_FILLINGS / song.uniqueNotes.count;
 	int index = fillingsPerNote * [song.uniqueNotes indexOfObject:pitch] + 1;
@@ -75,50 +105,14 @@
 	// Initialize the correct pitch sound
 	[self initializeSound];
 
-	if (noteViews) {
-		for (UIView *noteView in noteViews) {
-			[noteView removeFromSuperview];    
-		}
-	}
-
-  [noteViews release];
-  noteViews = [PlayViewController noteViewsForSong: song andPitch: pitch];
-
-  for (UIView *note in noteViews) {
-    [self.view addSubview: note];    
-  }
+	[self createNoteViews];
 
   [self.view bringSubviewToFront: bottleImageView];
 
   [self.view bringSubviewToFront: bottleFillingView];
-}
-
-+ (NSArray *) noteViewsForSong: (Song *) song andPitch: (NSString *) pitch {
-  // returns an array of UIView objects of the right size and offset for the given Song
-
-  NSArray *notes = song.notes;  
-  NSMutableArray *views = [[NSMutableArray alloc] initWithCapacity: notes.count];
-
-  float secondsPerBeat = song.secondsPerBeat;
-  float beatsPerSecond = 1.0f / secondsPerBeat;
-  float secondsPerScreen = BEATS_PER_SCREEN / beatsPerSecond;
-
-  for (Note *note in notes) {
-    int h = (note.duration - GAP * secondsPerBeat) / secondsPerScreen * 480;
-    int y = note.timestamp / secondsPerScreen * 480 + 480;
-
-    UIView *view = [[UIView alloc] initWithFrame: CGRectMake(0, y, 320, h)];
-
-    if ([note.pitch isEqualToString: pitch]) {
-      view.backgroundColor = UIColor.lightGrayColor;
-    } else {
-      view.backgroundColor = UIColor.darkGrayColor;
-    }
-    
-    [views addObject: view];
-  }
-  
-  return views;
+	
+	// Start at the beginning of the song
+	songPosition = 0;
 }
 
 - (void) startPlay {
@@ -133,22 +127,24 @@
 - (void) tick:(NSTimer *)timer {
   Float32 power = [listener averagePower];
   player.volume = power;
+	
+	float sinceLastTime = [timer timeInterval];
 
   if (noteViews) {
 
-    float sinceLastTime = [timer timeInterval];
-    
     // TODO: shouldn't need to keep recalculating this
     float secondsPerBeat = song.secondsPerBeat;
     float beatsPerSecond = 1.0f / secondsPerBeat;
     float secondsPerScreen = BEATS_PER_SCREEN / beatsPerSecond;
-    
+
     float offset = 480 * sinceLastTime / secondsPerScreen;
     
-    for (UIView *noteView in noteViews) {
+    for (UIView *noteView in noteViews)
       noteView.center = CGPointMake(noteView.center.x, noteView.center.y - offset);
-    }
   }
+	
+	// Remember where we are in the song
+	songPosition += sinceLastTime;
 }
 
 - (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) interfaceOrientation {
