@@ -12,6 +12,8 @@
 #define BEATS_PER_SCREEN 8
 #define GAP 0.25f
 
+#define NUM_FILLINGS 8
+
 @implementation PlayViewController
 
 - (NSError *) initializeSound {
@@ -46,10 +48,7 @@
   self.view.backgroundColor = UIColor.blackColor;
 
   bottleImageView = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"bottle1.png"]];    
-  [self.view addSubview: bottleImageView];    
-
-  bottleFillingView = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"filling1.png"]];    
-  [self.view addSubview: bottleFillingView];      
+  [self.view addSubview: bottleImageView];         
 
   noteViews = nil;
 }
@@ -63,6 +62,13 @@
 	[pitch release];
 	pitch = [pitch_ copy];
 	
+	// Get the correct filling for the song
+	float fillingsPerNote = NUM_FILLINGS / song.uniqueNotes.count;
+	int index = fillingsPerNote * [song.uniqueNotes indexOfObject:pitch] + 1;
+	bottleFillingView = [[UIImageView alloc] initWithImage: [UIImage imageNamed:[NSString stringWithFormat:@"filling%i.png", index]]];  
+	[self.view addSubview: bottleFillingView]; 
+	
+	// Initialize the correct pitch sound
 	[self initializeSound];
 
 	if (noteViews) {
