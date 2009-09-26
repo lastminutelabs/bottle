@@ -7,7 +7,7 @@
 //
 
 #import "ClientConductor.h"
-#import "CommandFactory.h"
+#import "CommandCoder.h"
 
 @implementation ClientConductor
 
@@ -65,8 +65,15 @@
 
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peerID inSession: (GKSession *)session_ context:(void *)context {
 	// Create the command from the data
-	<Command> command = [CommandFactory commandWithData:data];
+	<Command> command = [CommandCoder commandWithData:data];
 	[self debug:[command description]];
+	switch (command.type) {
+		case CommandTypeSetSong:
+			break;
+		
+		default:
+			break;
+	}
 }
 
 #pragma mark ---- PeerPickerDelegate methods ----

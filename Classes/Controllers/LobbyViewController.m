@@ -94,8 +94,8 @@
 	int diff = song.numberOfUniqueNotes - players.count;
 	if (diff > 0)
 		return;
-	
-	
+
+	[delegate lobbyViewController:self selectedSong:song];
 }
 
 @end

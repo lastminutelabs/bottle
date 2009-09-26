@@ -29,7 +29,7 @@
 @property (nonatomic, readonly) float tempo;
 @property (nonatomic, readonly) NSArray *notes;
 
-- (id) initWithContentsOfFile:(NSString *)file;
+- (id) initWithContentsOfFile:(NSString *)filename;
 
 - (void) start;
 - (void) stop;

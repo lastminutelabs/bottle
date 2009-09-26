@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Command.h"
 
-@interface CommandFactory : NSObject
+@interface CommandCoder : NSObject
 
 + (<Command>) commandWithData:(NSData *)data;
 + (NSData *) encodeCommand:(<Command>)command;

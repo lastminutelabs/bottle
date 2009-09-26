@@ -7,7 +7,8 @@
 //
 
 #import "ServerConductor.h"
-#import "CommandFactory.h"
+#import "CommandCoder.h"
+#import "SetSongCommand.h"
 
 @implementation ServerConductor
 
@@ -87,7 +88,7 @@
 	// Send a ping to everyone
 	PingCommand *ping = [[PingCommand alloc] init];
 	ping.timestamp = [NSDate date];
-	NSData *data = [CommandFactory encodeCommand:ping];
+	NSData *data = [CommandCoder encodeCommand:ping];
 	NSError *error = nil;
 	[session sendData:data toPeers:peers withDataMode:GKSendDataReliable error:&error];
 	[ping release];
@@ -153,8 +154,14 @@
 
 - (void) setSong:(Song *)value {
 	[song release];
-	song = [song retain];
-	NSLog(@"poo");
+	song = [value retain];
+	
+	SetSongCommand *command = [[SetSongCommand alloc] init];
+	command.name = song.name;
+	NSData *data = [CommandCoder encodeCommand:command];
+	NSError *error = nil;
+	[session sendData:data toPeers:peers withDataMode:GKSendDataReliable error:&error];
+	[command release];
 }
 
 @end

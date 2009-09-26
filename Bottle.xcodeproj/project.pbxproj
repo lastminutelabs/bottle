@@ -29,7 +29,8 @@
 		B290D08B106D56CA0065649E /* Jingle Bells.btl in Resources */ = {isa = PBXBuildFile; fileRef = B290D08A106D56CA0065649E /* Jingle Bells.btl */; };
 		B290D1A7106D618B0065649E /* PracticeConductor.m in Sources */ = {isa = PBXBuildFile; fileRef = B290D1A6106D618B0065649E /* PracticeConductor.m */; };
 		B2C42F99106D7DEC00A0DB86 /* PingCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C42F98106D7DEC00A0DB86 /* PingCommand.m */; };
-		B2C42FA3106D7E7C00A0DB86 /* CommandFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C42FA2106D7E7C00A0DB86 /* CommandFactory.m */; };
+		B2C42FA3106D7E7C00A0DB86 /* CommandCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C42FA2106D7E7C00A0DB86 /* CommandCoder.m */; };
+		B2C430FC106D92A000A0DB86 /* SetSongCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C430FB106D92A000A0DB86 /* SetSongCommand.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,8 +73,10 @@
 		B2C42ECE106D788100A0DB86 /* Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Command.h; sourceTree = "<group>"; };
 		B2C42F97106D7DEC00A0DB86 /* PingCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingCommand.h; sourceTree = "<group>"; };
 		B2C42F98106D7DEC00A0DB86 /* PingCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingCommand.m; sourceTree = "<group>"; };
-		B2C42FA1106D7E7C00A0DB86 /* CommandFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandFactory.h; sourceTree = "<group>"; };
-		B2C42FA2106D7E7C00A0DB86 /* CommandFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandFactory.m; sourceTree = "<group>"; };
+		B2C42FA1106D7E7C00A0DB86 /* CommandCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandCoder.h; sourceTree = "<group>"; };
+		B2C42FA2106D7E7C00A0DB86 /* CommandCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandCoder.m; sourceTree = "<group>"; };
+		B2C430FA106D92A000A0DB86 /* SetSongCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetSongCommand.h; sourceTree = "<group>"; };
+		B2C430FB106D92A000A0DB86 /* SetSongCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSongCommand.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,8 +259,10 @@
 				B2C42ECE106D788100A0DB86 /* Command.h */,
 				B2C42F97106D7DEC00A0DB86 /* PingCommand.h */,
 				B2C42F98106D7DEC00A0DB86 /* PingCommand.m */,
-				B2C42FA1106D7E7C00A0DB86 /* CommandFactory.h */,
-				B2C42FA2106D7E7C00A0DB86 /* CommandFactory.m */,
+				B2C430FA106D92A000A0DB86 /* SetSongCommand.h */,
+				B2C430FB106D92A000A0DB86 /* SetSongCommand.m */,
+				B2C42FA1106D7E7C00A0DB86 /* CommandCoder.h */,
+				B2C42FA2106D7E7C00A0DB86 /* CommandCoder.m */,
 			);
 			path = Command;
 			sourceTree = "<group>";
@@ -330,7 +335,8 @@
 				548E0FB8106CFDE800D459F5 /* SCListener.m in Sources */,
 				B290D1A7106D618B0065649E /* PracticeConductor.m in Sources */,
 				B2C42F99106D7DEC00A0DB86 /* PingCommand.m in Sources */,
-				B2C42FA3106D7E7C00A0DB86 /* CommandFactory.m in Sources */,
+				B2C42FA3106D7E7C00A0DB86 /* CommandCoder.m in Sources */,
+				B2C430FC106D92A000A0DB86 /* SetSongCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
