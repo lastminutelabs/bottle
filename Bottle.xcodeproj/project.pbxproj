@@ -18,6 +18,24 @@
 		548E0FB8106CFDE800D459F5 /* SCListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 548E0FB7106CFDE800D459F5 /* SCListener.m */; };
 		548E102F106D1D3B00D459F5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 548E102E106D1D3B00D459F5 /* AVFoundation.framework */; };
 		548E1099106D2DE900D459F5 /* bottle_loop.aif in Resources */ = {isa = PBXBuildFile; fileRef = 548E1098106D2DE900D459F5 /* bottle_loop.aif */; };
+		548E11B8106DAA9E00D459F5 /* bottle1.png in Resources */ = {isa = PBXBuildFile; fileRef = 548E11AE106DAA9E00D459F5 /* bottle1.png */; };
+		548E11B9106DAA9E00D459F5 /* bottle2.png in Resources */ = {isa = PBXBuildFile; fileRef = 548E11AF106DAA9E00D459F5 /* bottle2.png */; };
+		548E11BA106DAA9E00D459F5 /* bottle3.png in Resources */ = {isa = PBXBuildFile; fileRef = 548E11B0106DAA9E00D459F5 /* bottle3.png */; };
+		548E11BB106DAA9E00D459F5 /* bottle4.png in Resources */ = {isa = PBXBuildFile; fileRef = 548E11B1106DAA9E00D459F5 /* bottle4.png */; };
+		548E11BC106DAA9E00D459F5 /* bottle5.png in Resources */ = {isa = PBXBuildFile; fileRef = 548E11B2106DAA9E00D459F5 /* bottle5.png */; };
+		548E11BD106DAA9E00D459F5 /* bottle6.png in Resources */ = {isa = PBXBuildFile; fileRef = 548E11B3106DAA9E00D459F5 /* bottle6.png */; };
+		548E11BE106DAA9E00D459F5 /* bottle7.png in Resources */ = {isa = PBXBuildFile; fileRef = 548E11B4106DAA9E00D459F5 /* bottle7.png */; };
+		548E11BF106DAA9E00D459F5 /* bottle8.png in Resources */ = {isa = PBXBuildFile; fileRef = 548E11B5106DAA9E00D459F5 /* bottle8.png */; };
+		548E11C0106DAA9E00D459F5 /* bottle9.png in Resources */ = {isa = PBXBuildFile; fileRef = 548E11B6106DAA9E00D459F5 /* bottle9.png */; };
+		548E11C1106DAA9E00D459F5 /* bottle10.png in Resources */ = {isa = PBXBuildFile; fileRef = 548E11B7106DAA9E00D459F5 /* bottle10.png */; };
+		548E11CA106DAAB900D459F5 /* filling1.png in Resources */ = {isa = PBXBuildFile; fileRef = 548E11C2106DAAB900D459F5 /* filling1.png */; };
+		548E11CB106DAAB900D459F5 /* filling2.png in Resources */ = {isa = PBXBuildFile; fileRef = 548E11C3106DAAB900D459F5 /* filling2.png */; };
+		548E11CC106DAAB900D459F5 /* filling3.png in Resources */ = {isa = PBXBuildFile; fileRef = 548E11C4106DAAB900D459F5 /* filling3.png */; };
+		548E11CD106DAAB900D459F5 /* filling4.png in Resources */ = {isa = PBXBuildFile; fileRef = 548E11C5106DAAB900D459F5 /* filling4.png */; };
+		548E11CE106DAAB900D459F5 /* filling5.png in Resources */ = {isa = PBXBuildFile; fileRef = 548E11C6106DAAB900D459F5 /* filling5.png */; };
+		548E11CF106DAAB900D459F5 /* filling6.png in Resources */ = {isa = PBXBuildFile; fileRef = 548E11C7106DAAB900D459F5 /* filling6.png */; };
+		548E11D0106DAAB900D459F5 /* filling7.png in Resources */ = {isa = PBXBuildFile; fileRef = 548E11C8106DAAB900D459F5 /* filling7.png */; };
+		548E11D1106DAAB900D459F5 /* filling8.png in Resources */ = {isa = PBXBuildFile; fileRef = 548E11C9106DAAB900D459F5 /* filling8.png */; };
 		B290CB08106CEBEB0065649E /* StartOrJoinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CB07106CEBEB0065649E /* StartOrJoinViewController.m */; };
 		B290CB67106CF0300065649E /* ConductorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CB66106CF0300065649E /* ConductorFactory.m */; };
 		B290CBAB106CF1D80065649E /* ServerConductor.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CBAA106CF1D80065649E /* ServerConductor.m */; };
@@ -47,6 +65,24 @@
 		548E0FB7106CFDE800D459F5 /* SCListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCListener.m; path = ../bottle/Libraries/SCListener/SCListener.m; sourceTree = SOURCE_ROOT; };
 		548E102E106D1D3B00D459F5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		548E1098106D2DE900D459F5 /* bottle_loop.aif */ = {isa = PBXFileReference; lastKnownFileType = file; name = bottle_loop.aif; path = ../bottle/bottle_loop.aif; sourceTree = SOURCE_ROOT; };
+		548E11AE106DAA9E00D459F5 /* bottle1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bottle1.png; path = ../bottle/Assets/Images/Bottles/bottle1.png; sourceTree = SOURCE_ROOT; };
+		548E11AF106DAA9E00D459F5 /* bottle2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bottle2.png; path = ../bottle/Assets/Images/Bottles/bottle2.png; sourceTree = SOURCE_ROOT; };
+		548E11B0106DAA9E00D459F5 /* bottle3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bottle3.png; path = ../bottle/Assets/Images/Bottles/bottle3.png; sourceTree = SOURCE_ROOT; };
+		548E11B1106DAA9E00D459F5 /* bottle4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bottle4.png; path = ../bottle/Assets/Images/Bottles/bottle4.png; sourceTree = SOURCE_ROOT; };
+		548E11B2106DAA9E00D459F5 /* bottle5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bottle5.png; path = ../bottle/Assets/Images/Bottles/bottle5.png; sourceTree = SOURCE_ROOT; };
+		548E11B3106DAA9E00D459F5 /* bottle6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bottle6.png; path = ../bottle/Assets/Images/Bottles/bottle6.png; sourceTree = SOURCE_ROOT; };
+		548E11B4106DAA9E00D459F5 /* bottle7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bottle7.png; path = ../bottle/Assets/Images/Bottles/bottle7.png; sourceTree = SOURCE_ROOT; };
+		548E11B5106DAA9E00D459F5 /* bottle8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bottle8.png; path = ../bottle/Assets/Images/Bottles/bottle8.png; sourceTree = SOURCE_ROOT; };
+		548E11B6106DAA9E00D459F5 /* bottle9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bottle9.png; path = ../bottle/Assets/Images/Bottles/bottle9.png; sourceTree = SOURCE_ROOT; };
+		548E11B7106DAA9E00D459F5 /* bottle10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bottle10.png; path = ../bottle/Assets/Images/Bottles/bottle10.png; sourceTree = SOURCE_ROOT; };
+		548E11C2106DAAB900D459F5 /* filling1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = filling1.png; path = ../bottle/Assets/Images/Fillings/filling1.png; sourceTree = SOURCE_ROOT; };
+		548E11C3106DAAB900D459F5 /* filling2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = filling2.png; path = ../bottle/Assets/Images/Fillings/filling2.png; sourceTree = SOURCE_ROOT; };
+		548E11C4106DAAB900D459F5 /* filling3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = filling3.png; path = ../bottle/Assets/Images/Fillings/filling3.png; sourceTree = SOURCE_ROOT; };
+		548E11C5106DAAB900D459F5 /* filling4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = filling4.png; path = ../bottle/Assets/Images/Fillings/filling4.png; sourceTree = SOURCE_ROOT; };
+		548E11C6106DAAB900D459F5 /* filling5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = filling5.png; path = ../bottle/Assets/Images/Fillings/filling5.png; sourceTree = SOURCE_ROOT; };
+		548E11C7106DAAB900D459F5 /* filling6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = filling6.png; path = ../bottle/Assets/Images/Fillings/filling6.png; sourceTree = SOURCE_ROOT; };
+		548E11C8106DAAB900D459F5 /* filling7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = filling7.png; path = ../bottle/Assets/Images/Fillings/filling7.png; sourceTree = SOURCE_ROOT; };
+		548E11C9106DAAB900D459F5 /* filling8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = filling8.png; path = ../bottle/Assets/Images/Fillings/filling8.png; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* Bottle-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Bottle-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		B290CB06106CEBEB0065649E /* StartOrJoinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartOrJoinViewController.h; sourceTree = "<group>"; };
 		B290CB07106CEBEB0065649E /* StartOrJoinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartOrJoinViewController.m; sourceTree = "<group>"; };
@@ -132,6 +168,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				548E11AB106DAA7200D459F5 /* Images */,
 				B290D089106D56B00065649E /* Songs */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Bottle-Info.plist */,
@@ -167,6 +204,47 @@
 				548E0FB7106CFDE800D459F5 /* SCListener.m */,
 			);
 			name = SCListener;
+			sourceTree = "<group>";
+		};
+		548E11AB106DAA7200D459F5 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				548E11AD106DAA8100D459F5 /* Bottles */,
+				548E11AC106DAA7900D459F5 /* Fillings */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		548E11AC106DAA7900D459F5 /* Fillings */ = {
+			isa = PBXGroup;
+			children = (
+				548E11C2106DAAB900D459F5 /* filling1.png */,
+				548E11C3106DAAB900D459F5 /* filling2.png */,
+				548E11C4106DAAB900D459F5 /* filling3.png */,
+				548E11C5106DAAB900D459F5 /* filling4.png */,
+				548E11C6106DAAB900D459F5 /* filling5.png */,
+				548E11C7106DAAB900D459F5 /* filling6.png */,
+				548E11C8106DAAB900D459F5 /* filling7.png */,
+				548E11C9106DAAB900D459F5 /* filling8.png */,
+			);
+			name = Fillings;
+			sourceTree = "<group>";
+		};
+		548E11AD106DAA8100D459F5 /* Bottles */ = {
+			isa = PBXGroup;
+			children = (
+				548E11AE106DAA9E00D459F5 /* bottle1.png */,
+				548E11AF106DAA9E00D459F5 /* bottle2.png */,
+				548E11B0106DAA9E00D459F5 /* bottle3.png */,
+				548E11B1106DAA9E00D459F5 /* bottle4.png */,
+				548E11B2106DAA9E00D459F5 /* bottle5.png */,
+				548E11B3106DAA9E00D459F5 /* bottle6.png */,
+				548E11B4106DAA9E00D459F5 /* bottle7.png */,
+				548E11B5106DAA9E00D459F5 /* bottle8.png */,
+				548E11B6106DAA9E00D459F5 /* bottle9.png */,
+				548E11B7106DAA9E00D459F5 /* bottle10.png */,
+			);
+			name = Bottles;
 			sourceTree = "<group>";
 		};
 		B290CAFB106CEB3D0065649E /* Conductor */ = {
@@ -287,6 +365,24 @@
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				548E1099106D2DE900D459F5 /* bottle_loop.aif in Resources */,
 				B290D08B106D56CA0065649E /* Jingle Bells.btl in Resources */,
+				548E11B8106DAA9E00D459F5 /* bottle1.png in Resources */,
+				548E11B9106DAA9E00D459F5 /* bottle2.png in Resources */,
+				548E11BA106DAA9E00D459F5 /* bottle3.png in Resources */,
+				548E11BB106DAA9E00D459F5 /* bottle4.png in Resources */,
+				548E11BC106DAA9E00D459F5 /* bottle5.png in Resources */,
+				548E11BD106DAA9E00D459F5 /* bottle6.png in Resources */,
+				548E11BE106DAA9E00D459F5 /* bottle7.png in Resources */,
+				548E11BF106DAA9E00D459F5 /* bottle8.png in Resources */,
+				548E11C0106DAA9E00D459F5 /* bottle9.png in Resources */,
+				548E11C1106DAA9E00D459F5 /* bottle10.png in Resources */,
+				548E11CA106DAAB900D459F5 /* filling1.png in Resources */,
+				548E11CB106DAAB900D459F5 /* filling2.png in Resources */,
+				548E11CC106DAAB900D459F5 /* filling3.png in Resources */,
+				548E11CD106DAAB900D459F5 /* filling4.png in Resources */,
+				548E11CE106DAAB900D459F5 /* filling5.png in Resources */,
+				548E11CF106DAAB900D459F5 /* filling6.png in Resources */,
+				548E11D0106DAAB900D459F5 /* filling7.png in Resources */,
+				548E11D1106DAAB900D459F5 /* filling8.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
