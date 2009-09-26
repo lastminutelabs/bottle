@@ -203,6 +203,7 @@
 	command.blue = 0;
 	command.duration = 1.0;
 	[self sendCommand:command];
+	[delegate conductor:self recievedUnknownCommand:command];
 	[command release];
 }
 
