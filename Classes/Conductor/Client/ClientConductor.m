@@ -7,12 +7,15 @@
 //
 
 #import "ClientConductor.h"
+#import "CommandCoder.h"
+#import "SetSongCommand.h"
 
 @implementation ClientConductor
 
-@synthesize delegate;
 @synthesize name;
 @synthesize allPlayers;
+@synthesize song;
+@synthesize delegate;
 
 - (void) debug:(NSString *)message {
 	if ([delegate respondsToSelector:@selector(conductor:hasDebugMessage:)])
@@ -56,8 +59,23 @@
 	[session disconnectFromAllPeers];
 	[session setAvailable:NO];
 	[session setDelegate:nil];
+	[session setDataReceiveHandler:nil withContext:nil];
 	[session release];
 	session = nil;
+}
+
+- (void) receiveData:(NSData *)data fromPeer:(NSString *)peerID inSession: (GKSession *)session_ context:(void *)context {
+	// Create the command from the data
+	<Command> command = [CommandCoder commandWithData:data];
+	switch (command.type) {
+		case CommandTypeSetSong:
+			[self debug:[command description]];
+			[delegate conductor:self choseSong:song andPitch:[(SetSongCommand *)command pitch]];
+			break;
+		
+		default:
+			break;
+	}
 }
 
 #pragma mark ---- PeerPickerDelegate methods ----
@@ -69,6 +87,7 @@
 - (void)peerPickerController:(GKPeerPickerController *)picker didConnectPeer:(NSString *)peerID toSession:(GKSession *)session_ {
 	// Keep the session and release the picker
 	session = [session_ retain];
+	[session setDataReceiveHandler:self withContext:nil];
 	[picker dismiss];
 	[picker release];
 	[delegate conductor:self initializeSuccessful:YES];
@@ -76,6 +95,10 @@
 
 - (void)peerPickerControllerDidCancel:(GKPeerPickerController *)picker {
 	[delegate conductor:self initializeSuccessful:NO];
+}
+
+- (void) setSong:(Song *)value {
+	[NSException raise:@"Clients cannot set the song!" format:@""];
 }
 
 @end

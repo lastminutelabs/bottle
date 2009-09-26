@@ -11,13 +11,15 @@
 #import <GameKit/Gamekit.h>
 
 @interface ClientConductor : NSObject <Conductor, GKPeerPickerControllerDelegate> {
-	NSString *name;
-	
 	<ConductorDelegate> delegate;
+	
+	NSString *name;
 	
 	GKSession *session;
 	
 	NSArray *allPlayers;
+	
+	Song *song;
 }
 
 @property (nonatomic, readonly) ConductorType type;

@@ -8,17 +8,24 @@
 
 #import <Foundation/Foundation.h>
 #import "Conductor.h"
+#import "PingCommand.h"
 #import <GameKit/Gamekit.h>
 
+#define PING_INTERVAL (1.0f)
+
 @interface ServerConductor : NSObject <Conductor, GKSessionDelegate> {
+	<ConductorDelegate> delegate;
+	
 	NSString *name;
 	
 	GKSession *session;
 	
-	<ConductorDelegate> delegate;
-	
 	NSMutableArray *peers;
 	NSMutableArray *allPlayers;
+	
+	Song *song;
+	
+	NSTimer *pingTimer;
 }
 
 @property (nonatomic, readonly) ConductorType type;

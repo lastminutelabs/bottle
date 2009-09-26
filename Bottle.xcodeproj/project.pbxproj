@@ -46,6 +46,10 @@
 		B290CEB3106D19A40065649E /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CEB2106D19A40065649E /* Note.m */; };
 		B290D08B106D56CA0065649E /* Jingle Bells.btl in Resources */ = {isa = PBXBuildFile; fileRef = B290D08A106D56CA0065649E /* Jingle Bells.btl */; };
 		B290D1A7106D618B0065649E /* PracticeConductor.m in Sources */ = {isa = PBXBuildFile; fileRef = B290D1A6106D618B0065649E /* PracticeConductor.m */; };
+		B2C42F99106D7DEC00A0DB86 /* PingCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C42F98106D7DEC00A0DB86 /* PingCommand.m */; };
+		B2C42FA3106D7E7C00A0DB86 /* CommandCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C42FA2106D7E7C00A0DB86 /* CommandCoder.m */; };
+		B2C430FC106D92A000A0DB86 /* SetSongCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C430FB106D92A000A0DB86 /* SetSongCommand.m */; };
+		B2C43292106DAF0400A0DB86 /* Musician.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C43291106DAF0400A0DB86 /* Musician.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,6 +107,15 @@
 		B290D08A106D56CA0065649E /* Jingle Bells.btl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Jingle Bells.btl"; sourceTree = "<group>"; };
 		B290D1A5106D618B0065649E /* PracticeConductor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeConductor.h; sourceTree = "<group>"; };
 		B290D1A6106D618B0065649E /* PracticeConductor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeConductor.m; sourceTree = "<group>"; };
+		B2C42ECE106D788100A0DB86 /* Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Command.h; sourceTree = "<group>"; };
+		B2C42F97106D7DEC00A0DB86 /* PingCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingCommand.h; sourceTree = "<group>"; };
+		B2C42F98106D7DEC00A0DB86 /* PingCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingCommand.m; sourceTree = "<group>"; };
+		B2C42FA1106D7E7C00A0DB86 /* CommandCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandCoder.h; sourceTree = "<group>"; };
+		B2C42FA2106D7E7C00A0DB86 /* CommandCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandCoder.m; sourceTree = "<group>"; };
+		B2C430FA106D92A000A0DB86 /* SetSongCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetSongCommand.h; sourceTree = "<group>"; };
+		B2C430FB106D92A000A0DB86 /* SetSongCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSongCommand.m; sourceTree = "<group>"; };
+		B2C43290106DAF0400A0DB86 /* Musician.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Musician.h; sourceTree = "<group>"; };
+		B2C43291106DAF0400A0DB86 /* Musician.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Musician.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,12 +263,15 @@
 		B290CAFB106CEB3D0065649E /* Conductor */ = {
 			isa = PBXGroup;
 			children = (
+				B2C42ED8106D78DD00A0DB86 /* Command */,
 				B290D1A4106D61660065649E /* Practice */,
 				B290CBA5106CF17C0065649E /* Client */,
 				B290CBA4106CF1780065649E /* Server */,
 				B290CB61106CF0160065649E /* Conductor.h */,
 				B290CB65106CF0300065649E /* ConductorFactory.h */,
 				B290CB66106CF0300065649E /* ConductorFactory.m */,
+				B2C43290106DAF0400A0DB86 /* Musician.h */,
+				B2C43291106DAF0400A0DB86 /* Musician.m */,
 			);
 			path = Conductor;
 			sourceTree = "<group>";
@@ -318,6 +334,20 @@
 				B290D1A6106D618B0065649E /* PracticeConductor.m */,
 			);
 			path = Practice;
+			sourceTree = "<group>";
+		};
+		B2C42ED8106D78DD00A0DB86 /* Command */ = {
+			isa = PBXGroup;
+			children = (
+				B2C42ECE106D788100A0DB86 /* Command.h */,
+				B2C42F97106D7DEC00A0DB86 /* PingCommand.h */,
+				B2C42F98106D7DEC00A0DB86 /* PingCommand.m */,
+				B2C430FA106D92A000A0DB86 /* SetSongCommand.h */,
+				B2C430FB106D92A000A0DB86 /* SetSongCommand.m */,
+				B2C42FA1106D7E7C00A0DB86 /* CommandCoder.h */,
+				B2C42FA2106D7E7C00A0DB86 /* CommandCoder.m */,
+			);
+			path = Command;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -405,6 +435,10 @@
 				548E0F7B106CF01900D459F5 /* PlayViewController.m in Sources */,
 				548E0FB8106CFDE800D459F5 /* SCListener.m in Sources */,
 				B290D1A7106D618B0065649E /* PracticeConductor.m in Sources */,
+				B2C42F99106D7DEC00A0DB86 /* PingCommand.m in Sources */,
+				B2C42FA3106D7E7C00A0DB86 /* CommandCoder.m in Sources */,
+				B2C430FC106D92A000A0DB86 /* SetSongCommand.m in Sources */,
+				B2C43292106DAF0400A0DB86 /* Musician.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

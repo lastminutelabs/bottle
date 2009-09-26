@@ -103,4 +103,19 @@
 	lobbyViewController.players = conductor_.allPlayers;
 }
 
+- (void) conductor:(<Conductor>)conductor_ choseSong:(Song *)song andPitch:(NSString *)pitch {
+	NSLog(@"Pitch set to %@", pitch);
+	
+	// Change to the play view
+	[lobbyViewController.view removeFromSuperview];
+	[window addSubview:playViewController.view];
+}
+
+#pragma mark ---- LobbyViewController ----
+
+- (void) lobbyViewController:(LobbyViewController *)controller selectedSong:(Song *)song {
+	// Store the song in the conductor
+	conductor.song = song;
+}
+
 @end

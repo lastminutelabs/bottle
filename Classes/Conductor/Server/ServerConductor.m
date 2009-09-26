@@ -7,13 +7,15 @@
 //
 
 #import "ServerConductor.h"
-
+#import "CommandCoder.h"
+#import "SetSongCommand.h"
 
 @implementation ServerConductor
 
 @synthesize name;
-@synthesize delegate;
 @synthesize allPlayers;
+@synthesize song;
+@synthesize delegate;
 
 - (void) debug:(NSString *)message {
 	if ([delegate respondsToSelector:@selector(conductor:hasDebugMessage:)])
@@ -53,9 +55,14 @@
 	[self debug:@"Server session started"];
 	
 	[delegate conductor:self initializeSuccessful:YES];
+	
+	pingTimer = [[NSTimer scheduledTimerWithTimeInterval:PING_INTERVAL target:self selector:@selector(triggerPing:) userInfo:nil repeats:YES] retain];
 }
 
 - (void) finish {
+	[pingTimer invalidate];
+	[pingTimer release];
+	pingTimer = nil;
 	[session disconnectFromAllPeers];
 	[session setAvailable:NO];
 	[session setDelegate:nil];
@@ -72,6 +79,22 @@
 	[delegate release];
 	[name release];
 	[super dealloc];
+}
+
+- (void) triggerPing:(NSTimer *)timer {
+	if (0 == peers.count)
+		return;
+	
+	// Send a ping to everyone
+	PingCommand *ping = [[PingCommand alloc] init];
+	ping.timestamp = [NSDate date];
+	NSData *data = [CommandCoder encodeCommand:ping];
+	NSError *error = nil;
+	[session sendData:data toPeers:peers withDataMode:GKSendDataReliable error:&error];
+	[ping release];
+	
+	if (nil != error)
+		[self debug:[NSString stringWithFormat:@"Ping failed to send : %@", [error localizedDescription]]];
 }
 
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peerID inSession: (GKSession *)session_ context:(void *)context {
@@ -127,6 +150,31 @@
 
 - (void)session:(GKSession *)session_ didFailWithError:(NSError *)error {
 	[delegate conductor:self hadError:error];
+}
+
+- (void) setSong:(Song *)value {
+	[song release];
+	song = [value retain];
+	
+	int noteIndex = 0;
+		
+	// Give the peers the other notes
+	SetSongCommand *command = [[SetSongCommand alloc] init];
+	command.name = song.name;
+	for (NSString *peerID in peers) {
+		command.pitch = [song.uniqueNotes objectAtIndex:noteIndex];
+		NSData *data = [CommandCoder encodeCommand:command];
+		NSError *error = nil;
+		[session sendData:data toPeers:peers withDataMode:GKSendDataReliable error:&error];
+		
+		noteIndex ++;
+		if (noteIndex >= song.uniqueNotes.count-1) // Save yourself the last note
+			break;
+	}
+	[command release];
+	
+	// Tell the delegate that we have a song and pitch
+	[delegate conductor:self choseSong:song andPitch:[song.uniqueNotes lastObject]];
 }
 
 @end

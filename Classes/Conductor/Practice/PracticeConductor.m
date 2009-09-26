@@ -11,14 +11,23 @@
 
 @implementation PracticeConductor
 
-@synthesize delegate;
 @synthesize name;
+@synthesize song;
+@synthesize delegate;
+@synthesize allPlayers;
 
 - (void) debug:(NSString *)message {
-	if ([delegate respondsToSelector:@selector(conductor:hasDebugMessage:)])
-		[delegate conductor:self hasDebugMessage:message];
-	
-	NSLog(@"%@", message);
+	       if ([delegate respondsToSelector:@selector(conductor:hasDebugMessage:)])
+		               [delegate conductor:self hasDebugMessage:message];
+	       
+	       NSLog(@"%@", message);
+}
+
+- (id) init {
+	if (self = [super init]) {
+		allPlayers = [[NSArray alloc] initWithObjects:@"Me", nil];
+	}
+	return self;
 }
 
 - (ConductorType) type { return ConductorTypePractice; }
