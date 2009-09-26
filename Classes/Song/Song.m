@@ -10,9 +10,8 @@
 
 @implementation Song
 
-@synthesize numberOfUniqueNotes;
 @synthesize name, secondsPerBeat;
-@synthesize notes;
+@synthesize notes, uniqueNotes;
 
 - (void) playNote:(Note *)note {
 	NSLog(@"%@", note);
@@ -35,7 +34,7 @@
 			break;
 		}
 	if (unique)
-		numberOfUniqueNotes ++;
+		[uniqueNotes addObject:newNote.pitch];
 
 	// Remember the note
 	[notes addObject:newNote];		
@@ -49,7 +48,7 @@
 	if (self = [super init]) {
 		notes = [[NSMutableArray alloc] initWithCapacity:100];
 		
-		numberOfUniqueNotes = 0;
+		uniqueNotes = [[NSMutableArray alloc] initWithCapacity:10];
 		playing = NO;
 		
 		if (nil == filename) {
@@ -110,7 +109,7 @@
 }
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"[Song '%@' secondsPerBeat=%2.1f numNotes=%i uniqueNotes=%i]", name, secondsPerBeat, notes.count, numberOfUniqueNotes];
+	return [NSString stringWithFormat:@"[Song '%@' secondsPerBeat=%2.1f numNotes=%i uniqueNotes=%i]", name, secondsPerBeat, notes.count, uniqueNotes.count];
 }
 
 - (NSArray *) getNextNotesAt:(NSTimeInterval)timestamp {

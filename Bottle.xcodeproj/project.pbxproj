@@ -49,6 +49,7 @@
 		B2C42F99106D7DEC00A0DB86 /* PingCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C42F98106D7DEC00A0DB86 /* PingCommand.m */; };
 		B2C42FA3106D7E7C00A0DB86 /* CommandCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C42FA2106D7E7C00A0DB86 /* CommandCoder.m */; };
 		B2C430FC106D92A000A0DB86 /* SetSongCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C430FB106D92A000A0DB86 /* SetSongCommand.m */; };
+		B2C43292106DAF0400A0DB86 /* Musician.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C43291106DAF0400A0DB86 /* Musician.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -113,6 +114,8 @@
 		B2C42FA2106D7E7C00A0DB86 /* CommandCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandCoder.m; sourceTree = "<group>"; };
 		B2C430FA106D92A000A0DB86 /* SetSongCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetSongCommand.h; sourceTree = "<group>"; };
 		B2C430FB106D92A000A0DB86 /* SetSongCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSongCommand.m; sourceTree = "<group>"; };
+		B2C43290106DAF0400A0DB86 /* Musician.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Musician.h; sourceTree = "<group>"; };
+		B2C43291106DAF0400A0DB86 /* Musician.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Musician.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,6 +270,8 @@
 				B290CB61106CF0160065649E /* Conductor.h */,
 				B290CB65106CF0300065649E /* ConductorFactory.h */,
 				B290CB66106CF0300065649E /* ConductorFactory.m */,
+				B2C43290106DAF0400A0DB86 /* Musician.h */,
+				B2C43291106DAF0400A0DB86 /* Musician.m */,
 			);
 			path = Conductor;
 			sourceTree = "<group>";
@@ -433,6 +438,7 @@
 				B2C42F99106D7DEC00A0DB86 /* PingCommand.m in Sources */,
 				B2C42FA3106D7E7C00A0DB86 /* CommandCoder.m in Sources */,
 				B2C430FC106D92A000A0DB86 /* SetSongCommand.m in Sources */,
+				B2C43292106DAF0400A0DB86 /* Musician.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

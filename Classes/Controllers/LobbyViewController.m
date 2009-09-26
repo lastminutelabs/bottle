@@ -83,7 +83,7 @@
     
 	Song *song = [songs objectAtIndex:indexPath.row];
     cell.textLabel.text = [song name];
-	int diff = song.numberOfUniqueNotes - players.count;
+	int diff = song.uniqueNotes.count - players.count;
 	cell.detailTextLabel.text = diff <= 0 ? @"available" : [NSString stringWithFormat:@"%i more player(s) needed", diff];
 	
     return cell;
@@ -91,7 +91,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	Song *song = [songs objectAtIndex:indexPath.row];
-	int diff = song.numberOfUniqueNotes - players.count;
+	int diff = song.uniqueNotes.count - players.count;
 	if (diff > 0)
 		return;
 
