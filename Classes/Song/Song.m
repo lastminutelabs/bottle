@@ -89,7 +89,7 @@
 				if (result) {
 					Note *note = [[Note alloc] initWithPitch:pitch 
 								   andDuration:duration * secondsPerBeat
-								   at:timestamp * secondsPerBeat];
+								   at:(timestamp - 1) * secondsPerBeat];
 					if (note)
 						[self addNote:note];
 					[note release];
