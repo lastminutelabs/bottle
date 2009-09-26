@@ -14,20 +14,26 @@
 
 @implementation PlayViewController
 
-- (void) initializeSoundForPitch:(NSString *)pitch {
+- (NSError *) initializeSound {
 	[player stop];
 	[player release];
 	
-	NSString *soundFilePath = [[NSBundle mainBundle] pathForResource: @"bottle_loop" ofType: @"aif"];    
+	NSError *error = nil;
+	NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:pitch ofType: @"aif"];    
 	NSURL *fileURL = [[NSURL alloc] initFileURLWithPath: soundFilePath];
-	player = [[AVAudioPlayer alloc] initWithContentsOfURL: fileURL error: nil];
+	player = [[AVAudioPlayer alloc] initWithContentsOfURL: fileURL error: &error];
 	[fileURL release];
-    
-	[player prepareToPlay];
-	player.numberOfLoops = -1; // forever
-	player.currentTime = 0;
-	player.volume = 0.0;
-	[player play];
+	if (error)
+		NSLog(@"Failed to load pitch %@ : %@", pitch, error);
+	else {
+		[player prepareToPlay];
+		player.numberOfLoops = -1; // forever
+		player.currentTime = 0;
+		player.volume = 0.0;
+		[player play];
+	}
+	
+	return error;
 }
 
 - (void) viewDidLoad {
@@ -56,7 +62,7 @@
 	[pitch release];
 	pitch = [pitch_ copy];
 	
-	[self initializeSoundForPitch:pitch];
+	[self initializeSound];
 
 	if (noteViews) {
 		for (UIView *noteView in noteViews) {
