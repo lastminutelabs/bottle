@@ -31,6 +31,7 @@
 		case CommandTypeSetSong: {
 			command = [[SetSongCommand alloc] init];
 			[(SetSongCommand *)command setName:[props objectForKey:@"name"]];
+			[(SetSongCommand *)command setPitch:[props objectForKey:@"pitch"]];
 		}
 		break;
 
@@ -56,6 +57,7 @@
 		case CommandTypeSetSong: {
 			SetSongCommand *setSong = (SetSongCommand *)command;
 			[props setValue:setSong.name forKey:@"name"];
+			[props setValue:setSong.pitch forKey:@"pitch"];
 		}
 		break;
 			

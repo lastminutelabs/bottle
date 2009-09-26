@@ -12,11 +12,12 @@
 @implementation SetSongCommand
 
 @synthesize name;
+@synthesize pitch;
 
 - (CommandType) type { return CommandTypeSetSong; }
 
 - (NSString *) description {
-	return [NSString stringWithFormat:@"[SetSongCommand '%@']", name];
+	return [NSString stringWithFormat:@"[SetSongCommand '%@' at %@]", name, pitch];
 }
 
 @end

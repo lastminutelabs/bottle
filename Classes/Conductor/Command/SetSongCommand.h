@@ -11,8 +11,10 @@
 
 @interface SetSongCommand : NSObject <Command> {
 	NSString *name;
+	NSString *pitch;
 }
 
 @property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *pitch;
 
 @end
