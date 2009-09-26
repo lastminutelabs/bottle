@@ -93,7 +93,7 @@
 	float fillingsPerNote = NUM_FILLINGS / song.uniqueNotes.count;
 	int index = fillingsPerNote * [song.uniqueNotes indexOfObject:pitch] + 1;
 	bottleFillingView = [[UIImageView alloc] initWithImage: [UIImage imageNamed:[NSString stringWithFormat:@"filling%i.png", index]]];  
-	[self.view addSubview: bottleFillingView]; 
+	[self.view addSubview: bottleFillingView];
 	
 	// Initialize the correct pitch sound
 	[self initializeSound];
@@ -119,17 +119,17 @@
 }
 
 - (void) tick:(NSTimer *)timer {
-  Float32 power = [listener averagePower];
-  player.volume = power;
+	Float32 power = [listener averagePower];
+	player.volume = power;
 	
 	float sinceLastTime = [timer timeInterval];
 
-  if (noteViews) {
-    float offset = 480 * sinceLastTime / secondsPerScreen;
-    
-    for (UIView *noteView in noteViews)
-      noteView.center = CGPointMake(noteView.center.x, noteView.center.y - offset);
-  }
+	if (noteViews) {
+		float offset = 480 * sinceLastTime / secondsPerScreen;
+
+		for (UIView *noteView in noteViews)
+			noteView.center = CGPointMake(noteView.center.x, noteView.center.y - offset);
+	}
 	
 	// Remember where we are in the song and deal with any notes that we have missed
 	songPosition += sinceLastTime;
@@ -137,7 +137,7 @@
 		if (songPosition > view.note.timestamp + NoteTolerence) {
 			[UIView beginAnimations:nil context:view];
 			[UIView setAnimationDuration:0.35];
-			[UIView setAnimationDidStopSelector:@selector(removeNote:finished:context:)];
+			[UIView setAnimationDidStopSelector:@selector(removeMissedNote:finished:context:)];
 			view.center = CGPointMake(-500, view.center.y);
 			view.alpha = 0.0f;
 			[UIView commitAnimations];
@@ -145,7 +145,7 @@
 	}
 }
 
-- (void)removeNote:(NSString*)animationID finished:(NSNumber*)finished context:(void*)context {
+- (void)removeMissedNote:(NSString*)animationID finished:(NSNumber*)finished context:(void*)context {
 	UINoteView *view = (UINoteView *)context;
 	[view removeFromSuperview];
 	[noteViews removeObject:view];
