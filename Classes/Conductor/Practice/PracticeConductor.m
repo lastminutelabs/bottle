@@ -35,8 +35,15 @@
 - (void) start {
 	[self debug:@"Practice session started"];
 	[delegate conductor:self initializeSuccessful:YES];
+	
+	song = [delegate conductorRequestsAnySong:self];
+	if (song)
+		[delegate conductor:self choseSong:song andPitch:[song.uniqueNotes lastObject]];
 }
 
 - (void) finish { }
+
+- (bool) readyToPlay { return YES; }
+- (void) setReadyToPlay:(bool)value { }
 
 @end

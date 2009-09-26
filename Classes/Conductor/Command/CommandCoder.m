@@ -9,6 +9,9 @@
 #import "CommandCoder.h"
 #import "PingCommand.h"
 #import "SetSongCommand.h"
+#import "LobbyUpdateCommand.h"
+#import "GraphicsOverlayCommand.h"
+#import "StartPlayCommand.h"
 
 @implementation CommandCoder
 
@@ -32,6 +35,26 @@
 			command = [[SetSongCommand alloc] init];
 			[(SetSongCommand *)command setName:[props objectForKey:@"name"]];
 			[(SetSongCommand *)command setPitch:[props objectForKey:@"pitch"]];
+		}
+		break;
+			
+		case CommandTypeLobbyUpdate: {
+			command = [[LobbyUpdateCommand alloc] init];
+			[(LobbyUpdateCommand *)command setPlayers:[props objectForKey:@"players"]];
+		}
+		break;
+			
+		case CommandTypeStartPlay: {
+			command = [[StartPlayCommand alloc] init];
+		}
+		break;
+			
+		case CommandTypeGraphicsOverlay: {
+			command = [[GraphicsOverlayCommand alloc] init];
+			[(GraphicsOverlayCommand *)command setRed:[[props objectForKey:@"color_red"] doubleValue]];
+			[(GraphicsOverlayCommand *)command setGreen:[[props objectForKey:@"color_green"] doubleValue]];
+			[(GraphicsOverlayCommand *)command setBlue:[[props objectForKey:@"color_blue"] doubleValue]];
+			[(GraphicsOverlayCommand *)command setDuration:[[props objectForKey:@"duration"] doubleValue]];
 		}
 		break;
 
@@ -58,6 +81,26 @@
 			SetSongCommand *setSong = (SetSongCommand *)command;
 			[props setValue:setSong.name forKey:@"name"];
 			[props setValue:setSong.pitch forKey:@"pitch"];
+		}
+		break;
+			
+		case CommandTypeLobbyUpdate: {
+			LobbyUpdateCommand *update = (LobbyUpdateCommand *)command;
+			[props setValue:update.players forKey:@"players"];
+		}
+		break;
+			
+		case CommandTypeGraphicsOverlay: {
+			GraphicsOverlayCommand *graphics = (GraphicsOverlayCommand *)command;
+			[props setValue:[NSNumber numberWithDouble:graphics.red] forKey:@"color_red"];
+			[props setValue:[NSNumber numberWithDouble:graphics.green] forKey:@"color_green"];
+			[props setValue:[NSNumber numberWithDouble:graphics.blue] forKey:@"color_blue"];
+			[props setValue:[NSNumber numberWithDouble:graphics.duration] forKey:@"duration"];
+		}
+		break;
+			
+		case CommandTypeStartPlay: {
+			//StartPlayCommand *start = (StartPlayCommand *)command;
 		}
 		break;
 			

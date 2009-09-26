@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Song.h"
+#import "Command.h"
 
 #define GAME_ID @"Bottle"
 
@@ -26,8 +27,15 @@ typedef enum {
 
 - (void) conductor:(<Conductor>)conductor addedPeer:(NSString *)displayName;
 - (void) conductor:(<Conductor>)conductor removedPeer:(NSString *)displayName;
+- (void) conductor:(<Conductor>)conductor changedPlayersTo:(NSArray *)players;
 
+- (Song *) conductor:(<Conductor>)conductor requestsSongWithName:(NSString *)songName;
+- (Song *) conductorRequestsAnySong:(<Conductor>)conductor;
 - (void) conductor:(<Conductor>)conductor choseSong:(Song *)song andPitch:(NSString *)pitch;
+
+- (void) conductor:(<Conductor>)conductor recievedUnknownCommand:(<Command>)command;
+
+- (void) conductorStartedPlay:(<Conductor>)conductor;
 
 @optional
 
@@ -47,6 +55,8 @@ typedef enum {
 @property (nonatomic, readonly) NSArray *allPlayers;
 
 @property (nonatomic, retain) Song *song;
+
+@property (nonatomic, assign) bool readyToPlay;
 
 - (void) start;
 - (void) finish;

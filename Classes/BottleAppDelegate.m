@@ -15,6 +15,7 @@
 @synthesize startOrJoinViewController;
 @synthesize lobbyViewController;
 @synthesize playViewController;
+@synthesize graphicsOverlayViewController;
 
 - (void) importSongs {
 	[songs release];
@@ -25,21 +26,18 @@
 	NSFileManager *manager = [NSFileManager defaultManager];
 	NSDirectoryEnumerator *dirEnum = [manager enumeratorAtPath:path];
 	NSString *file;
-	while (file = [dirEnum nextObject])
+	while (file = [dirEnum nextObject]) {
 		if ([file hasSuffix:@".btl"]) {
 			@try {
 				Song *song = [[Song alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", path, file]];
 				[songs addObject:song];
-				NSLog(@"Song loaded : %@", song);
+				NSLog(@"Song loaded (on import) : %@", song);
 			} @catch (NSException *e) {
-				NSLog(@"Failed to import song : %@", e);
+				NSLog(@"Failed to import song (on import) : %@", e);
 			}
 		}
-	
-	// Add a test song
-	Song *testSong = [[Song alloc] init];
-	[songs addObject:testSong];
-}	
+	}
+}
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {   
 	
@@ -51,9 +49,12 @@
 	[window addSubview:startOrJoinViewController.view];
 	
 	debugView = [[UITextView alloc] initWithFrame:CGRectMake(10, window.frame.size.height-150, window.frame.size.width-20, 150)];
+	debugView.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1.0];
 	debugView.alpha = 0.75;
 	debugView.editable = NO;
 	[window addSubview:debugView];
+	
+	[window addSubview:graphicsOverlayViewController.view];
 }
 
 - (void)dealloc {
@@ -82,16 +83,11 @@
 
 - (void) conductor:(<Conductor>)conductor_ initializeSuccessful:(bool)success {
 	if (YES == success) {
-		if (conductor_.type == ConductorTypePractice) {
-			[startOrJoinViewController.view removeFromSuperview];
-			[window insertSubview:playViewController.view atIndex:0];
-		} else {
-			[startOrJoinViewController.view removeFromSuperview];
-			lobbyViewController.conductor = conductor;
-			lobbyViewController.songs = songs;
-			lobbyViewController.players = conductor_.allPlayers;
-			[window insertSubview:lobbyViewController.view atIndex:0];
-		}
+		[startOrJoinViewController.view removeFromSuperview];
+		lobbyViewController.conductor = conductor;
+		lobbyViewController.songs = songs;
+		lobbyViewController.players = conductor_.allPlayers;
+		[window insertSubview:lobbyViewController.view atIndex:0];
 	}
 }
 
@@ -103,12 +99,39 @@
 	lobbyViewController.players = conductor_.allPlayers;
 }
 
+- (void) conductor:(<Conductor>)conductor changedPlayersTo:(NSArray *)players {
+	lobbyViewController.players = players;
+}
+
 - (void) conductor:(<Conductor>)conductor_ choseSong:(Song *)song andPitch:(NSString *)pitch {
-	NSLog(@"Pitch set to %@", pitch);
-	
 	// Change to the play view
 	[lobbyViewController.view removeFromSuperview];
-	[window addSubview:playViewController.view];
+	[playViewController setSong: song andPitch: pitch];
+	[window insertSubview:playViewController.view atIndex:0];
+	
+	conductor.readyToPlay = YES;
+}
+
+- (void) conductorStartedPlay:(<Conductor>)conductor {
+	[playViewController startPlay];
+}
+
+- (Song *) conductor:(<Conductor>)conductor requestsSongWithName:(NSString *)songName {
+	for (Song *song in songs) {
+		if ([song.name isEqual:songName])
+			return song;
+	}
+	
+	return nil;
+}
+
+- (Song *) conductorRequestsAnySong:(<Conductor>)conductor_ {
+	return [songs lastObject];
+}
+
+- (void) conductor:(<Conductor>)conductor recievedUnknownCommand:(<Command>)command {
+	if (CommandTypeGraphicsOverlay == command.type)
+		[graphicsOverlayViewController handleCommand:(GraphicsOverlayCommand *)command];
 }
 
 #pragma mark ---- LobbyViewController ----

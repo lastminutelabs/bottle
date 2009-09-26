@@ -13,15 +13,10 @@
 	NSMutableArray *notes;
 	
 	NSMutableArray *uniqueNotes;
-
-	NSTimer *nextNoteTimer;
-	NSTimeInterval currentPosition;
 	
 	float secondsPerBeat;
 	
 	NSString *name;
-	
-	bool playing;
 }
 
 @property (nonatomic, readonly) NSArray *uniqueNotes;
@@ -30,8 +25,5 @@
 @property (nonatomic, readonly) NSArray *notes;
 
 - (id) initWithContentsOfFile:(NSString *)filename;
-
-- (void) start;
-- (void) stop;
 
 @end

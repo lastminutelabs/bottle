@@ -10,6 +10,7 @@
 #import "StartOrJoinViewController.h"
 #import "LobbyViewController.h"
 #import "PlayViewController.h"
+#import "GraphicsOverlayViewController.h"
 
 @interface BottleAppDelegate : NSObject <UIApplicationDelegate, StartOrJoinViewControllerDelegate, ConductorDelegate, LobbyViewControllerDelegate> {
     UIWindow *window;
@@ -18,6 +19,7 @@
 	StartOrJoinViewController *startOrJoinViewController;
 	LobbyViewController *lobbyViewController;
 	PlayViewController *playViewController;
+	GraphicsOverlayViewController *graphicsOverlayViewController;
 	
 	<Conductor> conductor;
 	
@@ -28,5 +30,6 @@
 @property (nonatomic, retain) IBOutlet StartOrJoinViewController *startOrJoinViewController;
 @property (nonatomic, retain) IBOutlet LobbyViewController *lobbyViewController;
 @property (nonatomic, retain) IBOutlet PlayViewController *playViewController;
+@property (nonatomic, retain) IBOutlet GraphicsOverlayViewController *graphicsOverlayViewController;
 
 @end

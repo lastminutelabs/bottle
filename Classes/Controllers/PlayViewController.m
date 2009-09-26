@@ -9,81 +9,89 @@
 #import "PlayViewController.h"
 
 #define THRESHOLD 0.6f
-
 #define BEATS_PER_SCREEN 8
-
 #define GAP 0.25f
+
+#define NUM_FILLINGS 8
 
 @implementation PlayViewController
 
+- (NSError *) initializeSound {
+	[player stop];
+	[player release];
+	
+	NSError *error = nil;
+	NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:pitch ofType: @"aif"];    
+	NSURL *fileURL = [[NSURL alloc] initFileURLWithPath: soundFilePath];
+	player = [[AVAudioPlayer alloc] initWithContentsOfURL: fileURL error: &error];
+	[fileURL release];
+	if (error)
+		NSLog(@"Failed to load pitch %@ : %@", pitch, error);
+	else {
+		[player prepareToPlay];
+		player.numberOfLoops = -1; // forever
+		player.currentTime = 0;
+		player.volume = 0.0;
+		[player play];
+	}
+	
+	[listener stop];
+	[listener release];
+	listener = [SCListener sharedListener];
+	[listener listen];
+	
+	return error;
+}
+
 - (void) viewDidLoad {
-    ticker = [[NSTimer scheduledTimerWithTimeInterval:(1.0f/30.0f)
-											   target:self
-											 selector:@selector(tick:)
-											 userInfo:nil
-											  repeats:YES] retain];
-	
-    NSString *soundFilePath = [[NSBundle mainBundle] pathForResource: @"bottle_loop" ofType: @"aif"];
-    
-    NSLog(@"soundFilePath: %@", soundFilePath);
-    
-    NSURL *fileURL = [[NSURL alloc] initFileURLWithPath: soundFilePath];
-    player = [[AVAudioPlayer alloc] initWithContentsOfURL: fileURL error: nil];
-    [fileURL release];
-    
-    [player prepareToPlay];
-    player.numberOfLoops = -1; // forever
-    player.currentTime = 0;
-    player.volume = 0.0;
-    [player play];
-	
-    listener = [SCListener sharedListener];
-    [listener listen];    
-    
-    playing = NO;
-	
   self.view = [[UIView alloc] initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
   self.view.backgroundColor = UIColor.blackColor;
 
-  powerBar = [[UIProgressView alloc] initWithProgressViewStyle: UIProgressViewStyleDefault];
-  powerBar.frame = CGRectMake(0, 200, 320, 100);
-  //[self.view addSubview: powerBar];
+  bottleImageView = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"bottle1.png"]];    
+  [self.view addSubview: bottleImageView];         
 
-  powerLabel = [[UILabel alloc] initWithFrame: CGRectMake(0, 100, 320, 100)];
-  //[self.view addSubview: powerLabel];
-
-  playingLabel = [[UILabel alloc] initWithFrame: CGRectMake(0, 200, 320, 200)];
-  //[self.view addSubview: playingLabel];
-  
-  NSString *path = [[NSBundle mainBundle] bundlePath];
-  @try {
-    song = [[Song alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@/Jingle Bells.btl", path]];
-    NSLog(@"Song loaded : %@", song);
-  } @catch (NSException *e) {
-    NSLog(@"Failed to import song : %@", e);
-  }
-
-  NSArray *noteViews = [PlayViewController noteViewsForSong: song andPitch: @"e4"];
-
-  for (UIView *noteView in noteViews) {
-    [self.view addSubview: noteView];    
-  }
-
-  bottleImageView = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"bottle8.png"]];    
-  [self.view addSubview: bottleImageView];    
-
-  bottleFillingView = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"filling4.png"]];    
-  [self.view addSubview: bottleFillingView];      
+  noteViews = nil;
 }
 
-- (void) startedPlaying {
-  playingLabel.backgroundColor = UIColor.magentaColor;  
-  // send an event to the server
-}
+- (void) setSong: (Song *) song_ andPitch: (NSString *) pitch_ {
+	[ticker invalidate];
+	[ticker release];
+	ticker = nil;
+	
+	NSLog(@"Setting song: %@ and pitch: %@", song_, pitch_);
 
-- (void) stoppedPlaying {
-  playingLabel.backgroundColor = UIColor.whiteColor;  
-  // send an event to the server
+	[song release];
+	song = [song_ retain];
+
+	[pitch release];
+	pitch = [pitch_ copy];
+	
+	// Get the correct filling for the song
+	float fillingsPerNote = NUM_FILLINGS / song.uniqueNotes.count;
+	int index = fillingsPerNote * [song.uniqueNotes indexOfObject:pitch] + 1;
+	bottleFillingView = [[UIImageView alloc] initWithImage: [UIImage imageNamed:[NSString stringWithFormat:@"filling%i.png", index]]];  
+	[self.view addSubview: bottleFillingView]; 
+	
+	// Initialize the correct pitch sound
+	[self initializeSound];
+
+	if (noteViews) {
+		for (UIView *noteView in noteViews) {
+			[noteView removeFromSuperview];    
+		}
+	}
+
+  [noteViews release];
+  noteViews = [PlayViewController noteViewsForSong: song andPitch: pitch];
+
+  for (UIView *note in noteViews) {
+    [self.view addSubview: note];    
+  }
+
+  [self.view bringSubviewToFront: bottleImageView];
+
+  // TODO: base this graphic on the pitch
+  [self.view bringSubviewToFront: bottleFillingView];
 }
 
 + (NSArray *) noteViewsForSong: (Song *) song andPitch: (NSString *) pitch {
@@ -98,7 +106,7 @@
 
   for (Note *note in notes) {
     int h = (note.duration - GAP * secondsPerBeat) / secondsPerScreen * 480;
-    int y = note.timestamp / secondsPerScreen * 480;
+    int y = note.timestamp / secondsPerScreen * 480 + 480;
 
     UIView *view = [[UIView alloc] initWithFrame: CGRectMake(0, y, 320, h)];
 
@@ -114,21 +122,34 @@
   return views;
 }
 
+- (void) startPlay {
+	// Start the ticker to update the view
+	ticker = [[NSTimer scheduledTimerWithTimeInterval:(1.0f/30.0f)
+											   target:self
+											 selector:@selector(tick:)
+											 userInfo:nil
+											  repeats:YES] retain];
+}
+
 - (void) tick:(NSTimer *)timer {
   Float32 power = [listener averagePower];
-  powerBar.progress = power;
   player.volume = power;
 
-  if (power > THRESHOLD && !playing) {
-    playing = YES;
-    [self startedPlaying];
-  } else if (power < THRESHOLD && playing) {
-    playing = NO;
-    [self stoppedPlaying];
+  if (noteViews) {
+
+    float sinceLastTime = [timer timeInterval];
+    
+    // TODO: shouldn't need to keep recalculating this
+    float secondsPerBeat = song.secondsPerBeat;
+    float beatsPerSecond = 1.0f / secondsPerBeat;
+    float secondsPerScreen = BEATS_PER_SCREEN / beatsPerSecond;
+    
+    float offset = 480 * sinceLastTime / secondsPerScreen;
+    
+    for (UIView *noteView in noteViews) {
+      noteView.center = CGPointMake(noteView.center.x, noteView.center.y - offset);
+    }
   }
-  
-  NSString *powerString = [NSString stringWithFormat: @"%.2f", power];
-  powerLabel.text = powerString;
 }
 
 - (void)dealloc {

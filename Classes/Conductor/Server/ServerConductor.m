@@ -9,6 +9,9 @@
 #import "ServerConductor.h"
 #import "CommandCoder.h"
 #import "SetSongCommand.h"
+#import "LobbyUpdateCommand.h"
+#import "GraphicsOverlayCommand.h"
+#import "StartPlayCommand.h"
 
 @implementation ServerConductor
 
@@ -16,6 +19,7 @@
 @synthesize allPlayers;
 @synthesize song;
 @synthesize delegate;
+@synthesize readyToPlay;
 
 - (void) debug:(NSString *)message {
 	if ([delegate respondsToSelector:@selector(conductor:hasDebugMessage:)])
@@ -33,6 +37,7 @@
 - (id) init {
 	if (self = [super init]) {
 		name = [[NSString stringWithFormat:@"%@ server", [[UIDevice currentDevice] name]] retain];
+		readyToPlay = NO;
 	}
 	return self;
 }
@@ -46,11 +51,13 @@
 	[session setDelegate:self];
 	[session setDataReceiveHandler:self withContext:nil];
 	[session setAvailable:YES];
+	[self debug:[session peerID]];
 	
 	// Create the peers array
 	peers = [[NSMutableArray alloc] initWithCapacity:10];
 	allPlayers = [[NSMutableArray alloc] initWithCapacity:10];
 	[allPlayers addObject:[session displayName]];
+	musiciansReadyToPlay = [[NSMutableArray alloc] initWithCapacity:10];
 	
 	[self debug:@"Server session started"];
 	
@@ -71,6 +78,7 @@
 	[peers release];
 	peers = nil;
 	[allPlayers release];
+	[musiciansReadyToPlay release];
 	allPlayers = nil;
 }
 
@@ -81,6 +89,24 @@
 	[super dealloc];
 }
 
+- (NSError *) sendCommand:(<Command>)command {
+	NSData *data = [CommandCoder encodeCommand:command];
+	NSError *error = nil;
+	[session sendData:data toPeers:peers withDataMode:GKSendDataReliable error:&error];
+	
+	if (nil != error)
+		[self debug:[NSString stringWithFormat:@"Command failed to send : %@", [error localizedDescription]]];
+	
+	return error;
+}
+
+- (void) refreshLobby {
+	LobbyUpdateCommand *update = [[LobbyUpdateCommand alloc] init];
+	update.players = allPlayers;
+	[self sendCommand:update];
+	[update release];
+}
+
 - (void) triggerPing:(NSTimer *)timer {
 	if (0 == peers.count)
 		return;
@@ -88,16 +114,40 @@
 	// Send a ping to everyone
 	PingCommand *ping = [[PingCommand alloc] init];
 	ping.timestamp = [NSDate date];
-	NSData *data = [CommandCoder encodeCommand:ping];
-	NSError *error = nil;
-	[session sendData:data toPeers:peers withDataMode:GKSendDataReliable error:&error];
+	[self sendCommand:ping];
 	[ping release];
+}
+
+- (void) sendStartPlayMessage {
+	StartPlayCommand *command = [[StartPlayCommand alloc] init];
+	[self sendCommand:command];
+	[command release];
+}
+
+- (void) setReadyToPlay:(bool)value {
+	readyToPlay = value;
 	
-	if (nil != error)
-		[self debug:[NSString stringWithFormat:@"Ping failed to send : %@", [error localizedDescription]]];
+	if (musiciansReadyToPlay.count == peers.count && self.readyToPlay)
+		[self sendStartPlayMessage];
 }
 
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peerID inSession: (GKSession *)session_ context:(void *)context {
+	<Command> command = [CommandCoder commandWithData:data];
+	switch (command.type) {
+		case CommandTypeStartPlay:
+			if (![musiciansReadyToPlay containsObject:peerID])
+				[musiciansReadyToPlay addObject:peerID];
+			
+			if (musiciansReadyToPlay.count == peers.count && self.readyToPlay) {
+				[self sendStartPlayMessage];
+				[delegate conductorStartedPlay:self];
+			}
+			
+			break;		
+			
+		default:
+			break;
+	}
 }
 
 - (void)session:(GKSession *)session_ peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state {
@@ -111,6 +161,7 @@
 			if ([peers containsObject:peerID]) {
 				[peers removeObject:peerID];
 				[allPlayers removeObject:displayName];
+				[self refreshLobby];
 				[delegate conductor:self removedPeer:displayName];
 				[self debug:[NSString stringWithFormat:@"peer %@ removed", displayName]];
 			} else {
@@ -123,6 +174,7 @@
 				[peers addObject:peerID];
 				[allPlayers addObject:displayName];
 				[delegate conductor:self addedPeer:displayName];
+				[self refreshLobby];
 				[self debug:[NSString stringWithFormat:@"peer %@ connected", displayName]];
 			} else {
 				[self debug:[NSString stringWithFormat:@"peer %@ already connected!", displayName]];
@@ -175,6 +227,19 @@
 	
 	// Tell the delegate that we have a song and pitch
 	[delegate conductor:self choseSong:song andPitch:[song.uniqueNotes lastObject]];
+	
+	[NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(testGraphics:) userInfo:nil repeats:NO];
+}
+
+- (void) testGraphics:(NSTimer *)timer {
+	GraphicsOverlayCommand *command = [[GraphicsOverlayCommand alloc] init];
+	command.red = 1.0;
+	command.green = 0;
+	command.blue = 0;
+	command.duration = 1.0;
+	[self sendCommand:command];
+	[delegate conductor:self recievedUnknownCommand:command];
+	[command release];
 }
 
 @end

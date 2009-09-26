@@ -20,6 +20,10 @@
 	NSArray *allPlayers;
 	
 	Song *song;
+	
+	bool readyToPlay;
+	
+	NSString *serverPeerID;
 }
 
 @property (nonatomic, readonly) ConductorType type;
