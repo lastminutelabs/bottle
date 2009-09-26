@@ -108,6 +108,7 @@
 	
 	// Change to the play view
 	[lobbyViewController.view removeFromSuperview];
+	[playViewController setSong: song andPitch: pitch];
 	[window addSubview:playViewController.view];
 }
 
