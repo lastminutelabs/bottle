@@ -11,7 +11,7 @@
 @implementation Song
 
 @synthesize numberOfUniqueNotes;
-@synthesize name, tempo;
+@synthesize name, secondsPerBeat;
 @synthesize notes;
 
 - (void) playNote:(Note *)note {
@@ -71,7 +71,7 @@
 			
 			// The first two lines of the file are easy
 			name = [[lines objectAtIndex:0] retain];
-			tempo = 60 / [[lines objectAtIndex:1] floatValue];
+			secondsPerBeat = 60 / [[lines objectAtIndex:1] floatValue];
 			
 			// After that, each line is a note
 			for (int n = 2; n < lines.count; ++n) {
@@ -108,7 +108,7 @@
 }
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"[Song '%@' tempo=%2.1f numNotes=%i uniqueNotes=%i]", name, tempo, notes.count, numberOfUniqueNotes];
+	return [NSString stringWithFormat:@"[Song '%@' secondsPerBeat=%2.1f numNotes=%i uniqueNotes=%i]", name, secondsPerBeat, notes.count, numberOfUniqueNotes];
 }
 
 - (NSArray *) getNextNotesAt:(NSTimeInterval)timestamp {
