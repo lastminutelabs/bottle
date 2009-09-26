@@ -68,7 +68,7 @@
 		UINoteView *view = [[UINoteView alloc] initWithFrame: CGRectMake(0, y, 320, h)];
 		
 		if ([note.pitch isEqualToString: pitch])
-			view.backgroundColor = UIColor.blueColor;
+			view.backgroundColor = UIColor.whiteColor;
 		else {		  
 		  view.backgroundColor = UIColor.darkGrayColor;
 		  view.alpha = 0.2f;
@@ -143,19 +143,22 @@
 }
 
 - (void) noteHitTest {
-	// If we are within the tolerence of a note, remove it
-	for (UINoteView *view in noteViews) {
-		if (songPosition > view.note.timestamp - NoteTolerence &&
-			songPosition < view.note.timestamp + NoteTolerence &&
-			[view.note.pitch isEqualToString:pitch]) {
-				[UIView beginAnimations:nil context:view];
-				[UIView setAnimationDuration:0.35];
-				[UIView setAnimationDidStopSelector:@selector(removeNote:finished:context:)];
-				view.center = CGPointMake(view.center.x, 500);
-				view.alpha = 0.0f;
-				[UIView commitAnimations];
-		}
-	}
+  // If we are within the tolerence of a note, remove it
+  for (UINoteView *view in noteViews) {
+    if (songPosition > view.note.timestamp - NoteTolerence &&
+	songPosition < view.note.timestamp + NoteTolerence &&
+	[view.note.pitch isEqualToString:pitch]) {
+      view.backgroundColor = UIColor.redColor;
+      [view setNeedsDisplay];
+      
+      [UIView beginAnimations:nil context:view];
+      [UIView setAnimationDuration:0.35];
+      [UIView setAnimationDidStopSelector:@selector(removeNote:finished:context:)];
+      view.center = CGPointMake(view.center.x, 500);
+      view.alpha = 0.0f;
+      [UIView commitAnimations];
+    }
+  }
 }
 
 - (void) detectAudio {
