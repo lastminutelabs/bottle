@@ -17,7 +17,7 @@
 	NSTimer *nextNoteTimer;
 	NSTimeInterval currentPosition;
 	
-	float tempo;
+	float secondsPerBeat;
 	
 	NSString *name;
 	
@@ -26,7 +26,7 @@
 
 @property (nonatomic, readonly) int numberOfUniqueNotes;
 @property (nonatomic, readonly) NSString *name;
-@property (nonatomic, readonly) float tempo;
+@property (nonatomic, readonly) float secondsPerBeat;
 @property (nonatomic, readonly) NSArray *notes;
 
 - (id) initWithContentsOfFile:(NSString *)file;

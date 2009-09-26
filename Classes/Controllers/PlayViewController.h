@@ -9,15 +9,21 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "SCListener.h"
+#import "Song.h"
 
 @interface PlayViewController : UIViewController {  
   NSTimer *ticker;
   UILabel *powerLabel;
   UILabel *playingLabel;
   UIProgressView *powerBar;
+  UIImageView *bottleImageView;
+  UIImageView *bottleFillingView;
   SCListener *listener;
   AVAudioPlayer *player;
   BOOL playing;
+  Song *song;
 }
+
++ (NSArray *) noteViewsForSong: (Song *) song andPitch: (NSString *) pitch;
 
 @end
