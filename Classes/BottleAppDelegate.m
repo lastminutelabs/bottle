@@ -39,7 +39,7 @@
 	// Add a test song
 	Song *testSong = [[Song alloc] init];
 	[songs addObject:testSong];
-}	
+}
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {   
 	
