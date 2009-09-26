@@ -121,7 +121,7 @@
 
 	// Create the notes
 	[self createNoteViews];
-  
+
 	// Sort out the view hierarchy
 	[self.view bringSubviewToFront: bottleImageView];
 	[self.view bringSubviewToFront: bottleFillingView];
