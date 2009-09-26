@@ -143,7 +143,7 @@
 	[delegate conductorStartedPlay:self];
 	
 	// Start a timer to end the song at the end!
-	songEndTimer = [[NSTimer scheduledTimerWithTimeInterval:song.duration target:self selector:@selector(songIsComplete:) userInfo:nil repeats:NO] retain];
+	songEndTimer = [[NSTimer scheduledTimerWithTimeInterval:(song.duration + 5) target:self selector:@selector(songIsComplete:) userInfo:nil repeats:NO] retain];
 }
 
 - (void) tryToPlay {
