@@ -10,6 +10,7 @@
 #import "CommandCoder.h"
 #import "SetSongCommand.h"
 #import "LobbyUpdateCommand.h"
+#import "StartPlayCommand.h"
 
 @implementation ClientConductor
 
@@ -44,6 +45,17 @@
 
 - (NSString *)description {
 	return [NSString stringWithFormat:@"[ClientConductor name=\"%@\"]", name];
+}
+
+- (NSError *) sendCommandToServer:(<Command>)command {
+	NSData *data = [CommandCoder encodeCommand:command];
+	NSError *error = nil;
+	[session sendData:data toPeers:[NSArray arrayWithObject:serverPeerID] withDataMode:GKSendDataReliable error:&error];
+	
+	if (nil != error)
+		[self debug:[NSString stringWithFormat:@"Command failed to send : %@", [error localizedDescription]]];
+	
+	return error;
 }
 
 - (void) start {
@@ -90,6 +102,10 @@
 			[self debug:[command description]];
 			[delegate conductor:self changedPlayersTo:[(LobbyUpdateCommand *)command players]];
 			break;
+			
+		case CommandTypeStartPlay:
+			[delegate conductorStartedPlay:self];
+			break;
 		
 		default:
 			[delegate conductor:self recievedUnknownCommand:command];
@@ -105,11 +121,16 @@
 
 - (void)peerPickerController:(GKPeerPickerController *)picker didConnectPeer:(NSString *)peerID toSession:(GKSession *)session_ {
 	// Keep the session and release the picker
+	[session release];
 	session = [session_ retain];
 	[session setDataReceiveHandler:self withContext:nil];
+	[serverPeerID release];
+	serverPeerID = [peerID copy];
 	[picker dismiss];
 	[picker release];
 	[delegate conductor:self initializeSuccessful:YES];
+	
+	[self debug:[session peerID]];
 }
 
 - (void)peerPickerControllerDidCancel:(GKPeerPickerController *)picker {
@@ -118,6 +139,16 @@
 
 - (void) setSong:(Song *)value {
 	[NSException raise:@"Clients cannot set the song!" format:@""];
+}
+
+- (void) setReadyToPlay:(bool)value {
+	readyToPlay = value;
+	
+	if (YES == value) {
+		StartPlayCommand *command = [[StartPlayCommand alloc] init];
+		[self sendCommandToServer:command];
+		[command release];
+	}
 }
 
 @end

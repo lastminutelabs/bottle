@@ -11,6 +11,7 @@
 #import "SetSongCommand.h"
 #import "LobbyUpdateCommand.h"
 #import "GraphicsOverlayCommand.h"
+#import "StartPlayCommand.h"
 
 @implementation ServerConductor
 
@@ -50,11 +51,13 @@
 	[session setDelegate:self];
 	[session setDataReceiveHandler:self withContext:nil];
 	[session setAvailable:YES];
+	[self debug:[session peerID]];
 	
 	// Create the peers array
 	peers = [[NSMutableArray alloc] initWithCapacity:10];
 	allPlayers = [[NSMutableArray alloc] initWithCapacity:10];
 	[allPlayers addObject:[session displayName]];
+	musiciansReadyToPlay = [[NSMutableArray alloc] initWithCapacity:10];
 	
 	[self debug:@"Server session started"];
 	
@@ -75,6 +78,7 @@
 	[peers release];
 	peers = nil;
 	[allPlayers release];
+	[musiciansReadyToPlay release];
 	allPlayers = nil;
 }
 
@@ -114,7 +118,36 @@
 	[ping release];
 }
 
+- (void) sendStartPlayMessage {
+	StartPlayCommand *command = [[StartPlayCommand alloc] init];
+	[self sendCommand:command];
+	[command release];
+}
+
+- (void) setReadyToPlay:(bool)value {
+	readyToPlay = value;
+	
+	if (musiciansReadyToPlay.count == peers.count && self.readyToPlay)
+		[self sendStartPlayMessage];
+}
+
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peerID inSession: (GKSession *)session_ context:(void *)context {
+	<Command> command = [CommandCoder commandWithData:data];
+	switch (command.type) {
+		case CommandTypeStartPlay:
+			if (![musiciansReadyToPlay containsObject:peerID])
+				[musiciansReadyToPlay addObject:peerID];
+			
+			if (musiciansReadyToPlay.count == peers.count && self.readyToPlay) {
+				[self sendStartPlayMessage];
+				[delegate conductorStartedPlay:self];
+			}
+			
+			break;		
+			
+		default:
+			break;
+	}
 }
 
 - (void)session:(GKSession *)session_ peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state {

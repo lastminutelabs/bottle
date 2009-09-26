@@ -35,6 +35,8 @@ typedef enum {
 
 - (void) conductor:(<Conductor>)conductor recievedUnknownCommand:(<Command>)command;
 
+- (void) conductorStartedPlay:(<Conductor>)conductor;
+
 @optional
 
 - (void) conductor:(<Conductor>)conductor hasDebugMessage:(NSString *)debugMessage;

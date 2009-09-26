@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Command.h"
 
-
-@interface StartPlayCommand : NSObject {
+@interface StartPlayCommand : NSObject <Command> {
 
 }
 

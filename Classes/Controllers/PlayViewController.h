@@ -25,4 +25,6 @@
 - (void) setSong: (Song *) song andPitch: (NSString *) pitch;
 + (NSArray *) noteViewsForSong: (Song *) song andPitch: (NSString *) pitch;
 
+- (void) startPlay;
+
 @end

@@ -8,7 +8,8 @@
 
 #import "StartPlayCommand.h"
 
-
 @implementation StartPlayCommand
+
+- (CommandType) type { return CommandTypeStartPlay; }
 
 @end

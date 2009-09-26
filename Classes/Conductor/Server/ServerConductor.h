@@ -23,6 +23,8 @@
 	NSMutableArray *peers;
 	NSMutableArray *allPlayers;
 	
+	NSMutableArray *musiciansReadyToPlay;
+	
 	Song *song;
 	
 	NSTimer *pingTimer;
