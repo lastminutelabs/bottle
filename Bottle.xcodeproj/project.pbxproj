@@ -63,6 +63,7 @@
 		B290D08B106D56CA0065649E /* Jingle Bells.btl in Resources */ = {isa = PBXBuildFile; fileRef = B290D08A106D56CA0065649E /* Jingle Bells.btl */; };
 		B290D1A7106D618B0065649E /* PracticeConductor.m in Sources */ = {isa = PBXBuildFile; fileRef = B290D1A6106D618B0065649E /* PracticeConductor.m */; };
 		B2BFAC4F106DFC49004CDE5A /* ThreeTone.btl in Resources */ = {isa = PBXBuildFile; fileRef = B2BFAC4E106DFB8E004CDE5A /* ThreeTone.btl */; };
+		B2BFACCA106E0774004CDE5A /* UINoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BFACC9106E0774004CDE5A /* UINoteView.m */; };
 		B2C42F99106D7DEC00A0DB86 /* PingCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C42F98106D7DEC00A0DB86 /* PingCommand.m */; };
 		B2C42FA3106D7E7C00A0DB86 /* CommandCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C42FA2106D7E7C00A0DB86 /* CommandCoder.m */; };
 		B2C430FC106D92A000A0DB86 /* SetSongCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C430FB106D92A000A0DB86 /* SetSongCommand.m */; };
@@ -145,6 +146,8 @@
 		B290D1A5106D618B0065649E /* PracticeConductor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeConductor.h; sourceTree = "<group>"; };
 		B290D1A6106D618B0065649E /* PracticeConductor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeConductor.m; sourceTree = "<group>"; };
 		B2BFAC4E106DFB8E004CDE5A /* ThreeTone.btl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ThreeTone.btl; sourceTree = "<group>"; };
+		B2BFACC8106E0774004CDE5A /* UINoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UINoteView.h; sourceTree = "<group>"; };
+		B2BFACC9106E0774004CDE5A /* UINoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UINoteView.m; sourceTree = "<group>"; };
 		B2C42ECE106D788100A0DB86 /* Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Command.h; sourceTree = "<group>"; };
 		B2C42F97106D7DEC00A0DB86 /* PingCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingCommand.h; sourceTree = "<group>"; };
 		B2C42F98106D7DEC00A0DB86 /* PingCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingCommand.m; sourceTree = "<group>"; };
@@ -183,6 +186,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B2BFACC7106E075B004CDE5A /* View */,
 				B290CEA9106D18300065649E /* Song */,
 				B290CB00106CEBB90065649E /* Controllers */,
 				B290CAFB106CEB3D0065649E /* Conductor */,
@@ -407,6 +411,15 @@
 			path = Practice;
 			sourceTree = "<group>";
 		};
+		B2BFACC7106E075B004CDE5A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B2BFACC8106E0774004CDE5A /* UINoteView.h */,
+				B2BFACC9106E0774004CDE5A /* UINoteView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		B2C42ED8106D78DD00A0DB86 /* Command */ = {
 			isa = PBXGroup;
 			children = (
@@ -537,6 +550,7 @@
 				B2C434BF106DCCF600A0DB86 /* GraphicsOverlayViewController.m in Sources */,
 				B2C434CF106DCDA300A0DB86 /* GraphicsOverlayCommand.m in Sources */,
 				B2C43691106DE87D00A0DB86 /* StartPlayCommand.m in Sources */,
+				B2BFACCA106E0774004CDE5A /* UINoteView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

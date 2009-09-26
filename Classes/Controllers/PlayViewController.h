@@ -13,7 +13,7 @@
 
 @interface PlayViewController : UIViewController {  
   NSTimer *ticker;
-  NSArray *noteViews;
+  NSMutableArray *noteViews;
   UIImageView *bottleImageView;
   UIImageView *bottleFillingView;
   SCListener *listener;
@@ -21,10 +21,13 @@
   Song *song;
   NSString *pitch;
   NSMutableArray *bottleImages;
+  NSTimeInterval songPosition;
+  float secondsPerScreen;
+  
+  bool currentlyPlaying;
 }
 
 - (void) setSong: (Song *) song andPitch: (NSString *) pitch;
-+ (NSArray *) noteViewsForSong: (Song *) song andPitch: (NSString *) pitch;
 
 - (void) startPlay;
 
