@@ -15,6 +15,8 @@
 @implementation PlayViewController
 
 - (void) viewDidLoad {
+  NSLog(@"VIEW DID LOAD");
+
   ticker = [[NSTimer scheduledTimerWithTimeInterval:(1.0f/30.0f)
 		     target:self
 		     selector:@selector(tick:)
@@ -58,11 +60,14 @@
   song = [song_ retain];
   pitch = [pitch_ retain];
 
+  NSLog(@"two");
+
   if (noteViews) {
     for (UIView *noteView in noteViews) {
       [noteView removeFromSuperview];    
     }
   }
+
   [noteViews release];
   noteViews = [PlayViewController noteViewsForSong: song andPitch: pitch];
 
@@ -107,10 +112,22 @@
 - (void) tick:(NSTimer *)timer {
   Float32 power = [listener averagePower];
   player.volume = power;
-	
-	for (UIView *noteView in noteViews) {
-		noteView.center = CGPointMake(noteView.center.x, noteView.center.y - 1);
-	}
+
+  if (noteViews) {
+
+    float sinceLastTime = [timer timeInterval];
+    
+    // TODO: shouldn't need to keep recalculating this
+    float secondsPerBeat = song.secondsPerBeat;
+    float beatsPerSecond = 1.0f / secondsPerBeat;
+    float secondsPerScreen = BEATS_PER_SCREEN / beatsPerSecond;
+    
+    float offset = 480 * sinceLastTime / secondsPerScreen;
+    
+    for (UIView *noteView in noteViews) {
+      noteView.center = CGPointMake(noteView.center.x, noteView.center.y - offset);
+    }
+  }
 }
 
 - (void)dealloc {
