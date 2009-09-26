@@ -111,6 +111,15 @@
 	[window addSubview:playViewController.view];
 }
 
+- (Song *) conductor:(<Conductor>)conductor requestsSongWithName:(NSString *)songName {
+	for (Song *song in songs) {
+		if ([song.name isEqual:songName])
+			return song;
+	}
+	
+	return nil;
+}
+
 #pragma mark ---- LobbyViewController ----
 
 - (void) lobbyViewController:(LobbyViewController *)controller selectedSong:(Song *)song {
