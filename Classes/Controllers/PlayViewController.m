@@ -14,20 +14,23 @@
 
 @implementation PlayViewController
 
+- (void) initializeSoundForPitch:(NSString *)pitch {
+	[player stop];
+	[player release];
+	
+	NSString *soundFilePath = [[NSBundle mainBundle] pathForResource: @"bottle_loop" ofType: @"aif"];    
+	NSURL *fileURL = [[NSURL alloc] initFileURLWithPath: soundFilePath];
+	player = [[AVAudioPlayer alloc] initWithContentsOfURL: fileURL error: nil];
+	[fileURL release];
+    
+	[player prepareToPlay];
+	player.numberOfLoops = -1; // forever
+	player.currentTime = 0;
+	player.volume = 0.0;
+	[player play];
+}
+
 - (void) viewDidLoad {
-  NSString *soundFilePath = [[NSBundle mainBundle] pathForResource: @"bottle_loop" ofType: @"aif"];
-    
-  NSLog(@"soundFilePath: %@", soundFilePath);
-    
-  NSURL *fileURL = [[NSURL alloc] initFileURLWithPath: soundFilePath];
-  player = [[AVAudioPlayer alloc] initWithContentsOfURL: fileURL error: nil];
-  [fileURL release];
-    
-  [player prepareToPlay];
-  player.numberOfLoops = -1; // forever
-  player.currentTime = 0;
-  player.volume = 0.0;
-  [player play];
 	
   listener = [SCListener sharedListener];
   [listener listen];    
@@ -51,7 +54,9 @@
 	song = [song_ retain];
 
 	[pitch release];
-	pitch = [pitch_ retain];
+	pitch = [pitch_ copy];
+	
+	[self initializeSoundForPitch:pitch];
 
 	if (noteViews) {
 		for (UIView *noteView in noteViews) {
