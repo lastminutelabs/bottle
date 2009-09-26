@@ -10,6 +10,7 @@
 #import "CommandCoder.h"
 #import "SetSongCommand.h"
 #import "LobbyUpdateCommand.h"
+#import "GraphicsOverlayCommand.h"
 
 @implementation ServerConductor
 
@@ -82,17 +83,22 @@
 	[super dealloc];
 }
 
+- (NSError *) sendCommand:(<Command>)command {
+	NSData *data = [CommandCoder encodeCommand:command];
+	NSError *error = nil;
+	[session sendData:data toPeers:peers withDataMode:GKSendDataReliable error:&error];
+	
+	if (nil != error)
+		[self debug:[NSString stringWithFormat:@"Command failed to send : %@", [error localizedDescription]]];
+	
+	return error;
+}
+
 - (void) refreshLobby {
 	LobbyUpdateCommand *update = [[LobbyUpdateCommand alloc] init];
 	update.players = allPlayers;
-	NSData *data = [CommandCoder encodeCommand:update];
-	NSError *error = nil;
-	[session sendData:data toPeers:peers withDataMode:GKSendDataReliable error:&error];
+	[self sendCommand:update];
 	[update release];
-	
-	if (nil != error)
-		[self debug:[NSString stringWithFormat:@"Lobby update failed to send : %@", [error localizedDescription]]];
-	
 }
 
 - (void) triggerPing:(NSTimer *)timer {
@@ -102,13 +108,8 @@
 	// Send a ping to everyone
 	PingCommand *ping = [[PingCommand alloc] init];
 	ping.timestamp = [NSDate date];
-	NSData *data = [CommandCoder encodeCommand:ping];
-	NSError *error = nil;
-	[session sendData:data toPeers:peers withDataMode:GKSendDataReliable error:&error];
+	[self sendCommand:ping];
 	[ping release];
-	
-	if (nil != error)
-		[self debug:[NSString stringWithFormat:@"Ping failed to send : %@", [error localizedDescription]]];
 }
 
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peerID inSession: (GKSession *)session_ context:(void *)context {
@@ -191,6 +192,18 @@
 	
 	// Tell the delegate that we have a song and pitch
 	[delegate conductor:self choseSong:song andPitch:[song.uniqueNotes lastObject]];
+	
+	[NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(testGraphics:) userInfo:nil repeats:NO];
+}
+
+- (void) testGraphics:(NSTimer *)timer {
+	GraphicsOverlayCommand *command = [[GraphicsOverlayCommand alloc] init];
+	command.red = 1.0;
+	command.green = 0;
+	command.blue = 0;
+	command.duration = 1.0;
+	[self sendCommand:command];
+	[command release];
 }
 
 @end

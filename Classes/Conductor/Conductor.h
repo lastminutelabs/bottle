@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Song.h"
+#import "Command.h"
 
 #define GAME_ID @"Bottle"
 
@@ -31,6 +32,8 @@ typedef enum {
 - (Song *) conductor:(<Conductor>)conductor requestsSongWithName:(NSString *)songName;
 - (Song *) conductorRequestsAnySong:(<Conductor>)conductor;
 - (void) conductor:(<Conductor>)conductor choseSong:(Song *)song andPitch:(NSString *)pitch;
+
+- (void) conductor:(<Conductor>)conductor recievedUnknownCommand:(<Command>)command;
 
 @optional
 

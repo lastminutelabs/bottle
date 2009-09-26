@@ -10,6 +10,7 @@
 #import "PingCommand.h"
 #import "SetSongCommand.h"
 #import "LobbyUpdateCommand.h"
+#import "GraphicsOverlayCommand.h"
 
 @implementation CommandCoder
 
@@ -40,6 +41,16 @@
 			command = [[LobbyUpdateCommand alloc] init];
 			[(LobbyUpdateCommand *)command setPlayers:[props objectForKey:@"players"]];
 		}
+		break;
+			
+		case CommandTypeGraphicsOverlay: {
+			command = [[GraphicsOverlayCommand alloc] init];
+			[(GraphicsOverlayCommand *)command setRed:[[props objectForKey:@"color_red"] doubleValue]];
+			[(GraphicsOverlayCommand *)command setGreen:[[props objectForKey:@"color_green"] doubleValue]];
+			[(GraphicsOverlayCommand *)command setBlue:[[props objectForKey:@"color_blue"] doubleValue]];
+			[(GraphicsOverlayCommand *)command setDuration:[[props objectForKey:@"duration"] doubleValue]];
+		}
+		break;
 
 		default:
 			NSLog(@"Trying to decode unknown <Command> type : %i", type);
@@ -71,6 +82,16 @@
 			LobbyUpdateCommand *update = (LobbyUpdateCommand *)command;
 			[props setValue:update.players forKey:@"players"];
 		}
+		break;
+			
+		case CommandTypeGraphicsOverlay: {
+			GraphicsOverlayCommand *graphics = (GraphicsOverlayCommand *)command;
+			[props setValue:[NSNumber numberWithDouble:graphics.red] forKey:@"color_red"];
+			[props setValue:[NSNumber numberWithDouble:graphics.green] forKey:@"color_green"];
+			[props setValue:[NSNumber numberWithDouble:graphics.blue] forKey:@"color_blue"];
+			[props setValue:[NSNumber numberWithDouble:graphics.duration] forKey:@"duration"];
+		}
+		break;
 			
 		default:
 			NSLog(@"Trying to encode unknonwn <Command> type %i", command.type);

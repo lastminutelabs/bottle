@@ -90,7 +90,7 @@
 			break;
 		
 		default:
-			[self debug:[NSString stringWithFormat:@"Recieved unknown command %@", command]];
+			[delegate conductor:self recievedUnknownCommand:command];
 			break;
 	}
 }

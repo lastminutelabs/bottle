@@ -51,6 +51,8 @@
 		B2C430FC106D92A000A0DB86 /* SetSongCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C430FB106D92A000A0DB86 /* SetSongCommand.m */; };
 		B2C43381106DB82400A0DB86 /* LobbyUpdateCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C43380106DB82400A0DB86 /* LobbyUpdateCommand.m */; };
 		B2C433FA106DC0F600A0DB86 /* TwoTone.btl in Resources */ = {isa = PBXBuildFile; fileRef = B2C433F3106DC08000A0DB86 /* TwoTone.btl */; };
+		B2C434BF106DCCF600A0DB86 /* GraphicsOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C434BE106DCCF600A0DB86 /* GraphicsOverlayViewController.m */; };
+		B2C434CF106DCDA300A0DB86 /* GraphicsOverlayCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C434CE106DCDA300A0DB86 /* GraphicsOverlayCommand.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,6 +120,10 @@
 		B2C4337F106DB82400A0DB86 /* LobbyUpdateCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LobbyUpdateCommand.h; sourceTree = "<group>"; };
 		B2C43380106DB82400A0DB86 /* LobbyUpdateCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LobbyUpdateCommand.m; sourceTree = "<group>"; };
 		B2C433F3106DC08000A0DB86 /* TwoTone.btl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TwoTone.btl; sourceTree = "<group>"; };
+		B2C434BD106DCCF600A0DB86 /* GraphicsOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphicsOverlayViewController.h; sourceTree = "<group>"; };
+		B2C434BE106DCCF600A0DB86 /* GraphicsOverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphicsOverlayViewController.m; sourceTree = "<group>"; };
+		B2C434CD106DCDA300A0DB86 /* GraphicsOverlayCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphicsOverlayCommand.h; sourceTree = "<group>"; };
+		B2C434CE106DCDA300A0DB86 /* GraphicsOverlayCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphicsOverlayCommand.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,6 +291,8 @@
 				B290CB07106CEBEB0065649E /* StartOrJoinViewController.m */,
 				B290CE02106D0D5D0065649E /* LobbyViewController.h */,
 				B290CE03106D0D5D0065649E /* LobbyViewController.m */,
+				B2C434BD106DCCF600A0DB86 /* GraphicsOverlayViewController.h */,
+				B2C434BE106DCCF600A0DB86 /* GraphicsOverlayViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -349,6 +357,8 @@
 				B2C42FA2106D7E7C00A0DB86 /* CommandCoder.m */,
 				B2C4337F106DB82400A0DB86 /* LobbyUpdateCommand.h */,
 				B2C43380106DB82400A0DB86 /* LobbyUpdateCommand.m */,
+				B2C434CD106DCDA300A0DB86 /* GraphicsOverlayCommand.h */,
+				B2C434CE106DCDA300A0DB86 /* GraphicsOverlayCommand.m */,
 			);
 			path = Command;
 			sourceTree = "<group>";
@@ -443,6 +453,8 @@
 				B2C42FA3106D7E7C00A0DB86 /* CommandCoder.m in Sources */,
 				B2C430FC106D92A000A0DB86 /* SetSongCommand.m in Sources */,
 				B2C43381106DB82400A0DB86 /* LobbyUpdateCommand.m in Sources */,
+				B2C434BF106DCCF600A0DB86 /* GraphicsOverlayViewController.m in Sources */,
+				B2C434CF106DCDA300A0DB86 /* GraphicsOverlayCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

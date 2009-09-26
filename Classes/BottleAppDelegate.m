@@ -15,6 +15,7 @@
 @synthesize startOrJoinViewController;
 @synthesize lobbyViewController;
 @synthesize playViewController;
+@synthesize graphicsOverlayViewController;
 
 - (void) importSongs {
 	[songs release];
@@ -52,6 +53,8 @@
 	debugView.alpha = 0.75;
 	debugView.editable = NO;
 	[window addSubview:debugView];
+	
+	[window addSubview:graphicsOverlayViewController.view];
 }
 
 - (void)dealloc {
@@ -101,12 +104,10 @@
 }
 
 - (void) conductor:(<Conductor>)conductor_ choseSong:(Song *)song andPitch:(NSString *)pitch {
-	NSLog(@"Pitch set to %@", pitch);
-	
 	// Change to the play view
 	[lobbyViewController.view removeFromSuperview];
 	[playViewController setSong: song andPitch: pitch];
-	[window addSubview:playViewController.view];
+	[window insertSubview:playViewController.view atIndex:0];
 }
 
 - (Song *) conductor:(<Conductor>)conductor requestsSongWithName:(NSString *)songName {
@@ -120,6 +121,11 @@
 
 - (Song *) conductorRequestsAnySong:(<Conductor>)conductor_ {
 	return [songs lastObject];
+}
+
+- (void) conductor:(<Conductor>)conductor recievedUnknownCommand:(<Command>)command {
+	if (CommandTypeGraphicsOverlay == command.type)
+		[graphicsOverlayViewController handleCommand:(GraphicsOverlayCommand *)command];
 }
 
 #pragma mark ---- LobbyViewController ----
