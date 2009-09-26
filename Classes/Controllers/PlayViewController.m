@@ -118,9 +118,25 @@
 											  repeats:YES] retain];
 }
 
-- (void) tick:(NSTimer *)timer {
+- (void) detectAudio {
+	// Get the amplitude from the mic
 	Float32 power = [listener averagePower];
 	player.volume = power;
+	
+	// Do we change note playing state?
+	if (NO == currentlyPlaying) {
+		if (power > THRESHOLD) {
+			currentlyPlaying = YES;
+		}
+	} else {
+		if (power < THRESHOLD) {
+			currentlyPlaying = NO;
+		}
+	}
+}
+
+- (void) tick:(NSTimer *)timer {
+	[self detectAudio];
 	
 	float sinceLastTime = [timer timeInterval];
 
