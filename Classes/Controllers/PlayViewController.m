@@ -54,12 +54,8 @@
 	[noteViews release];
 	noteViews = [[NSMutableArray alloc] initWithCapacity:song.notes.count];
 	
-	float secondsPerBeat = song.secondsPerBeat;
-	float beatsPerSecond = 1.0f / secondsPerBeat;
-	float secondsPerScreen = BEATS_PER_SCREEN / beatsPerSecond;
-	
 	for (Note *note in song.notes) {
-		int h = (note.duration - GAP * secondsPerBeat) / secondsPerScreen * 480;
+		int h = (note.duration - GAP * song.secondsPerBeat) / secondsPerScreen * 480;
 		int y = note.timestamp / secondsPerScreen * 480 + 480;
 		
 		UINoteView *view = [[UINoteView alloc] initWithFrame: CGRectMake(0, y, 320, h)];
@@ -90,7 +86,9 @@
 
 	[pitch release];
 	pitch = [pitch_ copy];
-		
+	
+	secondsPerScreen = BEATS_PER_SCREEN * song.secondsPerBeat;
+
 	// Get the correct filling for the song
 	float fillingsPerNote = NUM_FILLINGS / song.uniqueNotes.count;
 	int index = fillingsPerNote * [song.uniqueNotes indexOfObject:pitch] + 1;
@@ -108,7 +106,7 @@
 	[self.view bringSubviewToFront: bottleFillingView];
 	
 	// Start at the beginning of the song
-	songPosition = 0;
+	songPosition = - secondsPerScreen;
 }
 
 - (void) startPlay {
@@ -127,20 +125,31 @@
 	float sinceLastTime = [timer timeInterval];
 
   if (noteViews) {
-
-    // TODO: shouldn't need to keep recalculating this
-    float secondsPerBeat = song.secondsPerBeat;
-    float beatsPerSecond = 1.0f / secondsPerBeat;
-    float secondsPerScreen = BEATS_PER_SCREEN / beatsPerSecond;
-
     float offset = 480 * sinceLastTime / secondsPerScreen;
     
     for (UIView *noteView in noteViews)
       noteView.center = CGPointMake(noteView.center.x, noteView.center.y - offset);
   }
 	
-	// Remember where we are in the song
+	// Remember where we are in the song and deal with any notes that we have missed
 	songPosition += sinceLastTime;
+	for (UINoteView *view in noteViews) {
+		if (songPosition > view.note.timestamp + NoteTolerence) {
+			[UIView beginAnimations:nil context:view];
+			[UIView setAnimationDuration:0.35];
+			[UIView setAnimationDidStopSelector:@selector(removeNote:finished:context:)];
+			view.center = CGPointMake(-500, view.center.y);
+			view.alpha = 0.0f;
+			[UIView commitAnimations];
+		}
+	}
+}
+
+- (void)removeNote:(NSString*)animationID finished:(NSNumber*)finished context:(void*)context {
+	UINoteView *view = (UINoteView *)context;
+	[view removeFromSuperview];
+	[noteViews removeObject:view];
+	[view release];
 }
 
 - (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) interfaceOrientation {
