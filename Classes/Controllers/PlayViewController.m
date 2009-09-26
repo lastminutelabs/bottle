@@ -15,14 +15,6 @@
 @implementation PlayViewController
 
 - (void) viewDidLoad {
-  NSLog(@"VIEW DID LOAD");
-
-  ticker = [[NSTimer scheduledTimerWithTimeInterval:(1.0f/30.0f)
-		     target:self
-		     selector:@selector(tick:)
-		     userInfo:nil
-		     repeats:YES] retain];
-  
   NSString *soundFilePath = [[NSBundle mainBundle] pathForResource: @"bottle_loop" ofType: @"aif"];
     
   NSLog(@"soundFilePath: %@", soundFilePath);
@@ -53,18 +45,19 @@
 }
 
 - (void) setSong: (Song *) song_ andPitch: (NSString *) pitch_ {
-  NSLog(@"Setting song: %@ and pitch: %@", song_, pitch_);
+	NSLog(@"Setting song: %@ and pitch: %@", song_, pitch_);
 
-  [song release];
-  [pitch release];
-  song = [song_ retain];
-  pitch = [pitch_ retain];
+	[song release];
+	song = [song_ retain];
 
-  if (noteViews) {
-    for (UIView *noteView in noteViews) {
-      [noteView removeFromSuperview];    
-    }
-  }
+	[pitch release];
+	pitch = [pitch_ retain];
+
+	if (noteViews) {
+		for (UIView *noteView in noteViews) {
+			[noteView removeFromSuperview];    
+		}
+	}
 
   [noteViews release];
   noteViews = [PlayViewController noteViewsForSong: song andPitch: pitch];
@@ -77,6 +70,15 @@
 
   // TODO: base this graphic on the pitch
   [self.view bringSubviewToFront: bottleFillingView];
+	
+	// Start the ticker to update the view
+	[ticker invalidate];
+	[ticker release];
+	ticker = [[NSTimer scheduledTimerWithTimeInterval:(1.0f/30.0f)
+											   target:self
+											 selector:@selector(tick:)
+											 userInfo:nil
+											  repeats:YES] retain];
 }
 
 + (NSArray *) noteViewsForSong: (Song *) song andPitch: (NSString *) pitch {
