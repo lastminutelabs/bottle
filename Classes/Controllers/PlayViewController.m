@@ -68,7 +68,7 @@
 		UINoteView *view = [[UINoteView alloc] initWithFrame: CGRectMake(0, y, 320, h)];
 		
 		if ([note.pitch isEqualToString: pitch])
-			view.backgroundColor = UIColor.blueColor;
+			view.backgroundColor = UIColor.whiteColor;
 		else {		  
 		  view.backgroundColor = UIColor.darkGrayColor;
 		  view.alpha = 0.2f;
