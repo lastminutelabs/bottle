@@ -17,6 +17,7 @@
 @synthesize allPlayers;
 @synthesize song;
 @synthesize delegate;
+@synthesize readyToPlay;
 
 - (void) debug:(NSString *)message {
 	if ([delegate respondsToSelector:@selector(conductor:hasDebugMessage:)])
@@ -28,6 +29,7 @@
 - (id) init {
 	if (self = [super init]) {
 		name = [[NSString stringWithFormat:@"%@ client", [[UIDevice currentDevice] name]] retain];
+		readyToPlay = NO;
 	}
 	return self;
 }

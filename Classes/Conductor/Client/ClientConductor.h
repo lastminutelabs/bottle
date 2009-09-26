@@ -20,6 +20,8 @@
 	NSArray *allPlayers;
 	
 	Song *song;
+	
+	bool readyToPlay;
 }
 
 @property (nonatomic, readonly) ConductorType type;

@@ -54,6 +54,8 @@ typedef enum {
 
 @property (nonatomic, retain) Song *song;
 
+@property (nonatomic, assign) bool readyToPlay;
+
 - (void) start;
 - (void) finish;
 
