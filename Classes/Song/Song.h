@@ -15,6 +15,7 @@
 	NSMutableArray *uniqueNotes;
 	
 	float secondsPerBeat;
+	NSTimeInterval duration;
 	
 	NSString *name;
 }
@@ -23,6 +24,7 @@
 @property (nonatomic, readonly) NSString *name;
 @property (nonatomic, readonly) float secondsPerBeat;
 @property (nonatomic, readonly) NSArray *notes;
+@property (nonatomic, readonly) NSTimeInterval duration;
 
 - (id) initWithContentsOfFile:(NSString *)filename;
 

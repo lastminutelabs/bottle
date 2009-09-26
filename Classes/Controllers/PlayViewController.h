@@ -24,7 +24,8 @@
   NSTimeInterval songPosition;
   float secondsPerScreen;
   
-  bool currentlyPlaying;  
+  bool currentlyPlaying;
+	float score;
 }
 
 - (void) setSong: (Song *) song andPitch: (NSString *) pitch;
