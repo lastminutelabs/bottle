@@ -33,6 +33,8 @@
 		[player play];
 	}
 	
+	[listener stop];
+	[listener release];
 	listener = [SCListener sharedListener];
 	[listener listen];
 	
