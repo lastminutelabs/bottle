@@ -37,8 +37,10 @@
 	[delegate conductor:self initializeSuccessful:YES];
 	
 	song = [delegate conductorRequestsAnySong:self];
-	if (song)
+	if (song) {
 		[delegate conductor:self choseSong:song andPitch:[song.uniqueNotes lastObject]];
+		[delegate conductorStartedPlay:self];
+	}
 }
 
 - (void) finish { }
