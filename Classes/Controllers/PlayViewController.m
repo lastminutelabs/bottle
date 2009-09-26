@@ -64,21 +64,18 @@
 		
 		UINoteView *view = [[UINoteView alloc] initWithFrame: CGRectMake(0, y, 320, h)];
 		
-		if ([note.pitch isEqualToString: pitch]) {
+		if ([note.pitch isEqualToString: pitch])
 			view.backgroundColor = UIColor.lightGrayColor;
-		} else {
+		else
 			view.backgroundColor = UIColor.darkGrayColor;
-		}
-		
+
+		view.note = note;
 		[noteViews addObject: view];
 		[self.view addSubview:view];
 	}
 }
 
 - (void) viewDidLoad {
-  self.view = [[UIView alloc] initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
-  self.view.backgroundColor = UIColor.blackColor;
-
   bottleImageView = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"bottle1.png"]];    
   [self.view addSubview: bottleImageView];         
 }
@@ -87,8 +84,6 @@
 	[ticker invalidate];
 	[ticker release];
 	ticker = nil;
-	
-	NSLog(@"Setting song: %@ and pitch: %@", song_, pitch_);
 
 	[song release];
 	song = [song_ retain];
@@ -105,11 +100,12 @@
 	// Initialize the correct pitch sound
 	[self initializeSound];
 
+	// Create the notes
 	[self createNoteViews];
 
-  [self.view bringSubviewToFront: bottleImageView];
-
-  [self.view bringSubviewToFront: bottleFillingView];
+	// Sort out the view hierarchy
+	[self.view bringSubviewToFront: bottleImageView];
+	[self.view bringSubviewToFront: bottleFillingView];
 	
 	// Start at the beginning of the song
 	songPosition = 0;
