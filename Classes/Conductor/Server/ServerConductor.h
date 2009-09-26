@@ -30,6 +30,7 @@
 	NSTimer *pingTimer;
 	
 	bool readyToPlay;
+	bool sentPlayMessage;
 }
 
 @property (nonatomic, readonly) ConductorType type;
