@@ -53,19 +53,21 @@
 - (void) setSong: (Song *) song_ andPitch: (NSString *) pitch_ {
   NSLog(@"Setting song: %@ and pitch: %@", song_, pitch_);
 
-  song = song_;
-  pitch = pitch_;
+	[song release];
+	[pitch release];
+  song = [song_ retain];
+  pitch = [pitch_ retain];
 
   if (noteViews) {
     for (UIView *noteView in noteViews) {
       [noteView removeFromSuperview];    
     }
   }
-  
+  [noteViews release];
   noteViews = [PlayViewController noteViewsForSong: song andPitch: pitch];
 
-  for (UIView *noteView in noteViews) {
-    [self.view addSubview: noteView];    
+  for (UIView *note in noteViews) {
+    [self.view addSubview: note];    
   }
 
   [self.view bringSubviewToFront: bottleImageView];
@@ -105,6 +107,10 @@
 - (void) tick:(NSTimer *)timer {
   Float32 power = [listener averagePower];
   player.volume = power;
+	
+	for (UIView *noteView in noteViews) {
+		noteView.center = CGPointMake(noteView.center.x, noteView.center.y - 1);
+	}
 }
 
 - (void)dealloc {
