@@ -10,6 +10,12 @@
 
 @implementation LobbyUpdateCommand
 
+@synthesize players;
+
 - (CommandType) type { return CommandTypeLobbyUpdate; }
+
+- (NSString *) description {
+	return [NSString stringWithFormat:@"[LobbyUpdate numPlayers %i]", players.count];
+}
 
 @end

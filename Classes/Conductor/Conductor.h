@@ -26,6 +26,7 @@ typedef enum {
 
 - (void) conductor:(<Conductor>)conductor addedPeer:(NSString *)displayName;
 - (void) conductor:(<Conductor>)conductor removedPeer:(NSString *)displayName;
+- (void) conductor:(<Conductor>)conductor changedPlayersTo:(NSArray *)players;
 
 - (Song *) conductor:(<Conductor>)conductor requestsSongWithName:(NSString *)songName;
 - (void) conductor:(<Conductor>)conductor choseSong:(Song *)song andPitch:(NSString *)pitch;

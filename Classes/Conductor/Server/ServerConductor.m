@@ -9,6 +9,7 @@
 #import "ServerConductor.h"
 #import "CommandCoder.h"
 #import "SetSongCommand.h"
+#import "LobbyUpdateCommand.h"
 
 @implementation ServerConductor
 
@@ -81,6 +82,19 @@
 	[super dealloc];
 }
 
+- (void) refreshLobby {
+	LobbyUpdateCommand *update = [[LobbyUpdateCommand alloc] init];
+	update.players = allPlayers;
+	NSData *data = [CommandCoder encodeCommand:update];
+	NSError *error = nil;
+	[session sendData:data toPeers:peers withDataMode:GKSendDataReliable error:&error];
+	[update release];
+	
+	if (nil != error)
+		[self debug:[NSString stringWithFormat:@"Lobby update failed to send : %@", [error localizedDescription]]];
+	
+}
+
 - (void) triggerPing:(NSTimer *)timer {
 	if (0 == peers.count)
 		return;
@@ -111,6 +125,7 @@
 			if ([peers containsObject:peerID]) {
 				[peers removeObject:peerID];
 				[allPlayers removeObject:displayName];
+				[self refreshLobby];
 				[delegate conductor:self removedPeer:displayName];
 				[self debug:[NSString stringWithFormat:@"peer %@ removed", displayName]];
 			} else {
@@ -123,6 +138,7 @@
 				[peers addObject:peerID];
 				[allPlayers addObject:displayName];
 				[delegate conductor:self addedPeer:displayName];
+				[self refreshLobby];
 				[self debug:[NSString stringWithFormat:@"peer %@ connected", displayName]];
 			} else {
 				[self debug:[NSString stringWithFormat:@"peer %@ already connected!", displayName]];

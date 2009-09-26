@@ -10,7 +10,9 @@
 #import "Command.h"
 
 @interface LobbyUpdateCommand : NSObject <Command> {
-
+	NSArray *players;
 }
+
+@property (nonatomic, retain) NSArray *players;
 
 @end

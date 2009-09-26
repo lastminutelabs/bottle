@@ -9,6 +9,7 @@
 #import "CommandCoder.h"
 #import "PingCommand.h"
 #import "SetSongCommand.h"
+#import "LobbyUpdateCommand.h"
 
 @implementation CommandCoder
 
@@ -34,6 +35,11 @@
 			[(SetSongCommand *)command setPitch:[props objectForKey:@"pitch"]];
 		}
 		break;
+			
+		case CommandTypeLobbyUpdate: {
+			command = [[LobbyUpdateCommand alloc] init];
+			[(LobbyUpdateCommand *)command setPlayers:[props objectForKey:@"players"]];
+		}
 
 		default:
 			NSLog(@"Trying to decode unknown <Command> type : %i", type);
@@ -60,6 +66,11 @@
 			[props setValue:setSong.pitch forKey:@"pitch"];
 		}
 		break;
+			
+		case CommandTypeLobbyUpdate: {
+			LobbyUpdateCommand *update = (LobbyUpdateCommand *)command;
+			[props setValue:update.players forKey:@"players"];
+		}
 			
 		default:
 			NSLog(@"Trying to encode unknonwn <Command> type %i", command.type);

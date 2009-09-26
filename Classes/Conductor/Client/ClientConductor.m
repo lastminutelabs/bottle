@@ -9,6 +9,7 @@
 #import "ClientConductor.h"
 #import "CommandCoder.h"
 #import "SetSongCommand.h"
+#import "LobbyUpdateCommand.h"
 
 @implementation ClientConductor
 
@@ -68,6 +69,9 @@
 	// Create the command from the data
 	<Command> command = [CommandCoder commandWithData:data];
 	switch (command.type) {
+		case CommandTypePing:
+			break;
+			
 		case CommandTypeSetSong:
 			[self debug:[command description]];
 			
@@ -79,8 +83,14 @@
 				[delegate conductor:self choseSong:song andPitch:[(SetSongCommand *)command pitch]];
 			}
 			break;
+			
+		case CommandTypeLobbyUpdate:
+			[self debug:[command description]];
+			[delegate conductor:self changedPlayersTo:[(LobbyUpdateCommand *)command players]];
+			break;
 		
 		default:
+			[self debug:[NSString stringWithFormat:@"Recieved unknown command %@", command]];
 			break;
 	}
 }
