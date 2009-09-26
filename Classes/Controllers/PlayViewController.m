@@ -73,7 +73,6 @@
 		  view.backgroundColor = UIColor.darkGrayColor;
 		  view.alpha = 0.2f;
 		}
-		
 
 		view.note = note;
 		[noteViews addObject: view];
@@ -195,6 +194,7 @@
 	songPosition += sinceLastTime;
 	for (UINoteView *view in noteViews) {
 		if (songPosition > view.note.timestamp + NoteTolerence && [view.note.pitch isEqualToString:pitch]) {
+			view.backgroundColor = [UIColor redColor];
 			[UIView beginAnimations:nil context:view];
 			[UIView setAnimationDuration:0.35];
 			[UIView setAnimationDidStopSelector:@selector(removeNote:finished:context:)];
