@@ -103,6 +103,10 @@
 	lobbyViewController.players = conductor_.allPlayers;
 }
 
+- (void) conductor:(<Conductor>)conductor_ choseSong:(Song *)song andPitch:(NSString *)pitch {
+	NSLog(@"Pitch set to %@", pitch);
+}
+
 #pragma mark ---- LobbyViewController ----
 
 - (void) lobbyViewController:(LobbyViewController *)controller selectedSong:(Song *)song {

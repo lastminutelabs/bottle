@@ -158,16 +158,23 @@
 	
 	int noteIndex = 0;
 		
+	// Give the peers the other notes
 	SetSongCommand *command = [[SetSongCommand alloc] init];
 	command.name = song.name;
 	for (NSString *peerID in peers) {
 		command.pitch = [song.uniqueNotes objectAtIndex:noteIndex];
-		noteIndex = (++noteIndex) % song.uniqueNotes.count;
 		NSData *data = [CommandCoder encodeCommand:command];
 		NSError *error = nil;
 		[session sendData:data toPeers:peers withDataMode:GKSendDataReliable error:&error];
+		
+		noteIndex ++;
+		if (noteIndex >= song.uniqueNotes.count-1) // Save yourself the last note
+			break;
 	}
 	[command release];
+	
+	// Tell the delegate that we have a song and pitch
+	[delegate conductor:self choseSong:song andPitch:[song.uniqueNotes lastObject]];
 }
 
 @end

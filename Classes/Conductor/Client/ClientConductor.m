@@ -8,6 +8,7 @@
 
 #import "ClientConductor.h"
 #import "CommandCoder.h"
+#import "SetSongCommand.h"
 
 @implementation ClientConductor
 
@@ -69,6 +70,7 @@
 	switch (command.type) {
 		case CommandTypeSetSong:
 			[self debug:[command description]];
+			[delegate conductor:self choseSong:song andPitch:[(SetSongCommand *)command pitch]];
 			break;
 		
 		default:
