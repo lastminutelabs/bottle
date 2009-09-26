@@ -33,14 +33,13 @@
 		[player play];
 	}
 	
+	listener = [SCListener sharedListener];
+	[listener listen];
+	
 	return error;
 }
 
 - (void) viewDidLoad {
-	
-  listener = [SCListener sharedListener];
-  [listener listen];    
-    
   self.view = [[UIView alloc] initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
   self.view.backgroundColor = UIColor.blackColor;
 
