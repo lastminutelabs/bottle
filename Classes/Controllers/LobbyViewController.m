@@ -30,6 +30,8 @@
 - (void) viewDidLoad {
 	if (conductor)
 		songsTable.userInteractionEnabled = conductor.type == ConductorTypeServer;
+	
+	playersView.font = [UIFont fontWithName:@"Verdana" size:12];
 }
 
 - (void)dealloc {
