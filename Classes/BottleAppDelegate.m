@@ -79,16 +79,11 @@
 
 - (void) conductor:(<Conductor>)conductor_ initializeSuccessful:(bool)success {
 	if (YES == success) {
-		if (conductor_.type == ConductorTypePractice) {
-			[startOrJoinViewController.view removeFromSuperview];
-			[window insertSubview:playViewController.view atIndex:0];
-		} else {
-			[startOrJoinViewController.view removeFromSuperview];
-			lobbyViewController.conductor = conductor;
-			lobbyViewController.songs = songs;
-			lobbyViewController.players = conductor_.allPlayers;
-			[window insertSubview:lobbyViewController.view atIndex:0];
-		}
+		[startOrJoinViewController.view removeFromSuperview];
+		lobbyViewController.conductor = conductor;
+		lobbyViewController.songs = songs;
+		lobbyViewController.players = conductor_.allPlayers;
+		[window insertSubview:lobbyViewController.view atIndex:0];
 	}
 }
 
@@ -120,6 +115,10 @@
 	}
 	
 	return nil;
+}
+
+- (Song *) conductorRequestsAnySong:(<Conductor>)conductor_ {
+	return [songs lastObject];
 }
 
 #pragma mark ---- LobbyViewController ----
