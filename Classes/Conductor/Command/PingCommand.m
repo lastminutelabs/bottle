@@ -20,13 +20,6 @@
 	[super dealloc];
 }
 
-- (NSData *) toData {
-	NSMutableData *data = [[[NSMutableData alloc] initWithCapacity:10] autorelease];
-	CommandType type = self.type;
-	[data appendBytes:&type length:sizeof(type)];
-	return data;
-}
-
 - (NSString *) description {
 	return [NSString stringWithFormat:@"[Ping %@]", timestamp];
 }

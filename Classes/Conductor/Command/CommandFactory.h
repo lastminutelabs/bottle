@@ -12,5 +12,6 @@
 @interface CommandFactory : NSObject
 
 + (<Command>) commandWithData:(NSData *)data;
++ (NSData *) encodeCommand:(<Command>)command;
 
 @end

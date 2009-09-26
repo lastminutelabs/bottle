@@ -17,6 +17,4 @@ typedef enum {
 
 @property (nonatomic, readonly) CommandType type;
 
-- (NSData *) toData;
-
 @end

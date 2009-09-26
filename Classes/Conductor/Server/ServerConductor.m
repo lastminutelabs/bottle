@@ -7,7 +7,7 @@
 //
 
 #import "ServerConductor.h"
-
+#import "CommandFactory.h"
 
 @implementation ServerConductor
 
@@ -81,11 +81,15 @@
 }
 
 - (void) triggerPing:(NSTimer *)timer {
+	if (0 == peers.count)
+		return;
+	
 	// Send a ping to everyone
 	PingCommand *ping = [[PingCommand alloc] init];
 	ping.timestamp = [NSDate date];
+	NSData *data = [CommandFactory encodeCommand:ping];
 	NSError *error = nil;
-	[session sendData:[ping toData] toPeers:peers withDataMode:GKSendDataReliable error:&error];
+	[session sendData:data toPeers:peers withDataMode:GKSendDataReliable error:&error];
 	[ping release];
 	
 	if (nil != error)
