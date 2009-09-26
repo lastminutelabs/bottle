@@ -30,9 +30,9 @@
 			@try {
 				Song *song = [[Song alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", path, file]];
 				[songs addObject:song];
-				NSLog(@"Song loaded : %@", song);
+				NSLog(@"Song loaded (on import) : %@", song);
 			} @catch (NSException *e) {
-				NSLog(@"Failed to import song : %@", e);
+				NSLog(@"Failed to import song (on import) : %@", e);
 			}
 		}
 	
