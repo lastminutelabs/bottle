@@ -43,16 +43,17 @@
     playing = NO;
 	
   self.view = [[UIView alloc] initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
+  self.view.backgroundColor = UIColor.blackColor;
 
   powerBar = [[UIProgressView alloc] initWithProgressViewStyle: UIProgressViewStyleDefault];
   powerBar.frame = CGRectMake(0, 200, 320, 100);
-  [self.view addSubview: powerBar];
+  //[self.view addSubview: powerBar];
 
   powerLabel = [[UILabel alloc] initWithFrame: CGRectMake(0, 100, 320, 100)];
-  [self.view addSubview: powerLabel];
+  //[self.view addSubview: powerLabel];
 
   playingLabel = [[UILabel alloc] initWithFrame: CGRectMake(0, 200, 320, 200)];
-  [self.view addSubview: playingLabel];
+  //[self.view addSubview: playingLabel];
   
   NSString *path = [[NSBundle mainBundle] bundlePath];
   @try {
@@ -67,6 +68,12 @@
   for (UIView *noteView in noteViews) {
     [self.view addSubview: noteView];    
   }
+
+  bottleImageView = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"bottle8.png"]];    
+  [self.view addSubview: bottleImageView];    
+
+  bottleFillingView = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"filling4.png"]];    
+  [self.view addSubview: bottleFillingView];      
 }
 
 - (void) startedPlaying {

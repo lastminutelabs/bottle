@@ -16,6 +16,8 @@
   UILabel *powerLabel;
   UILabel *playingLabel;
   UIProgressView *powerBar;
+  UIImageView *bottleImageView;
+  UIImageView *bottleFillingView;
   SCListener *listener;
   AVAudioPlayer *player;
   BOOL playing;
