@@ -27,7 +27,9 @@
 		case CommandTypePing: {
 			command = [[PingCommand alloc] init];
 			NSNumber *interval = [props objectForKey:@"interval"];
-			[(PingCommand *)command setTimestamp:[[NSDate alloc] initWithTimeIntervalSinceReferenceDate:[interval doubleValue]]];
+            NSDate *date = [[NSDate alloc] initWithTimeIntervalSinceReferenceDate:[interval doubleValue]];
+			((PingCommand *)command).timestamp = date;
+            [date release];
 		}
 		break;
 
@@ -62,7 +64,7 @@
 			NSLog(@"Trying to decode unknown <Command> type : %i", type);
 	}
 	
-	return command;
+	return [command autorelease];
 }
 
 + (NSData *)encodeCommand:(<Command>)command {
@@ -111,6 +113,7 @@
 
 	NSString *error = nil;
 	NSData *data = [NSPropertyListSerialization dataFromPropertyList:props format:NSPropertyListBinaryFormat_v1_0 errorDescription:&error];
+    [props release];
 	return data;
 }
 

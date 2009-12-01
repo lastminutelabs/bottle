@@ -32,6 +32,7 @@
 	view.backgroundColor = [UIColor colorWithRed:command.red green:command.green blue:command.blue alpha:1.0];
 	view.alpha = 1.0f;
 	[self.view addSubview:view];
+    [view release];
 	
 	[UIView beginAnimations:nil context:nil];
 	[UIView setAnimationDuration:command.duration];

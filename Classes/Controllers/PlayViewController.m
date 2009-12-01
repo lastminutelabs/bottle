@@ -85,6 +85,7 @@
 			view.note = note;
 			[noteViews addObject: view];
 			[self.view addSubview:view];
+            [view release];
 		}
 	}
 }
