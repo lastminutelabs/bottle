@@ -47,7 +47,7 @@
 	[self finish];
 	
 	// Create the bluetooth server session
-	session = [[GKSession alloc] initWithSessionID:GAME_ID displayName:name sessionMode:GKSessionModePeer];
+	session = [[GKSession alloc] initWithSessionID:GAME_ID displayName:name sessionMode:GKSessionModeServer];
 	[session setDelegate:self];
 	[session setDataReceiveHandler:self withContext:nil];
 	[session setAvailable:YES];
