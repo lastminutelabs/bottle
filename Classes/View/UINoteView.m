@@ -18,21 +18,25 @@
         self.opaque = NO;
         self.backgroundColor = [UIColor clearColor];
         
-        UIImageView *bar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bar-top.png"]];
-        UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bar-bg.png"]];
+        //UIImageView *bar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bar-top.png"]];
         
-        bar.contentMode = UIViewContentModeTop;
+        UIImage *backgroundRaw = [UIImage imageNamed:@"bar-bg.png"];
+        //NSInteger cap = backgroundRaw.size.height / 2 - 1;
+        //UIImageView *background = [[UIImageView alloc] initWithImage:[backgroundRaw stretchableImageWithLeftCapWidth:0 topCapHeight:cap]];
+        UIImageView *background = [[UIImageView alloc] initWithImage:backgroundRaw];
+        
+        //bar.contentMode = UIViewContentModeTop;
         background.contentMode = UIViewContentModeScaleToFill;
         background.autoresizingMask = UIViewAutoresizingFlexibleHeight;
         background.frame = CGRectMake(0, 0, value.size.width, value.size.height);
         
         [self addSubview:background];
-        [self addSubview:bar];
+        //[self addSubview:bar];
         
         self.clipsToBounds = YES;
         
         [background release];
-        [bar release];
+        //[bar release];
     }
     return self;
 }
