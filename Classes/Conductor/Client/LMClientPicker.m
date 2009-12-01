@@ -53,7 +53,6 @@
 
     // Initialize the GKSession and try to connect
 	[session setDelegate:self];
-	[session setDataReceiveHandler:self withContext:nil];
 	[session setAvailable:YES];
     
     // Create a view to display the list of clients that we have found
@@ -156,10 +155,18 @@
     
     // Set up the cell...
     int index = [indexPath indexAtPosition:1];
-    if (clients.count > index) {
-        cell.textLabel.text = [[clients objectAtIndex:index] name];
+    Client *client = nil;
+    if (clients.count > index)
+        client = [clients objectAtIndex:index];
+    if (client) {
+        cell.textLabel.textColor = client.connectionState == GKPeerStateAvailable ? [UIColor blackColor] : [UIColor grayColor];
+        cell.textLabel.text = client.name;
     } else {
-        cell.textLabel.text = nil;
+        cell.textLabel.textColor = [UIColor grayColor];
+        if (0 == index)
+            cell.textLabel.text = @"please wait ...";
+        else
+            cell.textLabel.text = nil;
     }
 	
     return cell;
