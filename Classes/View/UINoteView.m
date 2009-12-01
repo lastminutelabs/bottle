@@ -15,6 +15,9 @@
 
 - (id) initWithFrame:(CGRect)value {
     if (self = [super initWithFrame:value]) {
+        self.opaque = NO;
+        self.backgroundColor = [UIColor clearColor];
+        
         UIImageView *bar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bar-top.png"]];
         UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bar-bg.png"]];
         
