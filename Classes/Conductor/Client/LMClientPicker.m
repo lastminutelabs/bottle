@@ -36,8 +36,8 @@
 
 - (void) dealloc {
     [session setAvailable:NO];
-    [session setDelegate:nil];
-    [session setDataReceiveHandler:nil withContext:nil];
+    if (self == session.delegate)
+        [session setDelegate:nil];
     [session release];
     [clients release];
     [clientTableView release];
@@ -64,8 +64,8 @@
 
 - (void) dismiss {
     [session setAvailable:NO];
-    [session setDelegate:nil];
-    [session setDataReceiveHandler:nil withContext:nil];
+    if (self == session.delegate)
+        [session setDelegate:nil];
     [session release];
     session = nil;
     [self.view removeFromSuperview];
@@ -83,6 +83,13 @@
 #pragma mark GKSessionDelegate methods
 
 - (void)session:(GKSession *)session_ peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state {
+    // If this is a connection success, tell the delegate
+    if (GKPeerStateConnected == state) {
+        [session setDelegate:nil];
+        [delegate peerPickerController:(id)self didConnectPeer:peerID toSession:session];
+        return;
+    }
+    
     // Do we know about this client already?
     Client *client = nil;
     for (Client *temp in clients) {
@@ -111,19 +118,29 @@
     [clientTableView reloadData];
 }
 
-- (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID {
+- (void)session:(GKSession *)session_ didReceiveConnectionRequestFromPeer:(NSString *)peerID {
+    // Erm, we're a client - this can't happen!
+    NSLog(@"AAAArg : connection request from %@", [session_ displayNameForPeer:peerID]);
+    [session_ denyConnectionFromPeer:peerID];
 }
 
 - (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error {
+    // We failed to connect to our choice :(
+    // Remove the fader and activity indicator and re-render the table
+    [fader removeFromSuperview];
+    fader = nil;
+    [activityindicator removeFromSuperview];
+    activityindicator = nil;
+    
+    // Re-enable the table of clients
+    [clientTableView setUserInteractionEnabled:YES];
+    [clientTableView reloadData];
 }
 
 - (void)session:(GKSession *)session didFailWithError:(NSError *)error {
     NSLog(@"Failed with a error %@", error);
     for (id key in [error userInfo])
         NSLog(@" %@ : %@", key, [[error userInfo] objectForKey:key]);
-}
-
-- (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
 }
 
 #pragma mark -
@@ -154,6 +171,33 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
+}
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Get the client that we selected
+    int index = [indexPath indexAtPosition:1];
+    Client *client = nil;
+    if (clients.count > index)
+        client = [clients objectAtIndex:index];
+    
+    if (nil != client) {
+        // Start to connect to the client
+        [session connectToPeer:client.peerID withTimeout:5.0];
+        
+        // Display an activity indicator and fade the ui a bit
+        activityindicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        activityindicator.center = tableView.center;
+        [activityindicator startAnimating];
+        [self.view addSubview:activityindicator];
+        [activityindicator release];
+        
+        fader = [[UIView alloc] initWithFrame:tableView.frame];
+        [fader setBackgroundColor:[UIColor blackColor]];
+        [fader setAlpha:0.5];
+        [self.view insertSubview:fader aboveSubview:tableView];
+        [fader release];
+        [tableView setUserInteractionEnabled:NO];
+    }
 }
 
 @end

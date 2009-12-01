@@ -119,7 +119,7 @@
 #pragma mark ---- PeerPickerDelegate methods ----
 
 - (GKSession *)peerPickerController:(GKPeerPickerController *)picker sessionForConnectionType:(GKPeerPickerConnectionType)type {
-	return [[[GKSession alloc] initWithSessionID:GAME_ID displayName:name sessionMode:GKSessionModePeer] autorelease];
+	return [[[GKSession alloc] initWithSessionID:GAME_ID displayName:name sessionMode:GKSessionModeClient] autorelease];
 }
 
 - (void)peerPickerController:(GKPeerPickerController *)picker didConnectPeer:(NSString *)peerID toSession:(GKSession *)session_ {

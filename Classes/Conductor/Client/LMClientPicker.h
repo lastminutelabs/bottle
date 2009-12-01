@@ -19,6 +19,9 @@
     
     NSMutableArray *clients;
     UITableView *clientTableView;
+    
+    UIView *fader;
+    UIActivityIndicatorView *activityindicator;
 }
 
 @property (nonatomic, assign) GKPeerPickerConnectionType connectionTypesMask;
