@@ -54,6 +54,8 @@
 		548E12E2106DFC8000D459F5 /* g3.aif in Resources */ = {isa = PBXBuildFile; fileRef = 548E12DA106DFC8000D459F5 /* g3.aif */; };
 		B2069CCB10C5476E00F5FAAE /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B2069CCA10C5476E00F5FAAE /* Icon.png */; };
 		B2069CD210C548EA00F5FAAE /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B2069CD110C548EA00F5FAAE /* Default.png */; };
+		B2069D7110C56E5D00F5FAAE /* bar-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = B2069D6F10C56E5D00F5FAAE /* bar-bg.png */; };
+		B2069D7210C56E5D00F5FAAE /* bar-top.png in Resources */ = {isa = PBXBuildFile; fileRef = B2069D7010C56E5D00F5FAAE /* bar-top.png */; };
 		B290CB08106CEBEB0065649E /* StartOrJoinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CB07106CEBEB0065649E /* StartOrJoinViewController.m */; };
 		B290CB67106CF0300065649E /* ConductorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CB66106CF0300065649E /* ConductorFactory.m */; };
 		B290CBAB106CF1D80065649E /* ServerConductor.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CBAA106CF1D80065649E /* ServerConductor.m */; };
@@ -132,6 +134,8 @@
 		8D1107310486CEB800E47090 /* Bottle-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Bottle-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		B2069CCA10C5476E00F5FAAE /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Assets/Images/Icon.png; sourceTree = "<group>"; };
 		B2069CD110C548EA00F5FAAE /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Assets/Images/Default.png; sourceTree = "<group>"; };
+		B2069D6F10C56E5D00F5FAAE /* bar-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bar-bg.png"; path = "Assets/Images/Bars/bar-bg.png"; sourceTree = "<group>"; };
+		B2069D7010C56E5D00F5FAAE /* bar-top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bar-top.png"; path = "Assets/Images/Bars/bar-top.png"; sourceTree = "<group>"; };
 		B290CB06106CEBEB0065649E /* StartOrJoinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartOrJoinViewController.h; sourceTree = "<group>"; };
 		B290CB07106CEBEB0065649E /* StartOrJoinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartOrJoinViewController.m; sourceTree = "<group>"; };
 		B290CB61106CF0160065649E /* Conductor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conductor.h; sourceTree = "<group>"; };
@@ -282,6 +286,7 @@
 		548E11AB106DAA7200D459F5 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B2069D6D10C56E4400F5FAAE /* Bar */,
 				548E11AD106DAA8100D459F5 /* Bottles */,
 				548E11AC106DAA7900D459F5 /* Fillings */,
 			);
@@ -341,6 +346,15 @@
 				548E126D106DD81100D459F5 /* g4.aif */,
 			);
 			name = Sounds;
+			sourceTree = "<group>";
+		};
+		B2069D6D10C56E4400F5FAAE /* Bar */ = {
+			isa = PBXGroup;
+			children = (
+				B2069D6F10C56E5D00F5FAAE /* bar-bg.png */,
+				B2069D7010C56E5D00F5FAAE /* bar-top.png */,
+			);
+			name = Bar;
 			sourceTree = "<group>";
 		};
 		B290CAFB106CEB3D0065649E /* Conductor */ = {
@@ -537,6 +551,8 @@
 				B2BFAE53106E2333004CDE5A /* DoReMi.btl in Resources */,
 				B2069CCB10C5476E00F5FAAE /* Icon.png in Resources */,
 				B2069CD210C548EA00F5FAAE /* Default.png in Resources */,
+				B2069D7110C56E5D00F5FAAE /* bar-bg.png in Resources */,
+				B2069D7210C56E5D00F5FAAE /* bar-top.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -64,6 +64,7 @@
 	NSTimeInterval ourLastNoteTime = -1;
 	for (Note *note in song.notes) {
 		int h = (note.duration - GAP * song.secondsPerBeat) / secondsPerScreen * 480;
+        NSLog(@"%i", h);
 		int y = note.timestamp / secondsPerScreen * 480 + 480;
 		
 		UINoteView *view = [[UINoteView alloc] initWithFrame: CGRectMake(0, y, 320, h)];
