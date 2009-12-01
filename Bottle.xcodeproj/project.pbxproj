@@ -66,6 +66,12 @@
 		B290CEB3106D19A40065649E /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CEB2106D19A40065649E /* Note.m */; };
 		B290D08B106D56CA0065649E /* Jingle Bells.btl in Resources */ = {isa = PBXBuildFile; fileRef = B290D08A106D56CA0065649E /* Jingle Bells.btl */; };
 		B290D1A7106D618B0065649E /* PracticeConductor.m in Sources */ = {isa = PBXBuildFile; fileRef = B290D1A6106D618B0065649E /* PracticeConductor.m */; };
+		B2BB3F4110C5842100AE2876 /* LMClientPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BB3F4010C5842100AE2876 /* LMClientPicker.m */; };
+		B2BB3FA410C593C000AE2876 /* picker-background.png in Resources */ = {isa = PBXBuildFile; fileRef = B2BB3FA310C593C000AE2876 /* picker-background.png */; };
+		B2BB3FC110C595C600AE2876 /* LMClientPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2BB3FC010C595C600AE2876 /* LMClientPicker.xib */; };
+		B2BB3FCB10C59B9300AE2876 /* picker-button-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = B2BB3FCA10C59B9300AE2876 /* picker-button-bg.png */; };
+		B2BB406C10C5A44700AE2876 /* untitled.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BB406B10C5A44700AE2876 /* untitled.m */; };
+		B2BB407710C5A71600AE2876 /* picker-window.png in Resources */ = {isa = PBXBuildFile; fileRef = B2BB407610C5A71600AE2876 /* picker-window.png */; };
 		B2BFAC4F106DFC49004CDE5A /* ThreeTone.btl in Resources */ = {isa = PBXBuildFile; fileRef = B2BFAC4E106DFB8E004CDE5A /* ThreeTone.btl */; };
 		B2BFACCA106E0774004CDE5A /* UINoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BFACC9106E0774004CDE5A /* UINoteView.m */; };
 		B2BFADA9106E15EF004CDE5A /* Doctor Who.btl in Resources */ = {isa = PBXBuildFile; fileRef = B2BFADA8106E15EF004CDE5A /* Doctor Who.btl */; };
@@ -155,6 +161,14 @@
 		B290D08A106D56CA0065649E /* Jingle Bells.btl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Jingle Bells.btl"; sourceTree = "<group>"; };
 		B290D1A5106D618B0065649E /* PracticeConductor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeConductor.h; sourceTree = "<group>"; };
 		B290D1A6106D618B0065649E /* PracticeConductor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeConductor.m; sourceTree = "<group>"; };
+		B2BB3F3F10C5842100AE2876 /* LMClientPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMClientPicker.h; sourceTree = "<group>"; };
+		B2BB3F4010C5842100AE2876 /* LMClientPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMClientPicker.m; sourceTree = "<group>"; };
+		B2BB3FA310C593C000AE2876 /* picker-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "picker-background.png"; path = "Assets/LMClientPicker/picker-background.png"; sourceTree = "<group>"; };
+		B2BB3FC010C595C600AE2876 /* LMClientPicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LMClientPicker.xib; path = Assets/LMClientPicker/LMClientPicker.xib; sourceTree = "<group>"; };
+		B2BB3FCA10C59B9300AE2876 /* picker-button-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "picker-button-bg.png"; path = "Assets/LMClientPicker/picker-button-bg.png"; sourceTree = "<group>"; };
+		B2BB406A10C5A44700AE2876 /* untitled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = untitled.h; sourceTree = "<group>"; };
+		B2BB406B10C5A44700AE2876 /* untitled.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = untitled.m; sourceTree = "<group>"; };
+		B2BB407610C5A71600AE2876 /* picker-window.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "picker-window.png"; path = "Assets/LMClientPicker/picker-window.png"; sourceTree = "<group>"; };
 		B2BFAC4E106DFB8E004CDE5A /* ThreeTone.btl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ThreeTone.btl; sourceTree = "<group>"; };
 		B2BFACC8106E0774004CDE5A /* UINoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UINoteView.h; sourceTree = "<group>"; };
 		B2BFACC9106E0774004CDE5A /* UINoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UINoteView.m; sourceTree = "<group>"; };
@@ -242,6 +256,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B2BB3FC310C5964700AE2876 /* LMClientPicker */,
 				B2069CD110C548EA00F5FAAE /* Default.png */,
 				B2069CCA10C5476E00F5FAAE /* Icon.png */,
 				548E1265106DD7B000D459F5 /* Sounds */,
@@ -400,6 +415,10 @@
 			children = (
 				B290CBAC106CF1DF0065649E /* ClientConductor.h */,
 				B290CBAD106CF1DF0065649E /* ClientConductor.m */,
+				B2BB3F3F10C5842100AE2876 /* LMClientPicker.h */,
+				B2BB3F4010C5842100AE2876 /* LMClientPicker.m */,
+				B2BB406A10C5A44700AE2876 /* untitled.h */,
+				B2BB406B10C5A44700AE2876 /* untitled.m */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -435,6 +454,17 @@
 				B290D1A6106D618B0065649E /* PracticeConductor.m */,
 			);
 			path = Practice;
+			sourceTree = "<group>";
+		};
+		B2BB3FC310C5964700AE2876 /* LMClientPicker */ = {
+			isa = PBXGroup;
+			children = (
+				B2BB407610C5A71600AE2876 /* picker-window.png */,
+				B2BB3FCA10C59B9300AE2876 /* picker-button-bg.png */,
+				B2BB3FC010C595C600AE2876 /* LMClientPicker.xib */,
+				B2BB3FA310C593C000AE2876 /* picker-background.png */,
+			);
+			name = LMClientPicker;
 			sourceTree = "<group>";
 		};
 		B2BFACC7106E075B004CDE5A /* View */ = {
@@ -553,6 +583,10 @@
 				B2069CD210C548EA00F5FAAE /* Default.png in Resources */,
 				B2069D7110C56E5D00F5FAAE /* bar-bg.png in Resources */,
 				B2069D7210C56E5D00F5FAAE /* bar-top.png in Resources */,
+				B2BB3FA410C593C000AE2876 /* picker-background.png in Resources */,
+				B2BB3FC110C595C600AE2876 /* LMClientPicker.xib in Resources */,
+				B2BB3FCB10C59B9300AE2876 /* picker-button-bg.png in Resources */,
+				B2BB407710C5A71600AE2876 /* picker-window.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -583,6 +617,8 @@
 				B2C434CF106DCDA300A0DB86 /* GraphicsOverlayCommand.m in Sources */,
 				B2C43691106DE87D00A0DB86 /* StartPlayCommand.m in Sources */,
 				B2BFACCA106E0774004CDE5A /* UINoteView.m in Sources */,
+				B2BB3F4110C5842100AE2876 /* LMClientPicker.m in Sources */,
+				B2BB406C10C5A44700AE2876 /* untitled.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

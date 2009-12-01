@@ -12,6 +12,8 @@
 #import "LobbyUpdateCommand.h"
 #import "StartPlayCommand.h"
 
+#import "LMClientPicker.h"
+
 @implementation ClientConductor
 
 @synthesize name;
@@ -63,7 +65,8 @@
 	[self finish];
 	
 	// Create the picker to get a session
-	GKPeerPickerController *controller = [[GKPeerPickerController alloc] init];
+	//GKPeerPickerController *controller = [[GKPeerPickerController alloc] init];
+    LMClientPicker *controller = [[LMClientPicker alloc] init];
 	[controller setDelegate:self];
 	[controller setConnectionTypesMask:GKPeerPickerConnectionTypeNearby];
 	[controller show];
@@ -135,6 +138,8 @@
 
 - (void)peerPickerControllerDidCancel:(GKPeerPickerController *)picker {
 	[delegate conductor:self initializeSuccessful:NO];
+    [picker dismiss];
+    [picker release];
 }
 
 - (void) setSong:(Song *)value {
