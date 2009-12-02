@@ -14,6 +14,7 @@
 @implementation PeerFinder
 
 @synthesize delegate, conductButton;
+@synthesize youAreLabel, connectedToLabel;
 
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -35,8 +36,6 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -45,6 +44,10 @@
     session.delegate = self;
     [session setDataReceiveHandler:self withContext:nil];
     session.available = YES;
+    
+    // Who are you?
+    youAreLabel.text = [NSString stringWithFormat:@"You are %@ (%@)", [session displayName], [session peerID]];
+    connectedToLabel.text = @"";
 }
 
 /*
@@ -107,6 +110,12 @@
             [[peer retain] autorelease];
             [possibles removeObject:peer];
         }
+        
+        if (GKPeerStateConnected==state && peer == connectingTo) {
+            connectedToLabel.text = @"";
+            [connectingTo release];
+            connectingTo = nil;
+        }
     }
     
     // Get the state of the peer
@@ -129,6 +138,9 @@
 }
 
 - (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error {
+    connectedToLabel.text = @"";
+    [connectingTo release];
+    connectingTo = nil;
 }
 
 #pragma mark Table view methods
@@ -151,13 +163,14 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
     // Set up the cell...
     int index = [indexPath indexAtPosition:1];
     Peer *peer = [possibles objectAtIndex:index];
     cell.textLabel.text = peer.displayName;
+    cell.detailTextLabel.text = peer.peerID;
     
     switch (peer.state) {
         case GKPeerStateConnecting:
@@ -188,7 +201,16 @@
     Peer *peer = [possibles objectAtIndex:[indexPath indexAtPosition:1]];
     
     // Connect to it
+    if (connectingTo)
+        [session cancelConnectToPeer:connectingTo.peerID];
     [session connectToPeer:peer.peerID withTimeout:5.0];
+    
+    // Display the name we are connecting to
+    connectedToLabel.text = [NSString stringWithFormat:@"connecting to %@", peer.displayName];
+    
+    // Remember who this is
+    [connectingTo release];
+    connectingTo = [peer retain];
 }
 
 

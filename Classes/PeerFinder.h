@@ -10,6 +10,8 @@
 
 #import <GameKit/GameKit.h>
 
+#import "Peer.h"
+
 @class PeerFinder;
 
 
@@ -30,11 +32,19 @@
     <PeerFinderDelegate> delegate;
     
     UIButton *conductButton;
+    
+    IBOutlet UILabel *youAreLabel;
+    IBOutlet UILabel *connectedToLabel;
+    
+    Peer *connectingTo;
 }
 
 @property (nonatomic, retain) <PeerFinderDelegate> delegate;
 
 @property (nonatomic, retain) IBOutlet UIButton *conductButton;
+
+@property (nonatomic, retain) IBOutlet UILabel *youAreLabel;
+@property (nonatomic, retain) IBOutlet UILabel *connectedToLabel;
 
 - (IBAction) conduct;
 
