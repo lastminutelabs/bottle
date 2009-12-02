@@ -9,6 +9,8 @@
 #import "BottleAppDelegate.h"
 #import "Song.h"
 
+#import "UIApplication_TVOut.m"
+
 @implementation BottleAppDelegate
 
 @synthesize window;
@@ -59,6 +61,12 @@
 	[window addSubview:debugView];
 	
 	[window addSubview:graphicsOverlayViewController.view];
+    
+    // Start the tv out
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    BOOL value = [prefs boolForKey:@"TV_OUT_ENABLED"];
+    if (value)
+        [[UIApplication sharedApplication] startTVOut];
 }
 
 - (void)dealloc {

@@ -70,6 +70,9 @@
 		B299A20710C6ABFD00DD5427 /* PeerFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = B299A20310C6ABFD00DD5427 /* PeerFinder.m */; };
 		B299A20810C6ABFD00DD5427 /* Peer.m in Sources */ = {isa = PBXBuildFile; fileRef = B299A20510C6ABFD00DD5427 /* Peer.m */; };
 		B299A20910C6ABFD00DD5427 /* PeerFinder.xib in Resources */ = {isa = PBXBuildFile; fileRef = B299A20610C6ABFD00DD5427 /* PeerFinder.xib */; };
+		B299A3E310C6C9EB00DD5427 /* UIApplication_TVOut.m in Sources */ = {isa = PBXBuildFile; fileRef = B299A3E210C6C9EB00DD5427 /* UIApplication_TVOut.m */; };
+		B299A3FD10C6CB2900DD5427 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B299A3FC10C6CB2900DD5427 /* MediaPlayer.framework */; };
+		B299A42510C6D1CA00DD5427 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B299A42410C6D1CA00DD5427 /* Settings.bundle */; };
 		B2BB3F4110C5842100AE2876 /* LMClientPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BB3F4010C5842100AE2876 /* LMClientPicker.m */; };
 		B2BB3FA410C593C000AE2876 /* picker-background.png in Resources */ = {isa = PBXBuildFile; fileRef = B2BB3FA310C593C000AE2876 /* picker-background.png */; };
 		B2BB3FC110C595C600AE2876 /* LMClientPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2BB3FC010C595C600AE2876 /* LMClientPicker.xib */; };
@@ -173,6 +176,9 @@
 		B299A20410C6ABFD00DD5427 /* Peer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Peer.h; sourceTree = "<group>"; };
 		B299A20510C6ABFD00DD5427 /* Peer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Peer.m; sourceTree = "<group>"; };
 		B299A20610C6ABFD00DD5427 /* PeerFinder.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PeerFinder.xib; sourceTree = "<group>"; };
+		B299A3E210C6C9EB00DD5427 /* UIApplication_TVOut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIApplication_TVOut.m; sourceTree = "<group>"; };
+		B299A3FC10C6CB2900DD5427 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		B299A42410C6D1CA00DD5427 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		B2BB3F3F10C5842100AE2876 /* LMClientPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMClientPicker.h; sourceTree = "<group>"; };
 		B2BB3F4010C5842100AE2876 /* LMClientPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMClientPicker.m; sourceTree = "<group>"; };
 		B2BB3FA310C593C000AE2876 /* picker-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "picker-background.png"; path = "Assets/LMClientPicker/picker-background.png"; sourceTree = "<group>"; };
@@ -215,6 +221,7 @@
 				B290CBEF106CF5970065649E /* GameKit.framework in Frameworks */,
 				548E0FB1106CFCC400D459F5 /* AudioToolbox.framework in Frameworks */,
 				548E102F106D1D3B00D459F5 /* AVFoundation.framework in Frameworks */,
+				B299A3FD10C6CB2900DD5427 /* MediaPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,6 +231,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B299A3E210C6C9EB00DD5427 /* UIApplication_TVOut.m */,
 				B299A20010C6ABE400DD5427 /* PeerFinder */,
 				B2BFACC7106E075B004CDE5A /* View */,
 				B290CEA9106D18300065649E /* Song */,
@@ -277,6 +285,7 @@
 				B290D089106D56B00065649E /* Songs */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Bottle-Info.plist */,
+				B299A42410C6D1CA00DD5427 /* Settings.bundle */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -284,6 +293,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B299A3FC10C6CB2900DD5427 /* MediaPlayer.framework */,
 				548E102E106D1D3B00D459F5 /* AVFoundation.framework */,
 				B290CBEE106CF5970065649E /* GameKit.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
@@ -616,6 +626,7 @@
 				B2BB3FCB10C59B9300AE2876 /* picker-button-bg.png in Resources */,
 				B2BB407710C5A71600AE2876 /* picker-window.png in Resources */,
 				B299A20910C6ABFD00DD5427 /* PeerFinder.xib in Resources */,
+				B299A42510C6D1CA00DD5427 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,6 +662,7 @@
 				B299A20810C6ABFD00DD5427 /* Peer.m in Sources */,
 				544A7D5110C6AD6800ADE6FB /* BecomeClientCommand.m in Sources */,
 				544A7D6C10C6AFC700ADE6FB /* StatusCommand.m in Sources */,
+				B299A3E310C6C9EB00DD5427 /* UIApplication_TVOut.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
