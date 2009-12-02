@@ -8,7 +8,6 @@
 
 #import "StartOrJoinViewController.h"
 #import "ConductorFactory.h"
-#import "PeerFinder.h"
 
 @implementation StartOrJoinViewController
 
@@ -37,6 +36,7 @@
     
     // Push a peer connection view
     PeerFinder *controller = [[PeerFinder alloc] initWithNibName:@"PeerFinder" bundle:nil];
+    controller.delegate = self;
     [controller viewWillAppear:NO];
     [self.view addSubview:controller.view];
     [controller viewDidAppear:NO];
@@ -44,6 +44,11 @@
 
 - (IBAction) practice {
 	[delegate controller:self createdConductor:[ConductorFactory conductorWithType:ConductorTypePractice]];
+}
+
+
+- (void) peerFinder:(PeerFinder *)finder hasSession:(GKSession *)session {
+    NSLog(@"Session started with %i users", [[session peersWithConnectionState:GKPeerStateConnected] count]);
 }
 
 @end

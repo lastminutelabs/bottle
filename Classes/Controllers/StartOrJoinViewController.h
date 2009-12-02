@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "Conductor.h"
 
+#import "PeerFinder.h"
+
 @class StartOrJoinViewController;
 
 @protocol StartOrJoinViewControllerDelegate <NSObject>
@@ -18,7 +20,7 @@
 @end
 
 
-@interface StartOrJoinViewController : UIViewController {
+@interface StartOrJoinViewController : UIViewController <PeerFinderDelegate> {
 	<StartOrJoinViewControllerDelegate> delegate;
 }
 

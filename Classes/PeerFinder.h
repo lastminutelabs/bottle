@@ -15,7 +15,7 @@
 
 @protocol PeerFinderDelegate <NSObject>
 
-- (void) controller:(PeerFinder *)finder hasSession:(GKSession *)session;
+- (void) peerFinder:(PeerFinder *)finder hasSession:(GKSession *)session;
 
 @end
 
@@ -27,8 +27,14 @@
     GKSession *session;
     
     <PeerFinderDelegate> delegate;
+    
+    UIButton *conductButton;
 }
 
 @property (nonatomic, retain) <PeerFinderDelegate> delegate;
+
+@property (nonatomic, retain) IBOutlet UIButton *conductButton;
+
+- (IBAction) conduct;
 
 @end

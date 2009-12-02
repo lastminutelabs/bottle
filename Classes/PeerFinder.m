@@ -11,7 +11,7 @@
 
 @implementation PeerFinder
 
-@synthesize delegate;
+@synthesize delegate, conductButton;
 
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -111,6 +111,9 @@
     
     // Redisplay the table
     [self.tableView reloadData];
+    
+    // Refresh the conduct button
+    conductButton.enabled = [[session peersWithConnectionState:GKPeerStateConnected] count];
 }
 
 - (void)session:(GKSession *)session_ didReceiveConnectionRequestFromPeer:(NSString *)peerID {
@@ -232,6 +235,10 @@
     [super dealloc];
 }
 
+
+- (IBAction) conduct {
+    [delegate peerFinder:self hasSession:session];
+}
 
 @end
 
