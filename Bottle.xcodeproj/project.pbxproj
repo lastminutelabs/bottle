@@ -66,6 +66,9 @@
 		B290CEB3106D19A40065649E /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = B290CEB2106D19A40065649E /* Note.m */; };
 		B290D08B106D56CA0065649E /* Jingle Bells.btl in Resources */ = {isa = PBXBuildFile; fileRef = B290D08A106D56CA0065649E /* Jingle Bells.btl */; };
 		B290D1A7106D618B0065649E /* PracticeConductor.m in Sources */ = {isa = PBXBuildFile; fileRef = B290D1A6106D618B0065649E /* PracticeConductor.m */; };
+		B299A20710C6ABFD00DD5427 /* PeerFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = B299A20310C6ABFD00DD5427 /* PeerFinder.m */; };
+		B299A20810C6ABFD00DD5427 /* Peer.m in Sources */ = {isa = PBXBuildFile; fileRef = B299A20510C6ABFD00DD5427 /* Peer.m */; };
+		B299A20910C6ABFD00DD5427 /* PeerFinder.xib in Resources */ = {isa = PBXBuildFile; fileRef = B299A20610C6ABFD00DD5427 /* PeerFinder.xib */; };
 		B2BB3F4110C5842100AE2876 /* LMClientPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BB3F4010C5842100AE2876 /* LMClientPicker.m */; };
 		B2BB3FA410C593C000AE2876 /* picker-background.png in Resources */ = {isa = PBXBuildFile; fileRef = B2BB3FA310C593C000AE2876 /* picker-background.png */; };
 		B2BB3FC110C595C600AE2876 /* LMClientPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2BB3FC010C595C600AE2876 /* LMClientPicker.xib */; };
@@ -161,6 +164,11 @@
 		B290D08A106D56CA0065649E /* Jingle Bells.btl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Jingle Bells.btl"; sourceTree = "<group>"; };
 		B290D1A5106D618B0065649E /* PracticeConductor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeConductor.h; sourceTree = "<group>"; };
 		B290D1A6106D618B0065649E /* PracticeConductor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeConductor.m; sourceTree = "<group>"; };
+		B299A20210C6ABFD00DD5427 /* PeerFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeerFinder.h; sourceTree = "<group>"; };
+		B299A20310C6ABFD00DD5427 /* PeerFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeerFinder.m; sourceTree = "<group>"; };
+		B299A20410C6ABFD00DD5427 /* Peer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Peer.h; sourceTree = "<group>"; };
+		B299A20510C6ABFD00DD5427 /* Peer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Peer.m; sourceTree = "<group>"; };
+		B299A20610C6ABFD00DD5427 /* PeerFinder.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PeerFinder.xib; sourceTree = "<group>"; };
 		B2BB3F3F10C5842100AE2876 /* LMClientPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMClientPicker.h; sourceTree = "<group>"; };
 		B2BB3F4010C5842100AE2876 /* LMClientPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMClientPicker.m; sourceTree = "<group>"; };
 		B2BB3FA310C593C000AE2876 /* picker-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "picker-background.png"; path = "Assets/LMClientPicker/picker-background.png"; sourceTree = "<group>"; };
@@ -212,6 +220,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B299A20010C6ABE400DD5427 /* PeerFinder */,
 				B2BFACC7106E075B004CDE5A /* View */,
 				B290CEA9106D18300065649E /* Song */,
 				B290CB00106CEBB90065649E /* Controllers */,
@@ -456,6 +465,18 @@
 			path = Practice;
 			sourceTree = "<group>";
 		};
+		B299A20010C6ABE400DD5427 /* PeerFinder */ = {
+			isa = PBXGroup;
+			children = (
+				B299A20210C6ABFD00DD5427 /* PeerFinder.h */,
+				B299A20310C6ABFD00DD5427 /* PeerFinder.m */,
+				B299A20410C6ABFD00DD5427 /* Peer.h */,
+				B299A20510C6ABFD00DD5427 /* Peer.m */,
+				B299A20610C6ABFD00DD5427 /* PeerFinder.xib */,
+			);
+			name = PeerFinder;
+			sourceTree = "<group>";
+		};
 		B2BB3FC310C5964700AE2876 /* LMClientPicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -587,6 +608,7 @@
 				B2BB3FC110C595C600AE2876 /* LMClientPicker.xib in Resources */,
 				B2BB3FCB10C59B9300AE2876 /* picker-button-bg.png in Resources */,
 				B2BB407710C5A71600AE2876 /* picker-window.png in Resources */,
+				B299A20910C6ABFD00DD5427 /* PeerFinder.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -619,6 +641,8 @@
 				B2BFACCA106E0774004CDE5A /* UINoteView.m in Sources */,
 				B2BB3F4110C5842100AE2876 /* LMClientPicker.m in Sources */,
 				B2BB406C10C5A44700AE2876 /* untitled.m in Sources */,
+				B299A20710C6ABFD00DD5427 /* PeerFinder.m in Sources */,
+				B299A20810C6ABFD00DD5427 /* Peer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

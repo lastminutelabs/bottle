@@ -24,8 +24,7 @@
 
 @property (nonatomic, retain) IBOutlet id delegate;
 
-- (IBAction) conductor;
-- (IBAction) musician;
+- (IBAction) join;
 - (IBAction) practice;
 
 @end

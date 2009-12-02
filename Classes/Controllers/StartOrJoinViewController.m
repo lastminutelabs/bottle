@@ -8,6 +8,7 @@
 
 #import "StartOrJoinViewController.h"
 #import "ConductorFactory.h"
+#import "PeerFinder.h"
 
 @implementation StartOrJoinViewController
 
@@ -30,12 +31,15 @@
     [super dealloc];
 }
 
-- (IBAction) conductor {
-	[delegate controller:self createdConductor:[ConductorFactory conductorWithType:ConductorTypeServer]];
-}
-
-- (IBAction) musician {
-	[delegate controller:self createdConductor:[ConductorFactory conductorWithType:ConductorTypeClient]];	
+- (IBAction) join {
+	//[delegate controller:self createdConductor:[ConductorFactory conductorWithType:ConductorTypeServer]];
+//    [delegate controller:self 
+    
+    // Push a peer connection view
+    PeerFinder *controller = [[PeerFinder alloc] initWithNibName:@"PeerFinder" bundle:nil];
+    [controller viewWillAppear:NO];
+    [self.view addSubview:controller.view];
+    [controller viewDidAppear:NO];
 }
 
 - (IBAction) practice {
