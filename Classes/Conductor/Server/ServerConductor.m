@@ -46,7 +46,7 @@
         [session setDataReceiveHandler:self withContext:nil];
         
         // Create the peers array with the currect array of peers
-        peers = [NSMutableArray arrayWithArray:[session peersWithConnectionState:GKPeerStateConnected]];
+        peers = [[NSMutableArray arrayWithArray:[session peersWithConnectionState:GKPeerStateConnected]] retain];
 	}
 	return self;
 }
