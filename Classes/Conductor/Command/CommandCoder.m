@@ -12,6 +12,8 @@
 #import "LobbyUpdateCommand.h"
 #import "GraphicsOverlayCommand.h"
 #import "StartPlayCommand.h"
+#import "BecomeClientCommand.h"
+#import "StatusCommand.h"
 
 @implementation CommandCoder
 
@@ -48,6 +50,17 @@
 			
 		case CommandTypeStartPlay: {
 			command = [[StartPlayCommand alloc] init];
+		}
+		break;
+			
+		case CommandTypeBecomeClient: {
+			command = [[BecomeClientCommand alloc] init];
+		}
+		break;
+			
+		case CommandTypeStatus: {
+			command = [[StatusCommand alloc] init];
+			[(StatusCommand *)command setStatus:[[props objectForKey:@"status"] intValue]];
 		}
 		break;
 			
@@ -103,6 +116,16 @@
 			
 		case CommandTypeStartPlay: {
 			//StartPlayCommand *start = (StartPlayCommand *)command;
+		}
+		break;
+
+		case CommandTypeBecomeClient: {
+		}
+		break;
+
+		case CommandTypeStatus: {
+			StatusCommand *status = (StatusCommand *)command;
+            [props setValue:[NSNumber numberWithInt:status.status] forKey:@"status"];
 		}
 		break;
 			
