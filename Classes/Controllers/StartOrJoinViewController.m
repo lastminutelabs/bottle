@@ -7,7 +7,9 @@
 //
 
 #import "StartOrJoinViewController.h"
-#import "ConductorFactory.h"
+#import "ServerConductor.h"
+#import "PracticeConductor.h"
+#import "ClientConductor.h"
 
 @implementation StartOrJoinViewController
 
@@ -43,12 +45,28 @@
 }
 
 - (IBAction) practice {
-	[delegate controller:self createdConductor:[ConductorFactory conductorWithType:ConductorTypePractice]];
+	[delegate controller:self createdConductor:[[[PracticeConductor alloc] init] autorelease]];
 }
 
 
-- (void) peerFinder:(PeerFinder *)finder hasSession:(GKSession *)session {
+- (void) peerFinder:(PeerFinder *)finder isServerWithSession:(GKSession *)session {
     NSLog(@"Session started with %i users", [[session peersWithConnectionState:GKPeerStateConnected] count]);
+    
+    // Create the server conductor
+    ServerConductor *conductor = [[[ServerConductor alloc] initWithSession:session] autorelease];
+    [delegate controller:self createdConductor:conductor];
+    
+    [finder.view removeFromSuperview];
+    [finder release];
+}
+
+- (void) peerFinder:(PeerFinder *)finder isClientWithSession:(GKSession *)session forServer:(NSString *)serverPeerID {
+    // Create the client conductor
+    ClientConductor *conductor = [[[ClientConductor alloc] initWithSession:session forServer:serverPeerID] autorelease];
+    [delegate controller:self createdConductor:conductor];
+    
+    [finder.view removeFromSuperview];
+    [finder release];
 }
 
 @end

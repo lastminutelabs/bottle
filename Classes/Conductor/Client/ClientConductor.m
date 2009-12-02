@@ -29,10 +29,16 @@
 	NSLog(@"%@", message);
 }
 
-- (id) init {
+- (id) initWithSession:(GKSession *)session_ forServer:(NSString *)serverPeerID_ {
 	if (self = [super init]) {
 		name = [[NSString stringWithFormat:@"%@ client", [[UIDevice currentDevice] name]] retain];
 		readyToPlay = NO;
+        
+        session = [session_ retain];
+        session.delegate = nil;
+        [session setDataReceiveHandler:self withContext:nil];
+        
+        serverPeerID = [serverPeerID_ copy];
 	}
 	return self;
 }
@@ -61,6 +67,7 @@
 }
 
 - (void) start {
+    /*
 	// If we're in a session already, finish it
 	[self finish];
 	
@@ -71,15 +78,9 @@
 	[controller setConnectionTypesMask:GKPeerPickerConnectionTypeNearby];
 	[controller show];
 	[self debug:@"Client picker started"];
-}
+     */
 
-- (void) finish {
-	[session disconnectFromAllPeers];
-	[session setAvailable:NO];
-	[session setDelegate:nil];
-	[session setDataReceiveHandler:nil withContext:nil];
-	[session release];
-	session = nil;
+	[delegate conductor:self initializeSuccessful:YES];
 }
 
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peerID inSession: (GKSession *)session_ context:(void *)context {
@@ -118,6 +119,7 @@
 
 #pragma mark ---- PeerPickerDelegate methods ----
 
+/*
 - (GKSession *)peerPickerController:(GKPeerPickerController *)picker sessionForConnectionType:(GKPeerPickerConnectionType)type {
 	return [[[GKSession alloc] initWithSessionID:GAME_ID displayName:name sessionMode:GKSessionModeClient] autorelease];
 }
@@ -141,6 +143,7 @@
     [picker dismiss];
     [picker release];
 }
+*/
 
 - (void) setSong:(Song *)value {
 	[NSException raise:@"Clients cannot set the song!" format:@""];

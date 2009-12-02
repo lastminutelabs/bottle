@@ -12,6 +12,7 @@
 #import "LobbyUpdateCommand.h"
 #import "GraphicsOverlayCommand.h"
 #import "StartPlayCommand.h"
+#import "BecomeClientCommand.h"
 
 @implementation ServerConductor
 
@@ -34,62 +35,20 @@
 	return [NSString stringWithFormat:@"[ServerConductor \"%@\"]", name];
 }
 
-- (id) init {
+- (id) initWithSession:(GKSession *)session_ {
 	if (self = [super init]) {
 		name = [[NSString stringWithFormat:@"%@ server", [[UIDevice currentDevice] name]] retain];
 		readyToPlay = NO;
+        
+        // Take control of the session
+        session = [session_ retain];
+        [session setDelegate:self];
+        [session setDataReceiveHandler:self withContext:nil];
+        
+        // Create the peers array with the currect array of peers
+        peers = [NSMutableArray arrayWithArray:[session peersWithConnectionState:GKPeerStateConnected]];
 	}
 	return self;
-}
-
-- (void) start {
-	// If we're in a session already, finish it
-	[self finish];
-	
-	// Create the bluetooth server session
-	session = [[GKSession alloc] initWithSessionID:GAME_ID displayName:name sessionMode:GKSessionModeServer];
-	[session setDelegate:self];
-	[session setDataReceiveHandler:self withContext:nil];
-	[session setAvailable:YES];
-	[self debug:[session peerID]];
-	
-	// Create the peers array
-	peers = [[NSMutableArray alloc] initWithCapacity:10];
-	allPlayers = [[NSMutableArray alloc] initWithCapacity:10];
-	[allPlayers addObject:[session displayName]];
-	musiciansReadyToPlay = [[NSMutableArray alloc] initWithCapacity:10];
-	
-	[self debug:@"Server session started"];
-	
-	[delegate conductor:self initializeSuccessful:YES];
-	
-	pingTimer = [[NSTimer scheduledTimerWithTimeInterval:PING_INTERVAL target:self selector:@selector(triggerPing:) userInfo:nil repeats:YES] retain];
-}
-
-- (void) finish {
-	[pingTimer invalidate];
-	[pingTimer release];
-	pingTimer = nil;
-	[songEndTimer invalidate];
-	[songEndTimer release];
-	songEndTimer = nil;
-	[session disconnectFromAllPeers];
-	[session setAvailable:NO];
-	[session setDelegate:nil];
-	[session release];
-	session = nil;
-	[peers release];
-	peers = nil;
-	[allPlayers release];
-	[musiciansReadyToPlay release];
-	allPlayers = nil;
-}
-
-- (void) dealloc {
-	[self finish];
-	[delegate release];
-	[name release];
-	[super dealloc];
 }
 
 - (NSError *) sendCommand:(<Command>)command {
@@ -108,6 +67,45 @@
 	update.players = allPlayers;
 	[self sendCommand:update];
 	[update release];
+}
+
+- (void) start {
+	// Create the arrays
+	allPlayers = [[NSMutableArray alloc] initWithCapacity:10];
+	[allPlayers addObject:[session displayName]];
+    for (NSString *peerID in peers)
+        [allPlayers addObject:[session displayNameForPeer:peerID]];
+	musiciansReadyToPlay = [[NSMutableArray alloc] initWithCapacity:10];
+	
+	[delegate conductor:self initializeSuccessful:YES];
+	
+	pingTimer = [[NSTimer scheduledTimerWithTimeInterval:PING_INTERVAL target:self selector:@selector(triggerPing:) userInfo:nil repeats:YES] retain];
+    
+    // Send out some commands to tell the other peers that I am the conductor
+    [self sendCommand:[[[BecomeClientCommand alloc] init] autorelease]];
+    
+    // Update the lobby
+    [self refreshLobby];
+    
+    // Debug
+    [self debug:@"Server session started"];
+}
+
+- (void) dealloc {
+	[pingTimer invalidate];
+	[pingTimer release];
+	[songEndTimer invalidate];
+	[songEndTimer release];
+	[session disconnectFromAllPeers];
+	[session setAvailable:NO];
+	[session setDelegate:nil];
+	[session release];
+	[peers release];
+	[allPlayers release];
+	[musiciansReadyToPlay release];
+	[delegate release];
+	[name release];
+	[super dealloc];
 }
 
 - (void) triggerPing:(NSTimer *)timer {

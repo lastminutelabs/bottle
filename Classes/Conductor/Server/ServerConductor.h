@@ -34,6 +34,8 @@
 	bool sentPlayMessage;
 }
 
+- (id) initWithSession:(GKSession *)session;
+
 @property (nonatomic, readonly) ConductorType type;
 @property (nonatomic, readonly) NSString *name;
 @property (nonatomic, retain) <ConductorDelegate> delegate;

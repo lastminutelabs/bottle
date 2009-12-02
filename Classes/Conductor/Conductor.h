@@ -59,6 +59,5 @@ typedef enum {
 @property (nonatomic, assign) bool readyToPlay;
 
 - (void) start;
-- (void) finish;
 
 @end

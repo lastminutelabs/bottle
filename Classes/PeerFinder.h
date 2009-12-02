@@ -15,7 +15,8 @@
 
 @protocol PeerFinderDelegate <NSObject>
 
-- (void) peerFinder:(PeerFinder *)finder hasSession:(GKSession *)session;
+- (void) peerFinder:(PeerFinder *)finder isServerWithSession:(GKSession *)session;
+- (void) peerFinder:(PeerFinder *)finder isClientWithSession:(GKSession *)session forServer:(NSString *)serverPeerID;
 
 @end
 

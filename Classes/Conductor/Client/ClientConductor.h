@@ -26,6 +26,8 @@
 	NSString *serverPeerID;
 }
 
+- (id) initWithSession:(GKSession *)session forServer:(NSString *)serverPeerID;
+
 @property (nonatomic, readonly) ConductorType type;
 @property (nonatomic, readonly) NSString *name;
 @property (nonatomic, retain) <ConductorDelegate> delegate;

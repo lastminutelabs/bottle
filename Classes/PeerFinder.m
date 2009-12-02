@@ -9,6 +9,8 @@
 #import "PeerFinder.h"
 #import "Peer.h"
 
+#import "CommandCoder.h"
+
 @implementation PeerFinder
 
 @synthesize delegate, conductButton;
@@ -41,6 +43,7 @@
     // Create the GKSession
     session = [[GKSession alloc] initWithSessionID:@"BottleRockIt" displayName:nil sessionMode:GKSessionModePeer];
     session.delegate = self;
+    [session setDataReceiveHandler:self withContext:nil];
     session.available = YES;
 }
 
@@ -230,6 +233,10 @@
 
 
 - (void)dealloc {
+    if (session.delegate == self) {
+        session.delegate = nil;
+        [session setDataReceiveHandler:nil withContext:nil];
+    }
     [possibles release];
     [delegate release];
     [super dealloc];
@@ -237,8 +244,24 @@
 
 
 - (IBAction) conduct {
-    [delegate peerFinder:self hasSession:session];
+    [delegate peerFinder:self isServerWithSession:session];
 }
+
+- (void) receiveData:(NSData *)data fromPeer:(NSString *)peerID inSession: (GKSession *)session_ context:(void *)context {
+	// Create the command from the data
+	<Command> command = [CommandCoder commandWithData:data];
+	switch (command.type) {
+		case CommandTypeBecomeClient: {
+                // We must become a client for this server
+                [delegate peerFinder:self isClientWithSession:session forServer:peerID];
+            }
+            break;
+            
+		default:
+			break;
+	}
+}
+
 
 @end
 
